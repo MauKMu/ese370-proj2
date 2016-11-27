@@ -1,0 +1,44 @@
+*** SPICE deck for cell clk_gen_test{sch} from library Proj2
+*** Created on Sat Nov 26, 2016 22:52:07
+*** Last revised on Sat Nov 26, 2016 23:02:42
+*** Written on Sat Nov 26, 2016 23:02:47 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+* Model cards are described in this file:
+.include "C:\Program Files (x86)\Electric\22nm_HP.pm"
+
+*** SUBCIRCUIT Proj2__clk_gen FROM CELL clk_gen{sch}
+.SUBCKT Proj2__clk_gen IN OUT OUT_INV
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 A IN gnd gnd N L=0.022U W=0.022U
+Mnmos@1 net@3 IN gnd gnd N L=0.022U W=0.022U
+Mnmos@2 B net@3 gnd gnd N L=0.022U W=0.022U
+Mnmos@3 net@37 A gnd gnd N L=0.022U W=0.022U
+Mnmos@4 net@37 OUT_INV gnd gnd N L=0.022U W=0.022U
+Mnmos@5 net@50 B gnd gnd N L=0.022U W=0.022U
+Mnmos@6 net@50 OUT gnd gnd N L=0.022U W=0.022U
+Mnmos@7 net@147 net@37 gnd gnd N L=0.022U W=0.22U
+Mnmos@8 OUT net@147 gnd gnd N L=0.022U W=0.022U
+Mnmos@9 net@166 net@50 gnd gnd N L=0.022U W=0.22U
+Mnmos@10 OUT_INV net@166 gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd IN A vdd P L=0.022U W=0.022U
+Mpmos@1 vdd IN net@3 vdd P L=0.022U W=0.022U
+Mpmos@2 vdd net@3 B vdd P L=0.022U W=0.022U
+Mpmos@3 vdd A net@36 vdd P L=0.022U W=0.022U
+Mpmos@4 net@36 OUT_INV net@37 vdd P L=0.022U W=0.022U
+Mpmos@5 vdd B net@47 vdd P L=0.022U W=0.022U
+Mpmos@6 net@47 OUT net@50 vdd P L=0.022U W=0.022U
+Mpmos@7 vdd net@37 net@147 vdd P L=0.022U W=0.22U
+Mpmos@8 vdd net@147 OUT vdd P L=0.022U W=0.022U
+Mpmos@9 vdd net@50 net@166 vdd P L=0.022U W=0.22U
+Mpmos@10 vdd net@166 OUT_INV vdd P L=0.022U W=0.022U
+.ENDS Proj2__clk_gen
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: clk_gen_test{sch}
+VVPulse@0 net@0 gnd pulse (0 0.8V 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
+VV_Generi@0 vdd gnd DC 0.8 AC 0
+Xclk_gen@0 net@0 CLK CLK_I Proj2__clk_gen
+.END
