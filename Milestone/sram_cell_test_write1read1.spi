@@ -1,0 +1,67 @@
+*** SPICE deck for cell sram_cell_test_write1read1{sch} from library Proj2
+*** Created on Sat Nov 26, 2016 23:19:23
+*** Last revised on Sun Nov 27, 2016 16:21:16
+*** Written on Sun Nov 27, 2016 16:21:19 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+* Model cards are described in this file:
+.include /home/kenzo/electric/22nm_HP.pm
+
+*** SUBCIRCUIT Proj2__bitline_driver FROM CELL bitline_driver{sch}
+.SUBCKT Proj2__bitline_driver BL BL_ CLK_
+** GLOBAL vdd
+Mpmos@0 vdd CLK_ BL_ vdd P L=0.022U W=0.352U
+Mpmos@1 vdd CLK_ BL vdd P L=0.022U W=0.352U
+.ENDS Proj2__bitline_driver
+
+*** SUBCIRCUIT Proj2__sram_cell FROM CELL sram_cell{sch}
+.SUBCKT Proj2__sram_cell BL BL_ WL
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 Q Q_I gnd gnd N L=0.022U W=0.176U
+Mnmos@1 Q_I Q gnd gnd N L=0.022U W=0.176U
+Mnmos@2 BL_ WL Q_I gnd N L=0.022U W=0.088U
+Mnmos@3 Q WL BL gnd N L=0.022U W=0.088U
+Mpmos@0 vdd Q_I Q vdd P L=0.022U W=0.022U
+Mpmos@1 vdd Q Q_I vdd P L=0.022U W=0.022U
+.ENDS Proj2__sram_cell
+
+*** SUBCIRCUIT Proj2__tristate_inverter FROM CELL tristate_inverter{sch}
+.SUBCKT Proj2__tristate_inverter EN IN OUT
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@1 OUT EN net@8 gnd N L=0.022U W=0.176U
+Mnmos@2 net@8 IN gnd gnd N L=0.022U W=0.176U
+Mnmos@3 net@61 EN gnd gnd N L=0.022U W=0.022U
+Mpmos@1 vdd IN net@6 vdd P L=0.022U W=0.176U
+Mpmos@2 net@6 net@61 OUT vdd P L=0.022U W=0.176U
+Mpmos@3 vdd EN net@61 vdd P L=0.022U W=0.022U
+.ENDS Proj2__tristate_inverter
+
+*** SUBCIRCUIT Proj2__tristate_buffer FROM CELL tristate_buffer{sch}
+.SUBCKT Proj2__tristate_buffer EN IN OUT
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 net@20 IN gnd gnd N L=0.022U W=0.022U
+Mnmos@1 OUT EN net@8 gnd N L=0.022U W=0.176U
+Mnmos@2 net@8 net@20 gnd gnd N L=0.022U W=0.176U
+Mnmos@3 net@30 EN gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd IN net@20 vdd P L=0.022U W=0.022U
+Mpmos@1 vdd net@20 net@6 vdd P L=0.022U W=0.176U
+Mpmos@2 net@6 net@30 OUT vdd P L=0.022U W=0.176U
+Mpmos@3 vdd EN net@30 vdd P L=0.022U W=0.022U
+.ENDS Proj2__tristate_buffer
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: sram_cell_test_write1read1{sch}
+VVPWL@0 precharge_I gnd pwl (0ns 0.8 2.5ns 0.8 2.6ns 0 3.5ns 0 3.6ns 0.8) DC 0V AC 0V 0
+VVPWL@1 net@16 gnd pwl (0ns 0 1.2ns 0 1.3ns 0.8 2ns 0.8 2.1ns 0 3.7ns 0 3.8ns 0.8) DC 0V AC 0V 0
+VVPWL@2 WRITE_IN gnd pwl (0ns 0 0.1ns 0.8) DC 0V AC 0V 0
+VVPWL@3 WRITE_ENABLE gnd pwl (0ns 0 0.1ns 0.8 2.3ns 0.8 2.4ns 0) DC 0V AC 0V 0
+VV_Generi@0 vdd gnd DC 0.8 AC 0
+Xbitline_@0 BL BL_I precharge_I Proj2__bitline_driver
+Xsram_cel@0 BL BL_I net@16 Proj2__sram_cell
+Xtristate@0 WRITE_ENABLE WRITE_IN BL_I Proj2__tristate_inverter
+Xtristate@1 WRITE_ENABLE WRITE_IN BL Proj2__tristate_buffer
+.END
