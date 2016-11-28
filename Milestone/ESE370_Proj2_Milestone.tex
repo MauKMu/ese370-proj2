@@ -87,7 +87,7 @@ In addition, each bitline is loaded with $16\gamma C_0$ from the driver circuit,
 \subsection*{Test Cases to Consider}
 For writing to the cell, we considered four cases:
 \begin{enumerate}
-\item Writing a 0 to a cell with 0 (Figure \ref{fig:write_0_then_write_0}). We first write a 0 by driving $BL$ low and $BL'$ high by driving $write_enable$ high, and driving $WL$ to high. We then write a 0 again using the same process. The $Q$ and $Q'$ signals inside the cell were verified to ensure that writes were being completed properly, even after $write_enable$ was set low.
+\item Writing a 0 to a cell with 0 (Figure \ref{fig:write_0_then_write_0}). We first write a 0 by driving $BL$ low and $BL'$ high by driving $write\_enable$ high, and driving $WL$ to high. We then write a 0 again using the same process. The $Q$ and $Q'$ signals inside the cell were verified to ensure that writes were being completed properly, even after $write_enable$ was set low.
 \item Writing a 1 to a cell with 0 (Figure \ref{fig:write_0_then_write_1}). This uses the same process for writing a 1 as for writing a 0, but $BL$ is driven high and $BL'$ is driven low.
 \item Writing a 0 to a cell with 1 (Figure \ref{fig:write_1_then_write_0}). Since the cell already starts in a state in which $Q$ is high and $Q'$ is low, we only need to write a 1 to verify this case.
 \item Writing a 1 to a cell with 1 (Figure \ref{fig:write_1_then_write_1}). This is the same case as (3) in that the cell already starts with $Q = 1$, but we instead write a 1.
@@ -156,6 +156,5 @@ All testing was done with the test circuit in Figure \ref{fig:test_circuit}. Not
 \end{figure}
 
 \section*{Constraints on Write Timing, Full FIFO Design}
-\hl{TODO}
-
+One important constraint for write timing is if we are simultaneously enqueuing and dequeuing from the same word at the same time. To ensure that the dequeue operation returns the correct value to the output, and because a cell can only be written to or read in a single clock cycle, we will want to make sure that we dequeue the old value first before enqueueing the new value. To test this, we will first enqueue a single element (suppose it's "0011"), and then we'll issue both an enqueue (say, of "1100") and a dequeue at the same time. The value returned by dequeue should be "0011".
 \end{document}
