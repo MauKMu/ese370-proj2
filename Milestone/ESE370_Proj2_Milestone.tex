@@ -45,7 +45,9 @@
 \section*{Bitline Capacitance}
 Each SRAM cell loads each bitline with a capacitance of $4\gamma C_0$. This can be seen in Figure \ref{fig:sram_cell_circuit} below, which shows that $BL$ and $BL'$ are each connected to the drain/source terminal of a transistor of width 4.
 
-Next, each bitline is loaded with at most 16 SRAM cells. This number could be reduced by arranging the words in a 4x4 pattern, for example, but we will consider the worst case capacitance, which arises with 16 cells. Thus, each bitline is loaded with $64\gamma C_0$.
+Next, each bitline is loaded with at most 16 SRAM cells. This number could be reduced by arranging the words in a 4x4 pattern, for example, but we will consider the worst case capacitance, which arises with 16 cells. Thus, each bitline is loaded with $64\gamma C_0$ from the SRAM cells.
+
+In addition, each bitline is loaded with $16\gamma C_0$ from the driver circuit, and $16\gamma C_0$ from the tri-state buffer or inverter. Therefore, the total load on the bitline is $96\gamma C_0$.
 
 \section*{Circuit Schematics}
 \subsection*{Memory Column Driver Schematic}
