@@ -18,8 +18,8 @@
 \usepackage[margin=1.0in]{geometry}
 \usepackage{parskip}
 
-\geometry{paperwidth=30cm}
-\geometry{paperheight=40cm}
+%\geometry{paperwidth=30cm}
+%\geometry{paperheight=40cm}
 
 
 \begin{document}
@@ -46,21 +46,69 @@
 \hl{TODO}
 
 \section*{Circuit Schematics}
-\hl{TODO}
 \subsection*{Memory Column Driver Schematic}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{bitline_driver_circuit.png}
+  \caption{Bitline driver circuit}
+  \label{fig:bitline_driver_circuit}
+\end{figure}
 
 \subsection*{Sized Memory Cell Schematic}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{sram_cell_circuit.png}
+  \caption{Sized SRAM memory cell circuit}
+  \label{fig:sram_cell_circuit}
+\end{figure}
 
 \subsection*{Tri-State Buffer Schematic}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{tristate_buffer_circuit.png}
+  \caption{Tri-state buffer circuit}
+  \label{fig:tristate_buffer_circuit}
+\end{figure}
 
 \subsection*{Tri-State Inverter Schematic}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{tristate_inverter_circuit.png}
+  \caption{Tri-state inverter circuit}
+  \label{fig:tristate_inverter_circuit}
+\end{figure}
 
 
 \section*{Reading and Writing (Cell)}
-\hl{TODO}
 \subsection*{Test Cases to Consider}
+For writing to the cell, we considered four cases:
+\begin{enumerate}
+\item Writing a 0 to a cell with 0 (Figure \ref{fig:write_0_then_write_0}). We first write a 0 by driving $BL$ low and $BL'$ high by driving $write_enable$ high, and driving $WL$ to high. We then write a 0 again using the same process. The $Q$ and $Q'$ signals inside the cell were verified to ensure that writes were being completed properly, even after $write_enable$ was set low.
+\item Writing a 1 to a cell with 0 (Figure \ref{fig:write_0_then_write_1}). This uses the same process for writing a 1 as for writing a 0, but $BL$ is driven high and $BL'$ is driven low.
+\item Writing a 0 to a cell with 1 (Figure \ref{fig:write_1_then_write_0}). Since the cell already starts in a state in which $Q$ is high and $Q'$ is low, we only need to write a 1 to verify this case.
+\item Writing a 1 to a cell with 1 (Figure \ref{fig:write_1_then_write_1}). This is the same case as (3) in that the cell already starts with $Q = 1$, but we instead write a 1.
+\end{enumerate}
 
-\subsection*{Writing 0 and Reading 0}
+Since there are two present states ($Q_t = 0$, $Q_t = 1$) and two next states ($Q_{t+1} = 0$, $Q_{t+1} = 1$), these four cases completely test writing to the cell.
+
+For reading from the cell, we considered two cases:
+\begin{enumerate}
+\item Reading a 0 from a cell that was written to 0 (Figure \ref{fig:write_0_then_read_0}).
+\item Reading a 1 from a cell that was written to 1 (Figure \ref{fig:write_1_then_read_1}).
+\end{enumerate}
+
+In each reading case, we made sure that the reading process did not cause enough of a read upset to overwrite $Q$. These read upsets are not visible in Figures \ref{fig:write_0_then_read_0} or \ref{fig:write_1_then_read_1} and were on the order of tens of millivolts, so we are confident that reading from these cells is not destructive.
+
+All testing was done with the test circuit in Figure \ref{fig:test_circuit}. Note that this test circuit includes only one SRAM cell to keep the image visible. Actual testing was done on one SRAM cell with 15 other SRAM cells loading the bitlines in parallel to simulate how the memory circuit would behave in the actual 16-word FIFO queue.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{test_circuit.png}
+  \caption{Memory cell test circuit}
+  \label{fig:test_circuit}
+\end{figure}
+
+\subsection*{SRAM Cell Test Results}
 \begin{figure}[H]
   \centering
     \includegraphics[width=1.0\textwidth]{write_0_then_read_0.png}
@@ -68,7 +116,6 @@
   \label{fig:write_0_then_read_0}
 \end{figure}
 
-\subsection*{Writing 1 and Reading 1}
 \begin{figure}[H]
   \centering
     \includegraphics[width=1.0\textwidth]{write_1_then_read_1.png}
@@ -76,7 +123,6 @@
   \label{fig:write_1_then_read_1}
 \end{figure}
 
-\subsection*{Writing 0}
 \begin{figure}[H]
   \centering
     \includegraphics[width=1.0\textwidth]{write_1_then_write_0.png}
@@ -84,7 +130,6 @@
   \label{fig:write_1_then_write_0}
 \end{figure}
 
-\subsection*{Writing 1}
 \begin{figure}[H]
   \centering
     \includegraphics[width=1.0\textwidth]{write_1_then_write_1.png}
@@ -92,7 +137,6 @@
   \label{fig:write_1_then_write_1}
 \end{figure}
 
-\subsection*{Writing 0 and Writing 1}
 \begin{figure}[H]
   \centering
     \includegraphics[width=1.0\textwidth]{write_0_then_write_1.png}
@@ -100,7 +144,6 @@
   \label{fig:write_0_then_write_1}
 \end{figure}
 
-\subsection*{Writing 0 and Writing 0}
 \begin{figure}[H]
   \centering
     \includegraphics[width=1.0\textwidth]{write_0_then_write_0.png}
