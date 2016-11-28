@@ -113,6 +113,7 @@ All testing was done with the test circuit in Figure \ref{fig:test_circuit}. Not
 \end{figure}
 
 \subsection*{SRAM Cell Test Results}
+Note: in the figures below, \texttt{net@16} is the word line ($WL$) signal.
 \begin{figure}[H]
   \centering
     \includegraphics[width=1.0\textwidth]{write_0_then_read_0.png}
@@ -157,4 +158,6 @@ All testing was done with the test circuit in Figure \ref{fig:test_circuit}. Not
 
 \section*{Constraints on Write Timing, Full FIFO Design}
 One important constraint for write timing is if we are simultaneously enqueuing and dequeuing from the same word at the same time. To ensure that the dequeue operation returns the correct value to the output, and because a cell can only be written to or read in a single clock cycle, we will want to make sure that we dequeue the old value first before enqueueing the new value. To test this, we will first enqueue a single element (suppose it's "0011"), and then we'll issue both an enqueue (say, of "1100") and a dequeue at the same time. The value returned by dequeue should be "0011".
+
+Another edge case we must consider is if we are simultaneously enqueuing and dequeuing when the queue is full. Assuming that we dequeue first before enqueueing, we will need to make sure that we save the fact that the queue was full into a latch before we proceed with the enqueue operation. This will be done to guarantee that simultaneous enqueues and dequeues on a full queue will ensure that the queue has one fewer element afterward. To verify this, we can examine the values of the read and write pointers (counters) to ensure that the queue has exactly 15 elements and not 16.
 \end{document}

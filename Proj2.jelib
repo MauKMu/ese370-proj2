@@ -34,9 +34,9 @@ ECLK'||D5G2;|pin@2||I
 X
 
 # Cell bitline_driver;1{sch}
-Cbitline_driver;1{sch}||schematic|1480219746726|1480286458364|
+Cbitline_driver;1{sch}||schematic|1480219746726|1480289657314|
 Ngeneric:Facet-Center|art@0||0|0||||AV
-Ibitline_driver;1{ic}|bitline_@0||26.5|9.5|||D5G4;
+Ibitline_driver;1{ic}|bitline_@0||22|6|||D5G4;
 NOff-Page|conn@0||0|-7|||RRR|
 NOff-Page|conn@1||-7|0||||
 NOff-Page|conn@2||10|-7|||RRR|
@@ -581,10 +581,10 @@ EWL||D5G2;|conn@1|a|I
 X
 
 # Cell sram_cell_test;1{sch}
-Csram_cell_test;1{sch}||schematic|1480220363662|1480276023872|
+Csram_cell_test;1{sch}||schematic|1480220363662|1480289878274|
 IspicepartsS3:VPWL;1{ic}|VPWL@0||-24|-4|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0V|ATTR_ACP(D6G0.5;NPX3;Y-2.5;)I0|ATTR_VDC(D6G0.5;NPX3;Y-3;)S0V|ATTR_pwl(D6G0.5;NPX3;Y-1.5;)S0ns 0.8 1ns 0.8 1.1ns 0
 IspicepartsS3:VPWL;1{ic}|VPWL@1||-14.5|-11.5|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0V|ATTR_ACP(D6G0.5;NPX3;Y-2.5;)I0|ATTR_VDC(D6G0.5;NPX3;Y-3;)S0V|ATTR_pwl(D6G0.5;NPX3;Y-1.5;)S0ns 0 1.2ns 0 1.3ns 0.8
-IspicepartsS3:VPWL;1{ic}|VPWL@2||-8.5|-37.5|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0V|ATTR_ACP(D6G0.5;NPX3;Y-2.5;)I0|ATTR_VDC(D6G0.5;NPX3;Y-3;)S0V|ATTR_pwl(D6G0.5;NPX3;Y-1.5;)S0ns 0 1ns 0
+IspicepartsS3:VPWL;1{ic}|VPWL@2||-8|-35.5|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0V|ATTR_ACP(D6G0.5;NPX3;Y-2.5;)I0|ATTR_VDC(D6G0.5;NPX3;Y-3;)S0V|ATTR_pwl(D6G0.5;NPX3;Y-1.5;)S0ns 0 1ns 0
 IspicepartsS3:VPWL;1{ic}|VPWL@3||-17|-29|||D5G4;|ATTR_ACM(D6G0.5;NPX2;Y-3;)S0V|ATTR_ACP(D6G0.5;NPX2;Y-3.5;)I0|ATTR_VDC(D6G0.5;NPX2;Y-4;)S0V|ATTR_pwl(D6G0.5;NPX2;Y-2.5;)S0ns 0 1ns 0
 IspicepartsS3:V_Generic;1{ic}|V_Generi@0||19|-3|||D5G4;|ATTR_Voltage(D6G0.5;PX2;Y-1.5;)SDC 0.8 AC 0
 Ngeneric:Facet-Center|art@0||0|0||||AV
@@ -592,8 +592,8 @@ Ibitline_driver;1{ic}|bitline_@0||6.5|11.5|||D5G4;
 NGround|gnd@0||-24|-8.5||||
 NGround|gnd@1||-14.5|-15.5||||
 NGround|gnd@2||19|-7||||
-NGround|gnd@3||-8.5|-42.5||||
-NGround|gnd@4||-17|-33.5||||
+NGround|gnd@3||-8|-38||||
+NGround|gnd@4||-17|-31.5||||
 NWire_Pin|pin@1||-1.5|3.5||||
 NWire_Pin|pin@2||-1.5|-11.5||||
 NWire_Pin|pin@3||14|3.5||||
@@ -607,14 +607,14 @@ NWire_Pin|pin@15||-24|11.5||||
 NWire_Pin|pin@16||-24|5.5||||
 NWire_Pin|pin@17||4.5|3.5||||
 NWire_Pin|pin@18||8.5|3.5||||
-NWire_Pin|pin@19||14|-31||||
-NWire_Pin|pin@20||-1.5|-31||||
-NWire_Pin|pin@21||4.5|-22||||
-NWire_Pin|pin@22||4.5|-29.5||||
-NWire_Pin|pin@23||-8.5|-29.5||||
-NWire_Pin|pin@24||-8.5|-23||||
-NWire_Pin|pin@25||-8.5|-22||||
-NWire_Pin|pin@26||-8.5|-31||||
+NWire_Pin|pin@19||14|-29||||
+NWire_Pin|pin@20||-1.5|-29||||
+NWire_Pin|pin@21||5|-22||||
+NWire_Pin|pin@22||5|-26.5||||
+NWire_Pin|pin@23||-8|-26.5||||
+NWire_Pin|pin@24||-8|-23||||
+NWire_Pin|pin@25||-8|-22||||
+NWire_Pin|pin@26||-8|-29||||
 NWire_Pin|pin@27||-17|-23.5||||
 NWire_Pin|pin@28||-17|-23||||
 NPower|pwr@0||19|4.5||||
@@ -623,8 +623,8 @@ Itristate_inverter;1{ic}|tristate@0||-1.5|-25|R||D5G4;
 Itristate_buffer;1{ic}|tristate@1||14|-25|R||D5G4;
 Awire|BL|D5G1;X1;Y-7.5;||900|pin@3||14|3.5|pin@4||14|-11.5
 Awire|BL_I|D5G1;X-1.5;Y-7.5;||900|pin@1||-1.5|3.5|pin@2||-1.5|-11.5
-Awire|WRITE_ENABLE|D5G1;Y5;||2700|pin@23||-8.5|-29.5|pin@24||-8.5|-23
-Awire|WRITE_IN|D5G1;X-2.5;Y-1;||0|pin@19||14|-31|pin@20||-1.5|-31
+Awire|WRITE_ENABLE|D5G1;Y5;||2700|pin@23||-8|-26.5|pin@24||-8|-23
+Awire|WRITE_IN|D5G1;X-2.5;Y-1;||0|pin@19||14|-29|pin@20||-1.5|-29
 Awire|net@3|||1800|pin@2||-1.5|-11.5|sram_cel@0|BL'|0.5|-11.5
 Awire|net@6|||1800|sram_cel@0|BL|12.5|-11.5|pin@4||14|-11.5
 Awire|net@13|||900|VPWL@0|minus|-24|-4|gnd@0||-24|-6.5
@@ -645,20 +645,20 @@ Awire|net@32|||2700|V_Generi@0|plus|19|1|pwr@0||19|4.5
 Awire|net@33|||900|V_Generi@0|minus|19|-3|gnd@2||19|-5
 Awire|net@34|||2700|tristate@0|OUT|-1.5|-15|pin@2||-1.5|-11.5
 Awire|net@35|||2700|tristate@1|OUT|14|-16|pin@4||14|-11.5
-Awire|net@36|||900|tristate@1|IN|14|-28|pin@19||14|-31
-Awire|net@38|||2700|pin@20||-1.5|-31|tristate@0|IN|-1.5|-28
-Awire|net@39|||0|tristate@1|EN|9.5|-22|pin@21||4.5|-22
-Awire|net@40|||900|pin@21||4.5|-22|pin@22||4.5|-29.5
-Awire|net@41|||0|pin@22||4.5|-29.5|pin@23||-8.5|-29.5
-Awire|net@43|||2700|pin@24||-8.5|-23|pin@25||-8.5|-22
-Awire|net@44|||1800|pin@25||-8.5|-22|tristate@0|EN|-6|-22
-Awire|net@45|||0|pin@20||-1.5|-31|pin@26||-8.5|-31
-Awire|net@46|||900|pin@26||-8.5|-31|VPWL@2|plus|-8.5|-33.5
-Awire|net@47|||2700|gnd@3||-8.5|-40.5|VPWL@2|minus|-8.5|-37.5
+Awire|net@36|||900|tristate@1|IN|14|-28|pin@19||14|-29
+Awire|net@38|||2700|pin@20||-1.5|-29|tristate@0|IN|-1.5|-28
+Awire|net@39|||0|tristate@1|EN|9.5|-22|pin@21||5|-22
+Awire|net@40|||900|pin@21||5|-22|pin@22||5|-26.5
+Awire|net@41|||0|pin@22||5|-26.5|pin@23||-8|-26.5
+Awire|net@43|||2700|pin@24||-8|-23|pin@25||-8|-22
+Awire|net@44|||1800|pin@25||-8|-22|tristate@0|EN|-6|-22
+Awire|net@45|||0|pin@20||-1.5|-29|pin@26||-8|-29
+Awire|net@46|||900|pin@26||-8|-29|VPWL@2|plus|-8|-31.5
+Awire|net@47|||2700|gnd@3||-8|-36|VPWL@2|minus|-8|-35.5
 Awire|net@48|||2700|VPWL@3|plus|-17|-25|pin@27||-17|-23.5
 Awire|net@49|||2700|pin@27||-17|-23.5|pin@28||-17|-23
-Awire|net@50|||0|pin@24||-8.5|-23|pin@28||-17|-23
-Awire|net@51|||900|VPWL@3|minus|-17|-29|gnd@4||-17|-31.5
+Awire|net@50|||0|pin@24||-8|-23|pin@28||-17|-23
+Awire|net@51|||900|VPWL@3|minus|-17|-29|gnd@4||-17|-29.5
 Awire|precharge_I|D5G1;X2.5;Y1;||0|bitline_@0|CLK'|0.5|11.5|pin@9||-9|11.5
 X
 
