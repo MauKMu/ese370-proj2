@@ -43,13 +43,15 @@
 \end{titlepage}
 
 \section*{Bitline Capacitance}
-\hl{TODO}
+Each SRAM cell loads each bitline with a capacitance of $4\gamma C_0$. This can be seen in Figure \ref{fig:sram_cell_circuit} below, which shows that $BL$ and $BL'$ are each connected to the drain/source terminal of a transistor of width 4.
+
+Next, each bitline is loaded with at most 16 SRAM cells. This number could be reduced by arranging the words in a 4x4 pattern, for example, but we will consider the worst case capacitance, which arises with 16 cells. Thus, each bitline is loaded with $64\gamma C_0$.
 
 \section*{Circuit Schematics}
 \subsection*{Memory Column Driver Schematic}
 \begin{figure}[H]
   \centering
-    \includegraphics[width=1.0\textwidth]{bitline_driver_circuit.png}
+    \includegraphics[width=1.0\textwidth]{bitline_driver_circuit.PNG}
   \caption{Bitline driver circuit}
   \label{fig:bitline_driver_circuit}
 \end{figure}
@@ -57,7 +59,7 @@
 \subsection*{Sized Memory Cell Schematic}
 \begin{figure}[H]
   \centering
-    \includegraphics[width=1.0\textwidth]{sram_cell_circuit.png}
+    \includegraphics[width=1.0\textwidth]{sram_cell_circuit.PNG}
   \caption{Sized SRAM memory cell circuit}
   \label{fig:sram_cell_circuit}
 \end{figure}
@@ -65,7 +67,7 @@
 \subsection*{Tri-State Buffer Schematic}
 \begin{figure}[H]
   \centering
-    \includegraphics[width=1.0\textwidth]{tristate_buffer_circuit.png}
+    \includegraphics[width=1.0\textwidth]{tristate_buffer_circuit.PNG}
   \caption{Tri-state buffer circuit}
   \label{fig:tristate_buffer_circuit}
 \end{figure}
@@ -73,7 +75,7 @@
 \subsection*{Tri-State Inverter Schematic}
 \begin{figure}[H]
   \centering
-    \includegraphics[width=1.0\textwidth]{tristate_inverter_circuit.png}
+    \includegraphics[width=1.0\textwidth]{tristate_inverter_circuit.PNG}
   \caption{Tri-state inverter circuit}
   \label{fig:tristate_inverter_circuit}
 \end{figure}
@@ -103,7 +105,7 @@ All testing was done with the test circuit in Figure \ref{fig:test_circuit}. Not
 
 \begin{figure}[H]
   \centering
-    \includegraphics[width=1.0\textwidth]{test_circuit.png}
+    \includegraphics[width=1.0\textwidth]{test_circuit.PNG}
   \caption{Memory cell test circuit}
   \label{fig:test_circuit}
 \end{figure}
