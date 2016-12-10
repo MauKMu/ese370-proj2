@@ -16,6 +16,41 @@ Tcmos|ScaleFORcmos()D22.0
 Tmocmos|ScaleFORmocmos()D22.0
 Tnmos|ScaleFORnmos()D22.0
 
+# Cell and2;1{ic}
+Cand2;1{ic}||artwork|1473042719372|1481406731056|E
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NSpline|art@5||0|0|5|6|||trace()V[-2.5/3,2.5/3,2.5/-3,-2.5/-3]
+NOpened-Polygon|art@6||-2.5|0||6|||trace()V[0/-3,0/3]
+NOpened-Polygon|art@7||-3.5|1.5|2||||trace()V[-1/0,1/0]
+NOpened-Polygon|art@8||-3.5|-1.5|2||||trace()V[-1/0,1/0]
+NOpened-Polygon|art@9||4.3|0|2||||trace()V[-1/0,1/0]
+Nschematic:Bus_Pin|pin@0||-4.5|1.5||||
+Nschematic:Bus_Pin|pin@2||-4.5|-1.5||||
+Nschematic:Bus_Pin|pin@4||5.3|0||||
+ASolid|net@0|||FS0|art@9||3.3|0|art@5||2.2925|0
+Ea||D5G2;|pin@0||I
+Eb||D5G2;|pin@2||I
+Ey||D5G2;|pin@4||O
+X
+
+# Cell and2;1{sch}
+Cand2;1{sch}||schematic|1473041879168|1481406740728|
+Iand2;1{ic}|and2@0||-18|-1.5|||D5G4;
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOff-Page|conn@0||-25|8||||
+NOff-Page|conn@1||-25|5||||
+NOff-Page|conn@2||6.5|6.5||||
+Iinv;1{ic}|inv@0||-3.5|6.5|||D5G4;
+Inand2;2{ic}|nand2@1||-16.5|6.5|||D5G4;
+Awire|net@79|||1800|nand2@1|y|-11.2|6.5|inv@0|x|-8|6.5
+Awire|net@80|||0|nand2@1|a|-21|8|conn@0|y|-23|8
+Awire|net@81|||0|nand2@1|b|-21|5|conn@1|y|-23|5
+Awire|net@82|||1800|inv@0|y|3|6.5|conn@2|a|4.5|6.5
+Ea||D5G2;|conn@0|a|I
+Eb||D5G2;|conn@1|a|I
+Ey||D5G2;|conn@2|y|O
+X
+
 # Cell bitline_driver;1{ic}
 Cbitline_driver;1{ic}||artwork|1480219904585|1480224655283|E
 Ngeneric:Facet-Center|art@0||0|0||||AV
@@ -791,6 +826,42 @@ Awire|net@23|||1800|pin@2||4|0|conn@2|a|6|0
 EA||D5G2;|conn@0|a|I
 EB||D5G2;|conn@1|a|I
 EOut||D5G2;|conn@2|y|O
+X
+
+# Cell or2;1{ic}
+Cor2;1{ic}||artwork|1479363045203|1481406896049|E
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NSpline|art@2||-0.5|1.5|6|3|||trace()V[-3/1.5,0.5/1.5,3/-1.5]
+NSpline|art@3||-0.5|-1.5|6|3|||trace()V[-3/-1.5,0.5/-1.5,3/1.5]
+NSpline|art@5||-2.75|0|1.5|6|||trace()V[-0.75/-3,0.75/0,-0.75/3]
+NOpened-Polygon|art@6||-4.5|2|3||||trace()V[-1.5/0,1.5/0]
+NOpened-Polygon|art@7||-4.5|-2|3||||trace()V[-1.5/0,1.5/0]
+NOpened-Polygon|art@8||5|0|3||||trace()V[-1.5/0,1.5/0]
+Nschematic:Bus_Pin|pin@0||-6|2||||
+Nschematic:Bus_Pin|pin@2||-6|-2||||
+Nschematic:Bus_Pin|pin@4||6.5|0||||
+ASolid|net@0|||FS0|art@8||3.5|0|art@3||2.5|0
+EA||D5G2;|pin@0||I
+EB||D5G2;|pin@2||I
+EOut||D5G2;|pin@4||O
+X
+
+# Cell or2;1{sch}
+Cor2;1{sch}||schematic|1479362820061|1481406909626|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOff-Page|conn@3||-25|13.5||||
+NOff-Page|conn@4||-25|9.5||||
+NOff-Page|conn@5||11|11.5||||
+Iinv;1{ic}|inv@0||0|11.5|||D5G4;
+Inor2;1{ic}|nor2@1||-15|11.5|||D5G4;
+Ior2;1{ic}|or2@0||-14|3|||D5G4;
+Awire|net@24|||1800|nor2@1|Out|-8.5|11.5|inv@0|x|-4.5|11.5
+Awire|net@25|||0|nor2@1|A|-21|13.5|conn@3|y|-23|13.5
+Awire|net@26|||0|nor2@1|B|-21|9.5|conn@4|y|-23|9.5
+Awire|net@27|||1800|inv@0|y|6.5|11.5|conn@5|a|9|11.5
+EA||D5G2;|conn@3|a|I
+EB||D5G2;|conn@4|a|I
+EOut||D5G2;|conn@5|y|O
 X
 
 # Cell sram_cell;1{ic}
