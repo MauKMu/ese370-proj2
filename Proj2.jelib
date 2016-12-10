@@ -7,8 +7,6 @@ Vschematic|sch
 
 # External Libraries:
 
-Lese370|ese370
-
 LspicepartsS3|spicepartsS3
 
 # Technologies:
@@ -933,20 +931,15 @@ Eφ||D5G2;|pin@4||I
 X
 
 # Cell d_latch;2{sch}
-Cd_latch;2{sch}||schematic|1479443545951|1479444357651|
+Cd_latch;2{sch}||schematic|1479443545951|1481410738807|
 Id_latch;1{ic}|HW7_P2@0||19|8.5|||D5G4;
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NOff-Page|conn@0||-24.5|7||||
 NOff-Page|conn@1||-24.5|4||||
 NOff-Page|conn@2||24|0||||
-Iese370:inv;1{ic}|inv@0||-14.5|-4|||D5G4;
-Iese370:nand2;2{ic}|nand2@1||-1|5.5|||D5G4;
-Iese370:nand2;2{ic}|nand2@2||-1|-5.5|||D5G4;
-Iese370:nand2;2{ic}|nand2@3||13.5|0|||D5G4;
-NWire_Pin|pin@0||6.5|5.5||||
-NWire_Pin|pin@1||6.5|1.5||||
-NWire_Pin|pin@2||6.5|-5.5||||
-NWire_Pin|pin@3||6.5|-1.5||||
+Inand2;2{ic}|nand2@4||-1|5.5|||D5G4;
+Inand2;2{ic}|nand2@5||-1|-5.5|||D5G4;
+Inand2;2{ic}|nand2@6||11.5|0|||D5G4;
 NWire_Pin|pin@4||21|0||||
 NWire_Pin|pin@5||21|-11||||
 NWire_Pin|pin@6||-8.5|-11||||
@@ -954,25 +947,36 @@ NWire_Pin|pin@7||-8.5|-7||||
 NWire_Pin|pin@8||-21.5|4||||
 NWire_Pin|pin@9||-21.5|-4||||
 NWire_Pin|pin@10||-21|7||||
-Awire|net@0|||1800|nand2@1|y|4.3|5.5|pin@0||6.5|5.5
-Awire|net@1|||900|pin@0||6.5|5.5|pin@1||6.5|1.5
-Awire|net@2|||1800|pin@1||6.5|1.5|nand2@3|a|9|1.5
-Awire|net@3|||1800|nand2@2|y|4.3|-5.5|pin@2||6.5|-5.5
-Awire|net@4|||2700|pin@2||6.5|-5.5|pin@3||6.5|-1.5
-Awire|net@5|||1800|pin@3||6.5|-1.5|nand2@3|b|9|-1.5
-Awire|net@6|||1800|nand2@3|y|18.8|0|pin@4||21|0
+NWire_Pin|pin@12||-5.5|7||||
+NWire_Pin|pin@13||-5.5|4||||
+NWire_Pin|pin@14||18.8|0||||
+NWire_Pin|pin@20||-19|-4||||
+NWire_Pin|pin@21||5.5|1.5||||
+NWire_Pin|pin@22||5.5|5.5||||
+NWire_Pin|pin@23||5.5|-1.5||||
+NWire_Pin|pin@24||5.5|-5.5||||
 Awire|net@7|||900|pin@4||21|0|pin@5||21|-11
 Awire|net@8|||0|pin@5||21|-11|pin@6||-8.5|-11
 Awire|net@9|||2700|pin@6||-8.5|-11|pin@7||-8.5|-7
-Awire|net@10|||1800|pin@7||-8.5|-7|nand2@2|b|-5.5|-7
-Awire|net@11|||1800|inv@0|y|-8|-4|nand2@2|a|-5.5|-4
-Awire|net@12|||0|nand2@1|b|-5.5|4|pin@8||-21.5|4
 Awire|net@13|||900|pin@8||-21.5|4|pin@9||-21.5|-4
-Awire|net@14|||1800|pin@9||-21.5|-4|inv@0|x|-19|-4
-Awire|net@15|||0|nand2@1|a|-5.5|7|pin@10||-21|7
 Awire|net@16|||0|pin@10||-21|7|conn@0|y|-22.5|7
 Awire|net@17|||0|pin@8||-21.5|4|conn@1|y|-22.5|4
 Awire|net@18|||1800|pin@4||21|0|conn@2|a|22|0
+Awire|net@20|||1800|pin@10||-21|7|pin@12||-5.5|7
+Awire|net@21|||1800|pin@8||-21.5|4|pin@13||-5.5|4
+Awire|net@22|||0|pin@4||21|0|pin@14||18.8|0
+Awire|net@28|||1800|pin@12||-5.5|7|nand2@4|a|-5.5|7
+Awire|net@29|||1800|pin@13||-5.5|4|nand2@4|b|-5.5|4
+Awire|net@30|||1800|pin@7||-8.5|-7|nand2@5|b|-5.5|-7
+Awire|net@31|||1800|pin@9||-21.5|-4|pin@20||-19|-4
+Awire|net@32|||1800|pin@20||-19|-4|nand2@5|a|-5.5|-4
+Awire|net@33|||0|pin@14||18.8|0|nand2@6|y|16.8|0
+Awire|net@34|||0|nand2@6|a|7|1.5|pin@21||5.5|1.5
+Awire|net@35|||2700|pin@21||5.5|1.5|pin@22||5.5|5.5
+Awire|net@36|||1800|nand2@4|y|4.3|5.5|pin@22||5.5|5.5
+Awire|net@37|||0|nand2@6|b|7|-1.5|pin@23||5.5|-1.5
+Awire|net@38|||900|pin@23||5.5|-1.5|pin@24||5.5|-5.5
+Awire|net@39|||0|pin@24||5.5|-5.5|nand2@5|y|4.3|-5.5
 EIn||D5G2;|conn@0|a|I
 EOut||D5G2;|conn@2|y|O
 Eφ||D5G2;|conn@1|a|I
@@ -998,9 +1002,9 @@ Eφ||D5G2;|pin@4||I
 X
 
 # Cell d_register;1{sch}
-Cd_register;1{sch}||schematic|1479448757435|1479449803340|
+Cd_register;1{sch}||schematic|1479448757435|1481410897912|
 Ngeneric:Facet-Center|art@0||0|0||||AV
-Iese370:clock_generator;1{ic}|clock_ge@0||-10|17.5|RRR||D5G4;
+Iclk_gen;1{ic}|clk_gen@0||-10|15|RRR||D5G4;
 NOff-Page|conn@0||14.5|-4.5||||
 NOff-Page|conn@1||-31|1.5||||
 NOff-Page|conn@2||-22|24||||
@@ -1014,19 +1018,29 @@ NWire_Pin|pin@3||-7.5|-7.5||||
 NWire_Pin|pin@4||-27|1.5||||
 NWire_Pin|pin@5||12|-4.5||||
 NWire_Pin|pin@6||-10|24||||
+NWire_Pin|pin@7||-12.5|8.5||||
+NWire_Pin|pin@8||-7.5|8.5||||
+NWire_Pin|pin@9||-10|23||||
+NWire_Pin|pin@10||-11|8.5||||
+NWire_Pin|pin@11||-9|8.5||||
 Awire|net@0|||1800|d_latch@0|Out|-9.5|-1.5|d_latch@1|In|-4.5|-1.5
-Awire|net@1|||900|clock_ge@0|clk_inv|-12.5|8.5|pin@0||-12.5|6.5
 Awire|net@2|||0|pin@0||-12.5|6.5|pin@1||-22.5|6.5
 Awire|net@3|||900|pin@1||-22.5|6.5|pin@2||-22.5|-4.5
 Awire|net@4|||1800|pin@2||-22.5|-4.5|d_latch@0|φ|-19.5|-4.5
-Awire|net@5|||900|clock_ge@0|clk|-7.5|8.5|pin@3||-7.5|-7.5
 Awire|net@6|||1800|pin@3||-7.5|-7.5|d_latch@1|φ|-4.5|-7.5
 Awire|net@7|||0|d_latch@0|In|-19.5|1.5|pin@4||-27|1.5
 Awire|net@8|||1800|d_latch@1|Out|5.5|-4.5|pin@5||12|-4.5
 Awire|net@9|||1800|pin@5||12|-4.5|conn@0|a|12.5|-4.5
 Awire|net@10|||0|pin@4||-27|1.5|conn@1|y|-29|1.5
 Awire|net@11|||1800|conn@2|y|-20|24|pin@6||-10|24
-Awire|net@12|||900|pin@6||-10|24|clock_ge@0|in|-10|23
+Awire|net@13|||2700|pin@0||-12.5|6.5|pin@7||-12.5|8.5
+Awire|net@14|||2700|pin@3||-7.5|-7.5|pin@8||-7.5|8.5
+Awire|net@15|||900|pin@6||-10|24|pin@9||-10|23
+Awire|net@16|||2700|clk_gen@0|IN|-10|20|pin@9||-10|23
+Awire|net@17|||1800|pin@7||-12.5|8.5|pin@10||-11|8.5
+Awire|net@18|||2700|pin@10||-11|8.5|clk_gen@0|OUT_INV|-11|10
+Awire|net@19|||0|pin@8||-7.5|8.5|pin@11||-9|8.5
+Awire|net@20|||2700|pin@11||-9|8.5|clk_gen@0|OUT|-9|10
 EIn|D|D5G2;|conn@1|a|I
 EQ||D5G2;|conn@0|y|O
 Eφ||D5G2;|conn@2|a|I
