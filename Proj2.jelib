@@ -868,7 +868,8 @@ EY_D||D5G2;|pin@16||I
 X
 
 # Cell comparator;1{sch}
-Ccomparator;1{sch}||schematic|1481409329717|1481409522678|
+Ccomparator;1{sch}||schematic|1481409329717|1481410855161|
+Iand4;1{ic}|and4@0||2.5|4.5|||D5G4;
 Ngeneric:Facet-Center|art@0||0|0||||AV
 Icomparator;1{ic}|comparat@0||22|35.5|||D5G4;
 NOff-Page|conn@0||-33|26||||
@@ -884,6 +885,14 @@ NWire_Pin|pin@0||-31|25.5||||
 NWire_Pin|pin@1||-31|13||||
 NWire_Pin|pin@2||-31.5|1||||
 NWire_Pin|pin@3||-31.5|-11.5||||
+NWire_Pin|pin@4||-3.5|8.5||||
+NWire_Pin|pin@5||-3.5|23.5||||
+NWire_Pin|pin@6||-5|6||||
+NWire_Pin|pin@7||-5|11||||
+NWire_Pin|pin@8||-5|3.5||||
+NWire_Pin|pin@9||-5|-1||||
+NWire_Pin|pin@10||-3.5|1||||
+NWire_Pin|pin@11||-3.5|-13.5||||
 Ixnor2;1{ic}|xnor2@0||-20.5|23.5|||D5G4;
 Ixnor2;1{ic}|xnor2@1||-20.5|11|||D5G4;
 Ixnor2;1{ic}|xnor2@2||-21|-1|||D5G4;
@@ -900,6 +909,19 @@ Awire|net@8|||900|conn@4|y|-31.5|1.5|pin@2||-31.5|1
 Awire|net@9|||0|xnor2@3|B|-26.5|-15.5|conn@7|y|-31.5|-15.5
 Awire|net@10|||0|xnor2@3|A|-26.5|-11.5|pin@3||-31.5|-11.5
 Awire|net@11|||900|conn@6|y|-31.5|-11|pin@3||-31.5|-11.5
+Awire|net@12|||1800|and4@0|Out|7.5|4.5|conn@8|a|12|4.5
+Awire|net@13|||0|and4@0|A|-1.5|8.5|pin@4||-3.5|8.5
+Awire|net@14|||2700|pin@4||-3.5|8.5|pin@5||-3.5|23.5
+Awire|net@15|||1800|xnor2@0|Out|-9|23.5|pin@5||-3.5|23.5
+Awire|net@16|||0|and4@0|B|-1.5|6|pin@6||-5|6
+Awire|net@17|||2700|pin@6||-5|6|pin@7||-5|11
+Awire|net@18|||1800|xnor2@1|Out|-9|11|pin@7||-5|11
+Awire|net@19|||0|and4@0|C|-1.5|3.5|pin@8||-5|3.5
+Awire|net@20|||900|pin@8||-5|3.5|pin@9||-5|-1
+Awire|net@21|||0|pin@9||-5|-1|xnor2@2|Out|-9.5|-1
+Awire|net@22|||0|and4@0|D|-1.5|1|pin@10||-3.5|1
+Awire|net@23|||900|pin@10||-3.5|1|pin@11||-3.5|-13.5
+Awire|net@24|||1800|xnor2@3|Out|-9.5|-13.5|pin@11||-3.5|-13.5
 EEQ||D5G2;|conn@8|y|O
 EX_A||D5G2;|conn@0|a|I
 EX_B||D5G2;|conn@2|a|I
