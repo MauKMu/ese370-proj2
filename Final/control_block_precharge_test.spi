@@ -1,11 +1,11 @@
 *** SPICE deck for cell control_block_precharge_test{sch} from library Proj2
 *** Created on Sat Dec 10, 2016 20:54:55
-*** Last revised on Sat Dec 10, 2016 21:25:33
-*** Written on Sat Dec 10, 2016 21:28:10 by Electric VLSI Design System, version 9.06
+*** Last revised on Sun Dec 11, 2016 03:33:39
+*** Written on Sun Dec 11, 2016 03:34:49 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
-.include "C:\Program Files (x86)\Electric\22nm_HP.pm"
+.include "22nm_HP.pm"
 
 *** SUBCIRCUIT Proj2__inv FROM CELL inv{sch}
 .SUBCKT Proj2__inv x y
@@ -56,17 +56,26 @@ Xprecharg@3 BL_0 BL_0_I net@7 Proj2__precharger
 .global gnd vdd
 
 *** TOP LEVEL CELL: control_block_precharge_test{sch}
-Rres@0 BL_3_I gnd 10k
-Rres@1 BL_3 gnd 10k
-Rres@2 BL_2_I gnd 10k
-Rres@3 BL_2 gnd 10k
-Rres@4 BL_1_I gnd 10k
-Rres@5 BL_1 gnd 10k
-Rres@6 BL_0_I gnd 10k
-Rres@7 BL_0 gnd 10k
+Mnmos@0 BL_3_I net@57 net@42 gnd N L=0.022U W=0.022U
+Mnmos@1 BL_3 net@57 net@56 gnd N L=0.022U W=0.022U
+Mnmos@2 BL_2_I net@57 net@54 gnd N L=0.022U W=0.022U
+Mnmos@3 BL_2 net@57 net@52 gnd N L=0.022U W=0.022U
+Mnmos@4 BL_1_I net@57 net@50 gnd N L=0.022U W=0.022U
+Mnmos@5 BL_1 net@57 net@48 gnd N L=0.022U W=0.022U
+Mnmos@6 BL_0_I net@57 net@46 gnd N L=0.022U W=0.022U
+Mnmos@7 BL_0 net@57 net@44 gnd N L=0.022U W=0.022U
+Rres@0 net@42 gnd 10k
+Rres@1 net@56 gnd 10k
+Rres@2 net@54 gnd 10k
+Rres@3 net@52 gnd 10k
+Rres@4 net@50 gnd 10k
+Rres@5 net@48 gnd 10k
+Rres@6 net@46 gnd 10k
+Rres@7 net@44 gnd 10k
 VVPWL@0 ENQ gnd pwl (0ns 0 2ns 0 2ns 0.8 6ns 0.8 6ns 0 8ns 0 8ns 0.8) DC 0V AC 0V 0
 VVPWL@1 DEQ gnd pwl (0ns 0 4ns 0 4ns 0.8) DC 0V AC 0V 0
 VVPulse@0 PHI gnd pulse (0 0.8V 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
+VVPulse@1 net@57 gnd pulse (0 0.8V 0ns 0 0 0.5ns 100ns) DC 0V AC 0V 0
 VV_Generi@0 vdd gnd DC 0.8 AC 0
 Xcontrol_@0 BL_0 BL_0_I BL_1 BL_1_I BL_2 BL_2_I BL_3 BL_3_I DEQ ENQ PHI Proj2__control_block_precharge
 .END

@@ -1,0 +1,3 @@
+# enq_deq_test_script
+tran 10ps 10ns
+plot (5V + ENQ_N) (4V + DEQ_N) (3V + ENQ_DEQ) (2V + FULL_EMPTY) (1V + FD) (FD_I)

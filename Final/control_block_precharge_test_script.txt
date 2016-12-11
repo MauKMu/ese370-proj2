@@ -1,6 +1,5 @@
 # control_block_precharge_test
 
 tran 10ps 10ns
-plot (2V + ENQ) (1V + DEQ) (PHI)
-plot (7V + BL_3_I) (6V + BL_3) (5V + BL_2_I) (4V + BL_2)
-plot (3V + BL_1_I) (2V + BL_1) (1V + BL_0_I) BL_0
+plot (6V + BL_0) (5V + BL_0_I) (4V + BL_1) (3V + BL_1_I) (2V + ENQ) (1V + DEQ) (PHI)
+plot (6V + BL_2) (5V + BL_2_I) (4V + BL_3) (3V + BL_3_I) (2V + ENQ) (1V + DEQ) (PHI)
