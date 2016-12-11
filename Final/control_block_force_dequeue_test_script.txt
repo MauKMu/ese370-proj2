@@ -1,0 +1,3 @@
+# control_block_force_dequeue_test
+tran 10ps 16ns
+plot (3V + ENQ) (2V + DEQ) (1V + PHI_I) (FD)

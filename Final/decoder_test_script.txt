@@ -1,0 +1,7 @@
+# decoder_test
+tran 100ps 40ns
+plot (4V + A) (3V + B) (2V + C) (1V + D) (OUT_EN)
+plot (3V + OUT_0) (2V + OUT_1) (1V + OUT_2) (OUT_3)
+plot (3V + OUT_4) (2V + OUT_5) (1V + OUT_6) (OUT_7)
+plot (3V + OUT_8) (2V + OUT_9) (1V + OUT_10) (OUT_11)
+plot (3V + OUT_12) (2V + OUT_13) (1V + OUT_14) (OUT_15)

@@ -1,0 +1,3 @@
+# d_register_test
+tran 10ps 10ns
+plot (2V + D) (1V + PHI) (Q)

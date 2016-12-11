@@ -1,0 +1,64 @@
+*** SPICE deck for cell d_latch_test{sch} from library Proj2
+*** Created on Sat Dec 10, 2016 21:56:14
+*** Last revised on Sat Dec 10, 2016 22:07:16
+*** Written on Sat Dec 10, 2016 22:15:30 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+* Model cards are described in this file:
+.include "C:\Program Files (x86)\Electric\22nm_HP.pm"
+
+*** SUBCIRCUIT Proj2__inv FROM CELL inv{sch}
+.SUBCKT Proj2__inv x y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y x gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd x y vdd P L=0.022U W=0.022U
+.ENDS Proj2__inv
+
+*** SUBCIRCUIT Proj2__nand2 FROM CELL nand2{sch}
+.SUBCKT Proj2__nand2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y a net@73 gnd N L=0.022U W=0.022U
+Mnmos@1 net@73 b gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd a y vdd P L=0.022U W=0.022U
+Mpmos@1 vdd b y vdd P L=0.022U W=0.022U
+.ENDS Proj2__nand2
+
+*** SUBCIRCUIT Proj2__and2 FROM CELL and2{sch}
+.SUBCKT Proj2__and2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Xinv@0 net@79 y Proj2__inv
+Xnand2@1 a b net@79 Proj2__nand2
+.ENDS Proj2__and2
+
+*** SUBCIRCUIT Proj2__nor2 FROM CELL nor2{sch}
+.SUBCKT Proj2__nor2 A B Out
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 Out A gnd gnd N L=0.022U W=0.022U
+Mnmos@1 Out B gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd A net@0 vdd P L=0.022U W=0.022U
+Mpmos@1 net@0 B Out vdd P L=0.022U W=0.022U
+.ENDS Proj2__nor2
+
+*** SUBCIRCUIT Proj2__d_latch FROM CELL d_latch{sch}
+.SUBCKT Proj2__d_latch In Out φ
+** GLOBAL gnd
+** GLOBAL vdd
+Xand2@0 net@50 φ net@71 Proj2__and2
+Xand2@1 φ In net@70 Proj2__and2
+Xinv@0 In net@50 Proj2__inv
+Xnor2@0 net@71 net@60 Out Proj2__nor2
+Xnor2@1 Out net@70 net@60 Proj2__nor2
+.ENDS Proj2__d_latch
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: d_latch_test{sch}
+VVPWL@0 D gnd pwl (0ns 0 0.5ns 0 0.5ns 0.8 3.5ns 0.8 3.5ns 0) DC 0V AC 0V 0
+VVPulse@0 PHI gnd pulse (0 0.8V 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
+VV_Generi@0 vdd gnd DC 0.8 AC 0
+Xd_latch@0 D Q PHI Proj2__d_latch
+.END

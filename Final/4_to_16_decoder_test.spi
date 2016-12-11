@@ -1,0 +1,97 @@
+*** SPICE deck for cell 4_to_16_decoder_test{sch} from library Proj2
+*** Created on Sat Dec 10, 2016 22:39:21
+*** Last revised on Sat Dec 10, 2016 22:47:45
+*** Written on Sat Dec 10, 2016 22:47:53 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+* Model cards are described in this file:
+.include "C:\Program Files (x86)\Electric\22nm_HP.pm"
+
+*** SUBCIRCUIT Proj2__inv FROM CELL inv{sch}
+.SUBCKT Proj2__inv x y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y x gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd x y vdd P L=0.022U W=0.022U
+.ENDS Proj2__inv
+
+*** SUBCIRCUIT Proj2__nand2 FROM CELL nand2{sch}
+.SUBCKT Proj2__nand2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y a net@73 gnd N L=0.022U W=0.022U
+Mnmos@1 net@73 b gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd a y vdd P L=0.022U W=0.022U
+Mpmos@1 vdd b y vdd P L=0.022U W=0.022U
+.ENDS Proj2__nand2
+
+*** SUBCIRCUIT Proj2__and2 FROM CELL and2{sch}
+.SUBCKT Proj2__and2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Xinv@0 net@79 y Proj2__inv
+Xnand2@1 a b net@79 Proj2__nand2
+.ENDS Proj2__and2
+
+*** SUBCIRCUIT Proj2__and4 FROM CELL and4{sch}
+.SUBCKT Proj2__and4 A B C D Out
+** GLOBAL gnd
+** GLOBAL vdd
+Xand2@0 A B net@0 Proj2__and2
+Xand2@1 C D net@3 Proj2__and2
+Xand2@2 net@0 net@3 Out Proj2__and2
+.ENDS Proj2__and4
+
+*** SUBCIRCUIT Proj2__4_to_16_decoder FROM CELL 4_to_16_decoder{sch}
+.SUBCKT Proj2__4_to_16_decoder A B C D Out_0 Out_1 Out_10 Out_11 Out_12 Out_13 Out_14 Out_15 Out_2 Out_3 Out_4 Out_5 Out_6 Out_7 Out_8 Out_9 OUTPUT_ENABLE
+** GLOBAL gnd
+** GLOBAL vdd
+Xand2@0 net@208 OUTPUT_ENABLE Out_15 Proj2__and2
+Xand2@1 net@207 OUTPUT_ENABLE Out_14 Proj2__and2
+Xand2@2 net@206 OUTPUT_ENABLE Out_13 Proj2__and2
+Xand2@3 net@205 OUTPUT_ENABLE Out_12 Proj2__and2
+Xand2@4 net@204 OUTPUT_ENABLE Out_11 Proj2__and2
+Xand2@5 net@203 OUTPUT_ENABLE Out_10 Proj2__and2
+Xand2@6 net@202 OUTPUT_ENABLE Out_9 Proj2__and2
+Xand2@7 net@201 OUTPUT_ENABLE Out_8 Proj2__and2
+Xand2@8 net@200 OUTPUT_ENABLE Out_7 Proj2__and2
+Xand2@9 net@199 OUTPUT_ENABLE Out_6 Proj2__and2
+Xand2@10 net@198 OUTPUT_ENABLE Out_5 Proj2__and2
+Xand2@11 net@197 OUTPUT_ENABLE Out_4 Proj2__and2
+Xand2@12 net@196 OUTPUT_ENABLE Out_3 Proj2__and2
+Xand2@13 net@195 OUTPUT_ENABLE Out_2 Proj2__and2
+Xand2@14 net@194 OUTPUT_ENABLE Out_1 Proj2__and2
+Xand2@15 net@193 OUTPUT_ENABLE Out_0 Proj2__and2
+Xand4@0 A_INV B_INV C_INV D_INV net@193 Proj2__and4
+Xand4@1 A_INV B_INV C_INV D net@194 Proj2__and4
+Xand4@2 A_INV B_INV C D_INV net@195 Proj2__and4
+Xand4@3 A_INV B_INV C D net@196 Proj2__and4
+Xand4@4 A_INV B C_INV D_INV net@197 Proj2__and4
+Xand4@5 A_INV B C_INV D net@198 Proj2__and4
+Xand4@6 A_INV B C D_INV net@199 Proj2__and4
+Xand4@7 A_INV B C D net@200 Proj2__and4
+Xand4@8 A B_INV C_INV D_INV net@201 Proj2__and4
+Xand4@9 A B_INV C_INV D net@202 Proj2__and4
+Xand4@10 A B_INV C D_INV net@203 Proj2__and4
+Xand4@11 A B_INV C D net@204 Proj2__and4
+Xand4@12 A B C_INV D_INV net@205 Proj2__and4
+Xand4@13 A B C_INV D net@206 Proj2__and4
+Xand4@14 A B C D_INV net@207 Proj2__and4
+Xand4@15 A B C D net@208 Proj2__and4
+Xinv@0 A A_INV Proj2__inv
+Xinv@1 C C_INV Proj2__inv
+Xinv@2 B B_INV Proj2__inv
+Xinv@3 D D_INV Proj2__inv
+.ENDS Proj2__4_to_16_decoder
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: 4_to_16_decoder_test{sch}
+X_4_to_16_@0 A B C D OUT_0 OUT_1 OUT_10 OUT_11 OUT_12 OUT_13 OUT_14 OUT_15 OUT_2 OUT_3 OUT_4 OUT_5 OUT_6 OUT_7 OUT_8 OUT_9 OUT_EN Proj2__4_to_16_decoder
+VVPulse@0 A gnd pulse (0.8V 0 0ns 0 0 8ns 16ns) DC 0V AC 0V 0
+VVPulse@1 B gnd pulse (0.8V 0 0ns 0 0 4ns 8ns) DC 0V AC 0V 0
+VVPulse@2 C gnd pulse (0.8V 0 0ns 0 0 2ns 4ns) DC 0V AC 0V 0
+VVPulse@3 D gnd pulse (0.8V 0 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
+VVPulse@4 OUT_EN gnd pulse (0.8V 0 0ns 0 0 16ns 32ns) DC 0V AC 0V 0
+VV_Generi@0 vdd gnd DC 0.8 AC 0
+.END
