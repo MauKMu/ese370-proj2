@@ -1,0 +1,72 @@
+*** SPICE deck for cell control_block_precharge_test{sch} from library Proj2
+*** Created on Sat Dec 10, 2016 20:54:55
+*** Last revised on Sat Dec 10, 2016 21:25:33
+*** Written on Sat Dec 10, 2016 21:28:10 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+* Model cards are described in this file:
+.include "C:\Program Files (x86)\Electric\22nm_HP.pm"
+
+*** SUBCIRCUIT Proj2__inv FROM CELL inv{sch}
+.SUBCKT Proj2__inv x y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y x gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd x y vdd P L=0.022U W=0.022U
+.ENDS Proj2__inv
+
+*** SUBCIRCUIT Proj2__nand2 FROM CELL nand2{sch}
+.SUBCKT Proj2__nand2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y a net@73 gnd N L=0.022U W=0.022U
+Mnmos@1 net@73 b gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd a y vdd P L=0.022U W=0.022U
+Mpmos@1 vdd b y vdd P L=0.022U W=0.022U
+.ENDS Proj2__nand2
+
+*** SUBCIRCUIT Proj2__and2 FROM CELL and2{sch}
+.SUBCKT Proj2__and2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Xinv@0 net@79 y Proj2__inv
+Xnand2@1 a b net@79 Proj2__nand2
+.ENDS Proj2__and2
+
+*** SUBCIRCUIT Proj2__precharger FROM CELL precharger{sch}
+.SUBCKT Proj2__precharger BL BL_ CLK_
+** GLOBAL vdd
+Mpmos@0 vdd CLK_ BL_ vdd P L=0.022U W=0.352U
+Mpmos@1 vdd CLK_ BL vdd P L=0.022U W=0.352U
+.ENDS Proj2__precharger
+
+*** SUBCIRCUIT Proj2__control_block_precharge FROM CELL control_block_precharge{sch}
+.SUBCKT Proj2__control_block_precharge BL_0 BL_0_I BL_1 BL_1_I BL_2 BL_2_I BL_3 BL_3_I DEQ* ENQ* φ
+** GLOBAL gnd
+** GLOBAL vdd
+Xand2@0 net@29 DEQ* net@36 Proj2__and2
+Xinv@0 ENQ* net@29 Proj2__inv
+Xnand2@0 net@36 φ net@7 Proj2__nand2
+Xprecharg@0 BL_3 BL_3_I net@7 Proj2__precharger
+Xprecharg@1 BL_2 BL_2_I net@7 Proj2__precharger
+Xprecharg@2 BL_1 BL_1_I net@7 Proj2__precharger
+Xprecharg@3 BL_0 BL_0_I net@7 Proj2__precharger
+.ENDS Proj2__control_block_precharge
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: control_block_precharge_test{sch}
+Rres@0 BL_3_I gnd 10k
+Rres@1 BL_3 gnd 10k
+Rres@2 BL_2_I gnd 10k
+Rres@3 BL_2 gnd 10k
+Rres@4 BL_1_I gnd 10k
+Rres@5 BL_1 gnd 10k
+Rres@6 BL_0_I gnd 10k
+Rres@7 BL_0 gnd 10k
+VVPWL@0 ENQ gnd pwl (0ns 0 2ns 0 2ns 0.8 6ns 0.8 6ns 0 8ns 0 8ns 0.8) DC 0V AC 0V 0
+VVPWL@1 DEQ gnd pwl (0ns 0 4ns 0 4ns 0.8) DC 0V AC 0V 0
+VVPulse@0 PHI gnd pulse (0 0.8V 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
+VV_Generi@0 vdd gnd DC 0.8 AC 0
+Xcontrol_@0 BL_0 BL_0_I BL_1 BL_1_I BL_2 BL_2_I BL_3 BL_3_I DEQ ENQ PHI Proj2__control_block_precharge
+.END
