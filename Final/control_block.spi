@@ -1,7 +1,7 @@
-*** SPICE deck for cell queue_toplevel_test{sch} from library Proj2
-*** Created on Sun Dec 11, 2016 18:21:24
-*** Last revised on Sun Dec 11, 2016 18:37:33
-*** Written on Sun Dec 11, 2016 18:54:05 by Electric VLSI Design System, version 9.06
+*** SPICE deck for cell control_block{sch} from library Proj2
+*** Created on Sat Dec 10, 2016 18:24:29
+*** Last revised on Sun Dec 11, 2016 18:52:01
+*** Written on Sun Dec 11, 2016 18:53:41 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
@@ -320,10 +320,9 @@ Xand2@0 net@3 PHI_I WL_ENABLE Proj2__and2
 Xor2@0 ENQ* DEQ* net@3 Proj2__or2
 .ENDS Proj2__wl_enable_gen
 
-*** SUBCIRCUIT Proj2__control_block FROM CELL control_block{sch}
-.SUBCKT Proj2__control_block ADDR_A ADDR_B ADDR_C ADDR_D BL_0 BL_0_I BL_1 BL_1_I BL_2 BL_2_I BL_3 BL_3_I CLK DEQ EMPTY ENQ FULL IN_0 IN_1 IN_2 IN_3 WL_ENABLE
-** GLOBAL gnd
-** GLOBAL vdd
+.global gnd vdd
+
+*** TOP LEVEL CELL: control_block{sch}
 Xclk_gen@0 CLK PHI PHI_I Proj2__clk_gen
 Xcontrol_@1 DEQ_STAR ENQ_STAR FD PHI PHI_I Proj2__control_block_force_dequeue
 Xcontrol_@2 BL_0 BL_0_I BL_1 BL_1_I BL_2 BL_2_I BL_3 BL_3_I ENQ_STAR IN_0 IN_1 IN_2 IN_3 PHI PHI_I Proj2__control_block_bitline_driver
@@ -336,159 +335,4 @@ Xinv@3 FD FD_I Proj2__inv
 Xmux_4bit@0 ADDR_A ADDR_B ADDR_C ADDR_D ENQ_STAR ENQ_STAR_I net@0 net@1 net@2 net@3 net@4 net@5 net@6 net@7 Proj2__mux_4bit
 Xpointers@0 DEQ_STAR EMPTY ENQ_STAR FULL net@0 net@1 net@2 net@3 PHI PHI_I net@4 net@5 net@6 net@7 Proj2__pointers
 Xwl_enabl@0 DEQ_STAR ENQ_STAR PHI_I WL_ENABLE Proj2__wl_enable_gen
-.ENDS Proj2__control_block
-
-*** SUBCIRCUIT Proj2__4_to_16_decoder FROM CELL 4_to_16_decoder{sch}
-.SUBCKT Proj2__4_to_16_decoder A B C D Out_0 Out_1 Out_10 Out_11 Out_12 Out_13 Out_14 Out_15 Out_2 Out_3 Out_4 Out_5 Out_6 Out_7 Out_8 Out_9 OUTPUT_ENABLE
-** GLOBAL gnd
-** GLOBAL vdd
-Xand2@0 net@208 OUTPUT_ENABLE Out_15 Proj2__and2
-Xand2@1 net@207 OUTPUT_ENABLE Out_14 Proj2__and2
-Xand2@2 net@206 OUTPUT_ENABLE Out_13 Proj2__and2
-Xand2@3 net@205 OUTPUT_ENABLE Out_12 Proj2__and2
-Xand2@4 net@204 OUTPUT_ENABLE Out_11 Proj2__and2
-Xand2@5 net@203 OUTPUT_ENABLE Out_10 Proj2__and2
-Xand2@6 net@202 OUTPUT_ENABLE Out_9 Proj2__and2
-Xand2@7 net@201 OUTPUT_ENABLE Out_8 Proj2__and2
-Xand2@8 net@200 OUTPUT_ENABLE Out_7 Proj2__and2
-Xand2@9 net@199 OUTPUT_ENABLE Out_6 Proj2__and2
-Xand2@10 net@198 OUTPUT_ENABLE Out_5 Proj2__and2
-Xand2@11 net@197 OUTPUT_ENABLE Out_4 Proj2__and2
-Xand2@12 net@196 OUTPUT_ENABLE Out_3 Proj2__and2
-Xand2@13 net@195 OUTPUT_ENABLE Out_2 Proj2__and2
-Xand2@14 net@194 OUTPUT_ENABLE Out_1 Proj2__and2
-Xand2@15 net@193 OUTPUT_ENABLE Out_0 Proj2__and2
-Xand4@0 A_INV B_INV C_INV D_INV net@193 Proj2__and4
-Xand4@1 A_INV B_INV C_INV D net@194 Proj2__and4
-Xand4@2 A_INV B_INV C D_INV net@195 Proj2__and4
-Xand4@3 A_INV B_INV C D net@196 Proj2__and4
-Xand4@4 A_INV B C_INV D_INV net@197 Proj2__and4
-Xand4@5 A_INV B C_INV D net@198 Proj2__and4
-Xand4@6 A_INV B C D_INV net@199 Proj2__and4
-Xand4@7 A_INV B C D net@200 Proj2__and4
-Xand4@8 A B_INV C_INV D_INV net@201 Proj2__and4
-Xand4@9 A B_INV C_INV D net@202 Proj2__and4
-Xand4@10 A B_INV C D_INV net@203 Proj2__and4
-Xand4@11 A B_INV C D net@204 Proj2__and4
-Xand4@12 A B C_INV D_INV net@205 Proj2__and4
-Xand4@13 A B C_INV D net@206 Proj2__and4
-Xand4@14 A B C D_INV net@207 Proj2__and4
-Xand4@15 A B C D net@208 Proj2__and4
-Xinv@0 A A_INV Proj2__inv
-Xinv@1 C C_INV Proj2__inv
-Xinv@2 B B_INV Proj2__inv
-Xinv@3 D D_INV Proj2__inv
-.ENDS Proj2__4_to_16_decoder
-
-*** SUBCIRCUIT Proj2__sram_cell FROM CELL sram_cell{sch}
-.SUBCKT Proj2__sram_cell BL BL_ WL
-** GLOBAL gnd
-** GLOBAL vdd
-Mnmos@0 Q Q_I gnd gnd N L=0.022U W=0.176U
-Mnmos@1 Q_I Q gnd gnd N L=0.022U W=0.176U
-Mnmos@2 BL_ WL Q_I gnd N L=0.022U W=0.088U
-Mnmos@3 Q WL BL gnd N L=0.022U W=0.088U
-Mpmos@0 vdd Q_I Q vdd P L=0.022U W=0.022U
-Mpmos@1 vdd Q Q_I vdd P L=0.022U W=0.022U
-.ENDS Proj2__sram_cell
-
-*** SUBCIRCUIT Proj2__memory_block FROM CELL memory_block{sch}
-.SUBCKT Proj2__memory_block BL_0 BL_0_I BL_1 BL_1_I BL_2 BL_2_I BL_3 BL_3_I WL_0 WL_1 WL_2 WL_3 WL_EN
-** GLOBAL gnd
-** GLOBAL vdd
-X_4_to_16_@0 WL_3 WL_2 WL_1 WL_0 net@0 net@9 net@75 net@70 net@85 net@58 net@98 net@92 net@20 net@16 net@30 net@31 net@42 net@37 net@59 net@62 WL_EN Proj2__4_to_16_decoder
-Xsram_cel@0 BL_3 BL_3_I net@0 Proj2__sram_cell
-Xsram_cel@1 BL_2 BL_2_I net@0 Proj2__sram_cell
-Xsram_cel@2 BL_1 BL_1_I net@0 Proj2__sram_cell
-Xsram_cel@3 BL_0 BL_0_I net@0 Proj2__sram_cell
-Xsram_cel@4 BL_3 BL_3_I net@9 Proj2__sram_cell
-Xsram_cel@5 BL_2 BL_2_I net@9 Proj2__sram_cell
-Xsram_cel@6 BL_1 BL_1_I net@9 Proj2__sram_cell
-Xsram_cel@7 BL_0 BL_0_I net@9 Proj2__sram_cell
-Xsram_cel@8 BL_3 BL_3_I net@20 Proj2__sram_cell
-Xsram_cel@9 BL_2 BL_2_I net@20 Proj2__sram_cell
-Xsram_cel@10 BL_1 BL_1_I net@20 Proj2__sram_cell
-Xsram_cel@11 BL_0 BL_0_I net@20 Proj2__sram_cell
-Xsram_cel@12 BL_3 BL_3_I net@16 Proj2__sram_cell
-Xsram_cel@13 BL_2 BL_2_I net@16 Proj2__sram_cell
-Xsram_cel@14 BL_1 BL_1_I net@16 Proj2__sram_cell
-Xsram_cel@15 BL_0 BL_0_I net@16 Proj2__sram_cell
-Xsram_cel@16 BL_3 BL_3_I net@30 Proj2__sram_cell
-Xsram_cel@17 BL_2 BL_2_I net@30 Proj2__sram_cell
-Xsram_cel@18 BL_1 BL_1_I net@30 Proj2__sram_cell
-Xsram_cel@19 BL_0 BL_0_I net@30 Proj2__sram_cell
-Xsram_cel@20 BL_3 BL_3_I net@31 Proj2__sram_cell
-Xsram_cel@21 BL_2 BL_2_I net@31 Proj2__sram_cell
-Xsram_cel@22 BL_1 BL_1_I net@31 Proj2__sram_cell
-Xsram_cel@23 BL_0 BL_0_I net@31 Proj2__sram_cell
-Xsram_cel@24 BL_3 BL_3_I net@42 Proj2__sram_cell
-Xsram_cel@25 BL_2 BL_2_I net@42 Proj2__sram_cell
-Xsram_cel@26 BL_1 BL_1_I net@42 Proj2__sram_cell
-Xsram_cel@27 BL_0 BL_0_I net@42 Proj2__sram_cell
-Xsram_cel@28 BL_3 BL_3_I net@37 Proj2__sram_cell
-Xsram_cel@29 BL_2 BL_2_I net@37 Proj2__sram_cell
-Xsram_cel@30 BL_1 BL_1_I net@37 Proj2__sram_cell
-Xsram_cel@31 BL_0 BL_0_I net@37 Proj2__sram_cell
-Xsram_cel@32 BL_3 BL_3_I net@59 Proj2__sram_cell
-Xsram_cel@33 BL_2 BL_2_I net@59 Proj2__sram_cell
-Xsram_cel@34 BL_1 BL_1_I net@59 Proj2__sram_cell
-Xsram_cel@35 BL_0 BL_0_I net@59 Proj2__sram_cell
-Xsram_cel@36 BL_3 BL_3_I net@62 Proj2__sram_cell
-Xsram_cel@37 BL_2 BL_2_I net@62 Proj2__sram_cell
-Xsram_cel@38 BL_1 BL_1_I net@62 Proj2__sram_cell
-Xsram_cel@39 BL_0 BL_0_I net@62 Proj2__sram_cell
-Xsram_cel@40 BL_3 BL_3_I net@75 Proj2__sram_cell
-Xsram_cel@41 BL_2 BL_2_I net@75 Proj2__sram_cell
-Xsram_cel@42 BL_1 BL_1_I net@75 Proj2__sram_cell
-Xsram_cel@43 BL_0 BL_0_I net@75 Proj2__sram_cell
-Xsram_cel@44 BL_3 BL_3_I net@70 Proj2__sram_cell
-Xsram_cel@45 BL_2 BL_2_I net@70 Proj2__sram_cell
-Xsram_cel@46 BL_1 BL_1_I net@70 Proj2__sram_cell
-Xsram_cel@47 BL_0 BL_0_I net@70 Proj2__sram_cell
-Xsram_cel@48 BL_3 BL_3_I net@85 Proj2__sram_cell
-Xsram_cel@49 BL_2 BL_2_I net@85 Proj2__sram_cell
-Xsram_cel@50 BL_1 BL_1_I net@85 Proj2__sram_cell
-Xsram_cel@51 BL_0 BL_0_I net@85 Proj2__sram_cell
-Xsram_cel@52 BL_3 BL_3_I net@58 Proj2__sram_cell
-Xsram_cel@53 BL_2 BL_2_I net@58 Proj2__sram_cell
-Xsram_cel@54 BL_1 BL_1_I net@58 Proj2__sram_cell
-Xsram_cel@55 BL_0 BL_0_I net@58 Proj2__sram_cell
-Xsram_cel@56 BL_3 BL_3_I net@98 Proj2__sram_cell
-Xsram_cel@57 BL_2 BL_2_I net@98 Proj2__sram_cell
-Xsram_cel@58 BL_1 BL_1_I net@98 Proj2__sram_cell
-Xsram_cel@59 BL_0 BL_0_I net@98 Proj2__sram_cell
-Xsram_cel@60 BL_3 BL_3_I net@92 Proj2__sram_cell
-Xsram_cel@61 BL_2 BL_2_I net@92 Proj2__sram_cell
-Xsram_cel@62 BL_1 BL_1_I net@92 Proj2__sram_cell
-Xsram_cel@63 BL_0 BL_0_I net@92 Proj2__sram_cell
-.ENDS Proj2__memory_block
-
-*** SUBCIRCUIT Proj2__queue_toplevel FROM CELL queue_toplevel{sch}
-.SUBCKT Proj2__queue_toplevel Clock Dequeue Empty Enqueue Full In_0 In_1 In_2 In_3 Out_0 Out_1 Out_2 Out_3
-** GLOBAL gnd
-** GLOBAL vdd
-Xcontrol_@0 net@26 net@30 net@33 net@36 net@1 net@3 net@7 net@10 net@64 net@14 net@17 net@20 Clock Dequeue Empty Enqueue Full In_0 In_1 In_2 In_3 net@23 Proj2__control_block
-Xinv@0 net@52 Out_0 Proj2__inv
-Xinv@1 net@1 net@52 Proj2__inv
-Xinv@2 net@57 Out_1 Proj2__inv
-Xinv@3 net@7 net@57 Proj2__inv
-Xinv@4 net@62 Out_2 Proj2__inv
-Xinv@5 net@64 net@62 Proj2__inv
-Xinv@6 net@101 Out_3 Proj2__inv
-Xinv@7 net@17 net@101 Proj2__inv
-Xmemory_b@2 net@1 net@3 net@7 net@10 net@64 net@14 net@17 net@20 net@36 net@33 net@30 net@26 net@23 Proj2__memory_block
-.ENDS Proj2__queue_toplevel
-
-.global gnd vdd
-
-*** TOP LEVEL CELL: queue_toplevel_test{sch}
-VVPWL@0 Enqueue gnd pwl (0ns 0) DC 0V AC 0V 0
-VVPWL@1 Dequeue gnd pwl (0ns 0) DC 0V AC 0V 0
-VVPWL@2 In_0 gnd pwl (0ns 0) DC 0V AC 0V 0
-VVPWL@3 In_1 gnd pwl (0ns 0) DC 0V AC 0V 0
-VVPWL@4 In_2 gnd pwl (0ns 0) DC 0V AC 0V 0
-VVPWL@5 In_3 gnd pwl (0ns 0) DC 0V AC 0V 0
-VVPulse@0 Clock gnd pulse (0 0.8V 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
-VV_Generi@0 vdd gnd DC 0.8 AC 0
-Xqueue_to@0 Clock Dequeue Empty Enqueue Full In_0 In_1 In_2 In_3 Out_0 Out_1 Out_2 Out_3 Proj2__queue_toplevel
 .END

@@ -1437,8 +1437,7 @@ EWL_ENABLE||D5G2;X4;|pin@42||O
 X
 
 # Cell control_block;1{sch}
-Ccontrol_block;1{sch}||schematic|1481412269598|1481499320757|
-NWire_Pin|ENQ*|D5G2;X-1;Y2;|48.5|83||||
+Ccontrol_block;1{sch}||schematic|1481412269598|1481500321571|
 Ngeneric:Facet-Center|art@0||0|0||||AV
 Iclk_gen;1{ic}|clk_gen@0||-69.5|78|||D5G4;
 NOff-Page|conn@0||-78.5|57||||
@@ -1522,23 +1521,27 @@ NWire_Pin|pin@51||4|20||||
 NWire_Pin|pin@52||11|20||||
 NWire_Pin|pin@54||-57.5|79||||
 NWire_Pin|pin@55||17.5|63.5||||
+NWire_Pin|pin@56||-41|61.5||||
+NWire_Pin|pin@57||-49|5.5||||
+NWire_Pin|pin@58||48.5|84.5||||
 Ipointers;1{ic}|pointers@0||29|71|||D5G4;
 Iwl_enable_gen;1{ic}|wl_enabl@0||30|52|||D5G4;
-Awire|DEQ*|D5G2;X6;||1800|enq_deq@0|DEQ*|-56|54|pin@12||-49.5|54
-Awire|DEQ*|D5G2;X-6;||0|control_@1|DEQ*|-35|67.5|pin@18||-41.5|67.5
-Awire|DEQ*|D5G2;X-4;||0|wl_enabl@0|DEQ*|23.5|54|pin@23||19.5|54
-Awire|DEQ*|D5G2;X-4;||0|pointers@0|DEQ*|22|75|pin@26||17.5|75
-Awire|DEQ*|D5G2;X-4;||0|control_@3|DEQ*|-45|34|pin@37||-49|34
+Awire|DEQ_STAR|D5G2;X6;||1800|enq_deq@0|DEQ*|-56|54|pin@12||-49.5|54
+Awire|DEQ_STAR|D5G2;X-9;||0|control_@1|DEQ*|-35|67.5|pin@18||-41.5|67.5
+Awire|DEQ_STAR|D5G2;X-6.5;||0|wl_enabl@0|DEQ*|23.5|54|pin@23||19.5|54
+Awire|DEQ_STAR|D5G2;X-8.5;||0|pointers@0|DEQ*|22|75|pin@26||17.5|75
+Awire|DEQ_STAR|D5G2;X-8.5;||0|control_@3|DEQ*|-45|34|pin@37||-49|34
 Awire|EMPTY_I|D5G2;X6;||1800|inv@0|y|54.5|100|pin@3||59|100
 Awire|EMPTY_I|D5G2;X-4;||0|enq_deq@0|EMPTY_I|-68|55|pin@20||-72|55
-Awire|ENQ*|D5G2;X7;||1800|enq_deq@0|ENQ*|-56|50|pin@13||-52|50
-Awire|ENQ*|D5G2;X-6;||0|control_@1|ENQ*|-35|70.5|pin@17||-42|70.5
-Awire|ENQ*|D5G2;X-4;||0|wl_enabl@0|ENQ*|23.5|52|pin@24||20|52
-Awire|ENQ*|D5G2;X-4;||0|pointers@0|ENQ*|22|71|pin@27||18|71
-Awire|ENQ*|D5G2;X-4;||0|control_@3|ENQ*|-45|36|pin@36||-49|36
-Awire|ENQ*|D5G2;X-4;||0|control_@2|ENQ*|-45|9.5|pin@39||-49.5|9.5
-Awire|ENQ*_I|D5G2;X2.5;Y3.5;||2700|mux_4bit@0|S_I|52.5|80|pin@10||52.5|83
-Awire|ENQ*_I|D5G2;X4;||1800|inv@2|y|-27|45.5|pin@16||-21.5|45.5
+Awire|ENQ_STAR|D5G2;X8.5;||1800|enq_deq@0|ENQ*|-56|50|pin@13||-52|50
+Awire|ENQ_STAR|D5G2;X-8.5;||0|control_@1|ENQ*|-35|70.5|pin@17||-42|70.5
+Awire|ENQ_STAR|D5G2;X-7;||0|wl_enabl@0|ENQ*|23.5|52|pin@24||20|52
+Awire|ENQ_STAR|D5G2;X-9;||0|pointers@0|ENQ*|22|71|pin@27||18|71
+Awire|ENQ_STAR|D5G2;X-8.5;||0|control_@3|ENQ*|-45|36|pin@36||-49|36
+Awire|ENQ_STAR|D5G2;X-9;||0|control_@2|ENQ*|-45|9.5|pin@39||-49.5|9.5
+Awire|ENQ_STAR|D5G2;Y2.5;||2700|mux_4bit@0|S|48.5|80|pin@58||48.5|84.5
+Awire|ENQ_STAR_I|D5G2;X5.5;||2700|mux_4bit@0|S_I|52.5|80|pin@10||52.5|83
+Awire|ENQ_STAR_I|D5G2;X4;||1800|inv@2|y|-27|45.5|pin@16||-21.5|45.5
 Awire|FD|D5G2;X4;||1800|control_@1|FD|-23|67.5|pin@30||-21|67.5
 Awire|FD|D5G2;X-4;||0|enq_deq@0|FD|-68|51|pin@34||-71.5|51
 Awire|FD_I|D5G2;X4;||1800|inv@3|y|-5|64|pin@33||-1|64
@@ -1549,10 +1552,12 @@ Awire|PHI|D5G2;X6;||1800|clk_gen@0|OUT|-64.5|79|pin@54||-57.5|79
 Awire|PHI|D5G2;X-4;||0|control_@3|φ|-45|32|pin@38||-49|32
 Awire|PHI|D5G2;X-4;||0|control_@2|φ|-45|7.5|pin@40||-49|7.5
 Awire|PHI|D5G2;X-3;||0|pointers@0|PHI|21.5|63.5|pin@55||17.5|63.5
+Awire|PHI|D5G2;X-5.5;||0|control_@1|φ|-35|61.5|pin@56||-41|61.5
 Awire|PHI_I|D5G2;X6;||1800|clk_gen@0|OUT_INV|-64.5|77|pin@19||-58|77
 Awire|PHI_I|D5G2;X-6.5;||0|control_@1|φ_I|-35|64.5|pin@22||-41|64.5
 Awire|PHI_I|D5G2;X-4;||0|wl_enabl@0|PHI_I|23.5|50|pin@25||20|50
 Awire|PHI_I|D5G2;X-4;||0|pointers@0|PHI_I|22|67.5|pin@28||18|67.5
+Awire|PHI_I|D5G2;X-4;||0|control_@2|φ_I|-45|5.5|pin@57||-49|5.5
 Awire|net@0|||0|mux_4bit@0|X_A|45.5|76|pointers@0|HEAD_A|36|76
 Awire|net@1|||1800|pointers@0|HEAD_B|36|74|mux_4bit@0|X_B|45.5|74
 Awire|net@2|||0|mux_4bit@0|X_C|45.5|72|pointers@0|HEAD_C|36|72
@@ -1573,7 +1578,6 @@ Awire|net@21|||0|conn@3|a|59.5|95|pin@6||40|95
 Awire|net@22|||2700|pin@4||40|78|pin@7||40|91.5
 Awire|net@23|||2700|pin@7||40|91.5|pin@6||40|95
 Awire|net@24|||0|inv@1|x|42.5|91.5|pin@7||40|91.5
-Awire|net@26|||2700|mux_4bit@0|S|48.5|80|ENQ*||48.5|83
 Awire|net@29|||900|pin@13||-52|50|pin@14||-52|45.5
 Awire|net@31|||1800|pin@14||-52|45.5|inv@2|x|-38|45.5
 Awire|net@35|||0|clk_gen@0|IN|-74.5|78|conn@4|y|-77.5|78
@@ -5092,7 +5096,7 @@ Awire|net@40|||900|VPulse@0|minus|-22|-17|gnd@2||-22|-21.5
 X
 
 # Cell sram_cell;1{ic}
-Csram_cell;1{ic}||artwork|1480216797913|1481499485486|E
+Csram_cell;1{ic}||artwork|1480216797913|1480224575361|E
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NOpened-Thicker-Polygon|art@1||0|0|6|6|||trace()V[-3/-3,-3/3,3/3,3/-3,-3/-3]
 NOpened-Polygon|art@3||-4.5|0|3||||trace()V[-1.5/0,1.5/0]
@@ -5106,12 +5110,12 @@ Ngeneric:Invisible-Pin|pin@6||0|2.5|||||ART_message(D5G1;)SWL
 Ngeneric:Invisible-Pin|pin@7||-2|0|||||ART_message(D5G1;)SBL'
 Ngeneric:Invisible-Pin|pin@8||2|0|||||ART_message(D5G1;)SBL
 EBL||D5G2;|pin@0||I
-EBL'|BL_I|D5G2;|pin@2||I
+EBL'||D5G2;|pin@2||I
 EWL||D5G2;|pin@4||I
 X
 
 # Cell sram_cell;1{sch}
-Csram_cell;1{sch}||schematic|1480216196480|1481499485486|
+Csram_cell;1{sch}||schematic|1480216196480|1481499354263|
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NOff-Page|conn@0||-18|0||||
 NOff-Page|conn@1||-18|9||||
@@ -5181,7 +5185,7 @@ Awire|net@46||||pin@21||7|0|pin@21||7|0
 Awire|net@47|||1800|nmos@3|s|13|0|conn@2|a|16|0
 Awire|net@49|||1800|conn@0|y|-16|0|nmos@2|d|-13|0
 EBL||D5G2;|conn@2|y|B
-EBL'|BL_I|D5G2;|conn@0|a|B
+EBL'||D5G2;|conn@0|a|B
 EWL||D5G2;|conn@1|a|I
 X
 
