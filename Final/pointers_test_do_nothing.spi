@@ -1,7 +1,7 @@
-*** SPICE deck for cell pointers_test_empty_full{sch} from library Proj2
+*** SPICE deck for cell pointers_test_do_nothing{sch} from library Proj2
 *** Created on Sun Dec 11, 2016 02:21:23
-*** Last revised on Sun Dec 11, 2016 17:30:20
-*** Written on Sun Dec 11, 2016 17:30:31 by Electric VLSI Design System, version 9.06
+*** Last revised on Sun Dec 11, 2016 17:36:39
+*** Written on Sun Dec 11, 2016 17:36:44 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
@@ -216,11 +216,9 @@ Xinv@0 ENQ* net@200 Proj2__inv
 
 .global gnd vdd
 
-*** TOP LEVEL CELL: pointers_test_empty_full{sch}
-VVPulse@0 DEQ_STAR gnd pulse (0.8V 0 0ns 0 0 34ns 64ns) DC 0V AC 0V 0
-VVPulse@1 ENQ_STAR gnd pulse (0 0.8V 0ns 0 0 32ns 72ns) DC 0V AC 0V 0
+*** TOP LEVEL CELL: pointers_test_do_nothing{sch}
 VVPulse@2 net@3 gnd pulse (0.8V 0 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
 VV_Generi@0 vdd gnd DC 0.8 AC 0
 Xclk_gen@0 net@3 PHI PHI_I Proj2__clk_gen
-Xpointers@0 DEQ_STAR EMPTY ENQ_STAR FULL HEAD_A HEAD_B HEAD_C HEAD_D PHI PHI_I TAIL_A TAIL_B TAIL_C TAIL_D Proj2__pointers
+Xpointers@0 gnd EMPTY gnd FULL HEAD_A HEAD_B HEAD_C HEAD_D PHI PHI_I TAIL_A TAIL_B TAIL_C TAIL_D Proj2__pointers
 .END
