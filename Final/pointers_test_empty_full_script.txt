@@ -1,0 +1,4 @@
+# pointers_test
+tran 100ps 35ns
+plot (PHI) (EMPTY + 12V) (FULL + 11V) (HEAD_A + 10V) (HEAD_B + 9V) (HEAD_C + 8V) (HEAD_D + 7V) (TAIL_A + 6V) (TAIL_B + 5V) (TAIL_C + 4V) (TAIL_D + 3V) (DEQ_STAR + 2V) (ENQ_STAR + 1V) (PHI_I)
+

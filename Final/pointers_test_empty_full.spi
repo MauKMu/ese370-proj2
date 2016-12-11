@@ -1,0 +1,227 @@
+*** SPICE deck for cell pointers_test_empty_full{sch} from library Proj2
+*** Created on Sun Dec 11, 2016 02:21:23
+*** Last revised on Sun Dec 11, 2016 16:42:10
+*** Written on Sun Dec 11, 2016 16:42:15 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+* Model cards are described in this file:
+.include /home/kenzo/electric/22nm_HP.pm
+
+*** SUBCIRCUIT Proj2__clk_gen FROM CELL clk_gen{sch}
+.SUBCKT Proj2__clk_gen IN OUT OUT_INV
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 A IN gnd gnd N L=0.022U W=0.022U
+Mnmos@1 net@3 IN gnd gnd N L=0.022U W=0.022U
+Mnmos@2 B net@3 gnd gnd N L=0.022U W=0.022U
+Mnmos@3 net@37 A gnd gnd N L=0.022U W=0.022U
+Mnmos@4 net@37 OUT_INV gnd gnd N L=0.022U W=0.022U
+Mnmos@5 net@50 B gnd gnd N L=0.022U W=0.022U
+Mnmos@6 net@50 OUT gnd gnd N L=0.022U W=0.022U
+Mnmos@7 net@147 net@37 gnd gnd N L=0.022U W=0.22U
+Mnmos@8 OUT net@147 gnd gnd N L=0.022U W=0.022U
+Mnmos@9 net@166 net@50 gnd gnd N L=0.022U W=0.22U
+Mnmos@10 OUT_INV net@166 gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd IN A vdd P L=0.022U W=0.022U
+Mpmos@1 vdd IN net@3 vdd P L=0.022U W=0.022U
+Mpmos@2 vdd net@3 B vdd P L=0.022U W=0.022U
+Mpmos@3 vdd A net@36 vdd P L=0.022U W=0.022U
+Mpmos@4 net@36 OUT_INV net@37 vdd P L=0.022U W=0.022U
+Mpmos@5 vdd B net@47 vdd P L=0.022U W=0.022U
+Mpmos@6 net@47 OUT net@50 vdd P L=0.022U W=0.022U
+Mpmos@7 vdd net@37 net@147 vdd P L=0.022U W=0.22U
+Mpmos@8 vdd net@147 OUT vdd P L=0.022U W=0.022U
+Mpmos@9 vdd net@50 net@166 vdd P L=0.022U W=0.22U
+Mpmos@10 vdd net@166 OUT_INV vdd P L=0.022U W=0.022U
+.ENDS Proj2__clk_gen
+
+*** SUBCIRCUIT Proj2__inv FROM CELL inv{sch}
+.SUBCKT Proj2__inv x y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y x gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd x y vdd P L=0.022U W=0.022U
+.ENDS Proj2__inv
+
+*** SUBCIRCUIT Proj2__nand2 FROM CELL nand2{sch}
+.SUBCKT Proj2__nand2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y a net@73 gnd N L=0.022U W=0.022U
+Mnmos@1 net@73 b gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd a y vdd P L=0.022U W=0.022U
+Mpmos@1 vdd b y vdd P L=0.022U W=0.022U
+.ENDS Proj2__nand2
+
+*** SUBCIRCUIT Proj2__and2 FROM CELL and2{sch}
+.SUBCKT Proj2__and2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Xinv@0 net@79 y Proj2__inv
+Xnand2@1 a b net@79 Proj2__nand2
+.ENDS Proj2__and2
+
+*** SUBCIRCUIT Proj2__nor2 FROM CELL nor2{sch}
+.SUBCKT Proj2__nor2 A B Out
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 Out A gnd gnd N L=0.022U W=0.022U
+Mnmos@1 Out B gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd A net@0 vdd P L=0.022U W=0.022U
+Mpmos@1 net@0 B Out vdd P L=0.022U W=0.022U
+.ENDS Proj2__nor2
+
+*** SUBCIRCUIT Proj2__d_latch FROM CELL d_latch{sch}
+.SUBCKT Proj2__d_latch In Out φ
+** GLOBAL gnd
+** GLOBAL vdd
+Xand2@0 net@50 φ net@71 Proj2__and2
+Xand2@1 φ In net@70 Proj2__and2
+Xinv@0 In net@50 Proj2__inv
+Xnor2@0 net@71 net@60 Out Proj2__nor2
+Xnor2@1 Out net@70 net@60 Proj2__nor2
+.ENDS Proj2__d_latch
+
+*** SUBCIRCUIT Proj2__d_register FROM CELL d_register{sch}
+.SUBCKT Proj2__d_register D Q φ
+** GLOBAL gnd
+** GLOBAL vdd
+Xclk_gen@1 φ net@33 net@34 Proj2__clk_gen
+Xd_latch@2 D net@27 net@34 Proj2__d_latch
+Xd_latch@3 net@27 Q net@33 Proj2__d_latch
+.ENDS Proj2__d_register
+
+*** SUBCIRCUIT Proj2__4bit_register FROM CELL 4bit_register{sch}
+.SUBCKT Proj2__4bit_register A B C D PHI Q_A Q_B Q_C Q_D
+** GLOBAL gnd
+** GLOBAL vdd
+Xd_regist@0 A Q_A PHI Proj2__d_register
+Xd_regist@1 B Q_B PHI Proj2__d_register
+Xd_regist@2 C Q_C PHI Proj2__d_register
+Xd_regist@3 D Q_D PHI Proj2__d_register
+.ENDS Proj2__4bit_register
+
+*** SUBCIRCUIT Proj2__and4 FROM CELL and4{sch}
+.SUBCKT Proj2__and4 A B C D Out
+** GLOBAL gnd
+** GLOBAL vdd
+Xand2@0 A B net@0 Proj2__and2
+Xand2@1 C D net@3 Proj2__and2
+Xand2@2 net@0 net@3 Out Proj2__and2
+.ENDS Proj2__and4
+
+*** SUBCIRCUIT Proj2__xnor2 FROM CELL xnor2{sch}
+.SUBCKT Proj2__xnor2 A B Out
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 Out net@143 net@0 gnd N L=0.022U W=0.022U
+Mnmos@1 net@0 B gnd gnd N L=0.022U W=0.022U
+Mnmos@2 net@1 net@118 gnd gnd N L=0.022U W=0.022U
+Mnmos@3 Out A net@1 gnd N L=0.022U W=0.022U
+Mnmos@5 net@143 A gnd gnd N L=0.022U W=0.022U
+Mnmos@6 net@118 B gnd gnd N L=0.022U W=0.022U
+Mpmos@0 net@5 net@118 Out vdd P L=0.022U W=0.022U
+Mpmos@1 net@4 B Out vdd P L=0.022U W=0.022U
+Mpmos@2 vdd A net@4 vdd P L=0.022U W=0.022U
+Mpmos@3 vdd net@143 net@5 vdd P L=0.022U W=0.022U
+Mpmos@5 vdd A net@143 vdd P L=0.022U W=0.022U
+Mpmos@6 vdd B net@118 vdd P L=0.022U W=0.022U
+.ENDS Proj2__xnor2
+
+*** SUBCIRCUIT Proj2__comparator FROM CELL comparator{sch}
+.SUBCKT Proj2__comparator EQ X_A X_B X_C X_D Y_A Y_B Y_C Y_D
+** GLOBAL gnd
+** GLOBAL vdd
+Xand4@0 net@13 net@15 net@18 net@21 EQ Proj2__and4
+Xxnor2@0 X_A Y_A net@13 Proj2__xnor2
+Xxnor2@1 X_B Y_B net@15 Proj2__xnor2
+Xxnor2@2 X_C Y_C net@18 Proj2__xnor2
+Xxnor2@3 X_D Y_D net@21 Proj2__xnor2
+.ENDS Proj2__comparator
+
+*** SUBCIRCUIT Proj2__nand3 FROM CELL nand3{sch}
+.SUBCKT Proj2__nand3 a b c y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y a net@73 gnd N L=0.022U W=0.022U
+Mnmos@1 net@73 b net@85 gnd N L=0.022U W=0.022U
+Mnmos@2 net@85 c gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd a y vdd P L=0.022U W=0.022U
+Mpmos@1 vdd b y vdd P L=0.022U W=0.022U
+Mpmos@2 vdd c y vdd P L=0.022U W=0.022U
+.ENDS Proj2__nand3
+
+*** SUBCIRCUIT Proj2__or2 FROM CELL or2{sch}
+.SUBCKT Proj2__or2 A B Out
+** GLOBAL gnd
+** GLOBAL vdd
+Xinv@0 net@24 Out Proj2__inv
+Xnor2@1 A B net@24 Proj2__nor2
+.ENDS Proj2__or2
+
+*** SUBCIRCUIT Proj2__xor2 FROM CELL xor2{sch}
+.SUBCKT Proj2__xor2 A B Out
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 Out A net@0 gnd N L=0.022U W=0.022U
+Mnmos@1 net@0 B gnd gnd N L=0.022U W=0.022U
+Mnmos@2 net@1 net@12 gnd gnd N L=0.022U W=0.022U
+Mnmos@3 Out net@18 net@1 gnd N L=0.022U W=0.022U
+Mnmos@5 net@18 A gnd gnd N L=0.022U W=0.022U
+Mnmos@6 net@12 B gnd gnd N L=0.022U W=0.022U
+Mpmos@0 net@5 B Out vdd P L=0.022U W=0.022U
+Mpmos@1 net@4 net@12 Out vdd P L=0.022U W=0.022U
+Mpmos@2 vdd A net@4 vdd P L=0.022U W=0.022U
+Mpmos@3 vdd net@18 net@5 vdd P L=0.022U W=0.022U
+Mpmos@5 vdd A net@18 vdd P L=0.022U W=0.022U
+Mpmos@6 vdd B net@12 vdd P L=0.022U W=0.022U
+.ENDS Proj2__xor2
+
+*** SUBCIRCUIT Proj2__incrementer FROM CELL incrementer{sch}
+.SUBCKT Proj2__incrementer A A_INC B B_INC C C_INC D D_INC
+** GLOBAL gnd
+** GLOBAL vdd
+Xand2@0 D C CD Proj2__and2
+Xand2@1 CD net@14 B_CD Proj2__and2
+Xand2@2 B _CD__ B_CD__ Proj2__and2
+Xand2@3 CD B BCD Proj2__and2
+Xand2@4 BCD net@41 A_BCD Proj2__and2
+Xand2@5 A _BCD__ A_BCD__ Proj2__and2
+Xinv@0 D D_INC Proj2__inv
+Xinv@1 B net@14 Proj2__inv
+Xinv@2 A net@41 Proj2__inv
+Xnand2@0 D C _CD__ Proj2__nand2
+Xnand3@0 D C B _BCD__ Proj2__nand3
+Xor2@0 B_CD B_CD__ B_INC Proj2__or2
+Xor2@1 A_BCD A_BCD__ A_INC Proj2__or2
+Xxor2@0 D C C_INC Proj2__xor2
+.ENDS Proj2__incrementer
+
+*** SUBCIRCUIT Proj2__pointers FROM CELL pointers{sch}
+.SUBCKT Proj2__pointers DEQ* EMPTY ENQ* FULL HEAD_A HEAD_B HEAD_C HEAD_D PHI PHI_I TAIL_A TAIL_B TAIL_C TAIL_D
+** GLOBAL gnd
+** GLOBAL vdd
+X_4bit_reg@0 net@206 net@207 net@208 net@209 PHI net@136 net@130 net@125 net@120 Proj2__4bit_register
+X_4bit_reg@1 net@228 net@216 net@217 net@218 PHI net@103 net@107 net@111 net@115 Proj2__4bit_register
+XHEAD net@136 net@130 net@125 net@120 net@185 HEAD_A HEAD_B HEAD_C HEAD_D Proj2__4bit_register
+XHEAD_TAIL_ EMPTY HEAD_A HEAD_B HEAD_C HEAD_D TAIL_A TAIL_B TAIL_C TAIL_D Proj2__comparator
+XHEAD_TAIL_PLUS_1_ FULL HEAD_A HEAD_B HEAD_C HEAD_D net@103 net@107 net@111 net@115 Proj2__comparator
+XHEAD_PLUS_1 HEAD_A net@206 HEAD_B net@207 HEAD_C net@208 HEAD_D net@209 Proj2__incrementer
+XTAIL net@103 net@107 net@111 net@115 net@186 TAIL_A TAIL_B TAIL_C TAIL_D Proj2__4bit_register
+XTAIL_PLUS_1 TAIL_A net@228 TAIL_B net@216 TAIL_C net@217 TAIL_D net@218 Proj2__incrementer
+Xand2@0 net@190 PHI_I net@185 Proj2__and2
+Xand2@1 net@200 DEQ* net@190 Proj2__and2
+Xand2@2 PHI_I ENQ* net@186 Proj2__and2
+Xinv@0 ENQ* net@200 Proj2__inv
+.ENDS Proj2__pointers
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: pointers_test_empty_full{sch}
+VVPulse@0 DEQ_STAR gnd pulse (0.8V 0 0ns 0 0 30ns 64ns) DC 0V AC 0V 0
+VVPulse@1 ENQ_STAR gnd pulse (0 0.8V 0ns 0 0 28ns 64ns) DC 0V AC 0V 0
+VVPulse@2 PHI_I gnd pulse (0.8V 0 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
+VVPulse@3 PHI gnd pulse (0 0.8V 0.1ns 10ps 10ps 0.8ns 2ns) DC 0V AC 0V 0
+VV_Generi@0 vdd gnd DC 0.8 AC 0
+Xpointers@0 DEQ_STAR EMPTY ENQ_STAR FULL HEAD_A HEAD_B HEAD_C HEAD_D PHI PHI_I TAIL_A TAIL_B TAIL_C TAIL_D Proj2__pointers
+.END

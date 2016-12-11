@@ -1,0 +1,4 @@
+# pointers_test
+tran 100ps 20ns
+plot (HEAD_A + 10V) (HEAD_B + 9V) (HEAD_C + 8V) (HEAD_D + 7V) (TAIL_A + 6V) (TAIL_B + 5V) (TAIL_C + 4V) (TAIL_D + 3V) ((DEQ*) + 2V) ((ENQ*) + 1V) (PHI_I)
+
