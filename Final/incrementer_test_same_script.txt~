@@ -1,0 +1,4 @@
+# incrementer_test
+tran 100ps 40ns
+plot (8V + OUT) (7V + Y_A) (6V + Y_B) (5V + Y_C) (4V + Y_D) (3V + X_A) (2V + X_B) (1V + X_C) (X_D)
+

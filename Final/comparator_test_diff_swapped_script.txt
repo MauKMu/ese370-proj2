@@ -1,0 +1,4 @@
+# comparator_test_same
+tran 100ps 40ns
+plot (5V + OUT) (4V + Y_A) (3V + Y_B) (2V + Y_C) (1V + Y_D) (X)
+

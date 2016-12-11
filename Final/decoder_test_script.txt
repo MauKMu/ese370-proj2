@@ -1,5 +1,10 @@
 # decoder_test
 tran 100ps 40ns
+plot (8V + OUT_3) (7V + OUT_2) (6V + OUT_1) (5V + OUT_0) (4V + A) (3V + B) (2V + C) (1V + D) (OUT_EN)
+plot (8V + OUT_7) (7V + OUT_6) (6V + OUT_5) (5V + OUT_4) (4V + A) (3V + B) (2V + C) (1V + D) (OUT_EN)
+plot (8V + OUT_11) (7V + OUT_10) (6V + OUT_9) (5V + OUT_8) (4V + A) (3V + B) (2V + C) (1V + D) (OUT_EN)
+plot (8V + OUT_15) (7V + OUT_14) (6V + OUT_13) (5V + OUT_12) (4V + A) (3V + B) (2V + C) (1V + D) (OUT_EN)
+# alternate version if ngspice refuses to load enough signals
 plot (4V + A) (3V + B) (2V + C) (1V + D) (OUT_EN)
 plot (3V + OUT_0) (2V + OUT_1) (1V + OUT_2) (OUT_3)
 plot (3V + OUT_4) (2V + OUT_5) (1V + OUT_6) (OUT_7)
