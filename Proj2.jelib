@@ -677,60 +677,6 @@ ED||D5G2;|conn@3|a|I
 EOut||D5G2;|conn@4|y|O
 X
 
-# Cell bitline_driver;1{ic}
-Cbitline_driver;1{ic}||artwork|1480219904585|1480224655283|E
-Ngeneric:Facet-Center|art@0||0|0||||AV
-NOpened-Thicker-Polygon|art@1||0|0|6|6|||trace()V[-3/-3,-3/3,3/3,3/-3,-3/-3]
-NOpened-Polygon|art@2||-4.5|0|3||||trace()V[-1.5/0,1.5/0]
-NOpened-Polygon|art@3||2|-4.5||3|||trace()V[0/1.5,0/-1.5]
-NOpened-Polygon|art@4||-2|-4.5||3|||trace()V[0/1.5,0/-1.5]
-Nschematic:Bus_Pin|pin@0||2|-6||||
-Nschematic:Bus_Pin|pin@2||-6|0||||
-Ngeneric:Invisible-Pin|pin@3||0|2|||||ART_message(D5G1;)S[Bitline,Driver]
-Nschematic:Bus_Pin|pin@4||-2|-6||||
-Ngeneric:Invisible-Pin|pin@6||2|-2.5|||||ART_message(D5G1;)SBL
-Ngeneric:Invisible-Pin|pin@7||-2|-2.5|||||ART_message(D5G1;)SBL'
-Ngeneric:Invisible-Pin|pin@8||-1.5|0|||||ART_message(D5G1;)SCLK'
-EBL||D5G2;|pin@0||O
-EBL'||D5G2;|pin@4||O
-ECLK'||D5G2;|pin@2||I
-X
-
-# Cell bitline_driver;1{sch}
-Cbitline_driver;1{sch}||schematic|1480219746726|1480289657314|
-Ngeneric:Facet-Center|art@0||0|0||||AV
-Ibitline_driver;1{ic}|bitline_@0||22|6|||D5G4;
-NOff-Page|conn@0||0|-7|||RRR|
-NOff-Page|conn@1||-7|0||||
-NOff-Page|conn@2||10|-7|||RRR|
-NWire_Pin|pin@1||5|3||||
-NWire_Pin|pin@2||0|3||||
-NWire_Pin|pin@3||10|3||||
-NWire_Pin|pin@4||-4|0||||
-NWire_Pin|pin@5||-4|-3.5||||
-NWire_Pin|pin@6||14|-3.5||||
-NWire_Pin|pin@7||14|0||||
-NTransistor|pmos@0||-2|0|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)S1|ATTR_width(D5G1;X0.5;Y-1;)S16
-NTransistor|pmos@1||12|0|||XR|2|ATTR_length(D5G0.5;X-0.5;Y-1;)S1|ATTR_width(D5G1;X0.5;Y-1;)S16
-NPower|pwr@0||5|6||||
-Awire|net@1|||900|pmos@0|s|0|-2|conn@0|a|0|-5
-Awire|net@5|||0|pin@1||5|3|pin@2||0|3
-Awire|net@6|||900|pin@2||0|3|pmos@0|d|0|2
-Awire|net@7|||1800|pin@1||5|3|pin@3||10|3
-Awire|net@8|||900|pin@3||10|3|pmos@1|d|10|2
-Awire|net@9|||900|pmos@1|s|10|-2|conn@2|a|10|-5
-Awire|net@10|||1800|conn@1|y|-5|0|pin@4||-4|0
-Awire|net@11|||1800|pin@4||-4|0|pmos@0|g|-3|0
-Awire|net@12|||900|pin@4||-4|0|pin@5||-4|-3.5
-Awire|net@13|||1800|pin@5||-4|-3.5|pin@6||14|-3.5
-Awire|net@14|||2700|pin@6||14|-3.5|pin@7||14|0
-Awire|net@15|||0|pin@7||14|0|pmos@1|g|13|0
-Awire|net@16|||900|pwr@0||5|6|pin@1||5|3
-EBL||D5G2;|conn@2|y|O
-EBL'||D5G2;|conn@0|y|O
-ECLK'||D5G2;|conn@1|a|I
-X
-
 # Cell clk_gen;1{ic}
 Cclk_gen;1{ic}||artwork|1479442656852|1480222209473|E
 Ngeneric:Facet-Center|art@0||0|0||||AV
@@ -1195,6 +1141,171 @@ Awire|net@117|||1800|pin@52||22|16.5|pin@44||39|16.5
 Awire|net@118|||900|pin@51||22|76|pin@52||22|16.5
 EEMPTY||D5G2;Y2;|conn@0|y|O
 EFULL||D5G2;X2;Y2.5;|conn@1|a|O
+X
+
+# Cell control_block_force_dequeue;1{ic}
+Ccontrol_block_force_dequeue;1{ic}||artwork|1481417328422|1481417583274|E
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOpened-Thicker-Polygon|art@1||0|0|6|11|||trace()V[-3/-5.5,-3/5.5,3/5.5,3/-5.5,-3/-5.5]
+NOpened-Polygon|art@2||-4.5|1.5|3||||trace()V[-1.5/0,1.5/0]
+NOpened-Polygon|art@3||-4.5|-1.5|3||||trace()V[-1.5/0,1.5/0]
+NOpened-Polygon|art@4||-4.5|-4.5|3||||trace()V[-1.5/0,1.5/0]
+NOpened-Polygon|art@5||4.5|-1.5|3||||trace()V[-1.5/0,1.5/0]
+Nschematic:Bus_Pin|pin@0||-6|-1.5||||
+Nschematic:Bus_Pin|pin@2||-6|1.5||||
+Nschematic:Bus_Pin|pin@4||6|-1.5||||
+Nschematic:Bus_Pin|pin@6||-6|-4.5||||
+Ngeneric:Invisible-Pin|pin@9||0|4|||||ART_message(D5G1;)S[Force,Dequeue]
+Ngeneric:Invisible-Pin|pin@10||-1.5|1.5|||||ART_message(D5G1;)SENQ*
+Ngeneric:Invisible-Pin|pin@11||-1.5|-1.5|||||ART_message(D5G1;)SDEQ*
+Ngeneric:Invisible-Pin|pin@12||-2|-4.5|||||ART_message(D5G1;)Sφ_I
+Ngeneric:Invisible-Pin|pin@13||2|-1.5|||||ART_message(D5G1;)SFD
+EDEQ*||D5G2;|pin@0||I
+EENQ*||D5G2;|pin@2||I
+EFD||D5G2;|pin@4||O
+Eφ_I||D5G2;|pin@6||I
+X
+
+# Cell control_block_force_dequeue;1{sch}
+Ccontrol_block_force_dequeue;1{sch}||schematic|1481417029237|1481417328422|
+Iand2;1{ic}|and2@0||-15|3|||D5G4;
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOff-Page|conn@0||-26|4.5||||
+NOff-Page|conn@1||-26|1.5||||
+NOff-Page|conn@2||-26|-3||||
+NOff-Page|conn@3||11|0||||
+Id_register;1{ic}|d_regist@0||0|0|||D5G4;
+Icontrol_block_force_dequeue;1{ic}|force_de@0||19|11|||D5G4;
+Awire|net@0|||1800|and2@0|y|-9.7|3|d_regist@0|D|-6|3
+Awire|net@1|||1800|conn@0|y|-24|4.5|and2@0|a|-19.5|4.5
+Awire|net@2|||1800|conn@1|y|-24|1.5|and2@0|b|-19.5|1.5
+Awire|net@3|||1800|conn@2|y|-24|-3|d_regist@0|φ|-6|-3
+Awire|net@4|||1800|d_regist@0|Q|6|0|conn@3|a|9|0
+EDEQ*||D5G2;|conn@1|a|I
+EENQ*||D5G2;|conn@0|a|I
+EFD||D5G2;|conn@3|y|O
+Eφ_I||D5G2;|conn@2|a|I
+X
+
+# Cell control_block_precharge;1{ic}
+Ccontrol_block_precharge;1{ic}||artwork|1481418361050|1481419020018|E
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOpened-Thicker-Polygon|art@1||0|0|55|8|||trace()V[-27.5/4,27.5/4,27.5/-4,-27.5/-4,-27.5/4]
+NOpened-Polygon|art@2||-24.5|-6||4|||trace()V[0/-2,0/2]
+NOpened-Polygon|art@3||-17.5|-6||4|||trace()V[0/-2,0/2]
+NOpened-Polygon|art@4||-10.5|-6||4|||trace()V[0/-2,0/2]
+NOpened-Polygon|art@5||-3.5|-6||4|||trace()V[0/-2,0/2]
+NOpened-Polygon|art@6||3.5|-6||4|||trace()V[0/-2,0/2]
+NOpened-Polygon|art@7||10.5|-6||4|||trace()V[0/-2,0/2]
+NOpened-Polygon|art@8||17.5|-6||4|||trace()V[0/-2,0/2]
+NOpened-Polygon|art@9||24.5|-6||4|||trace()V[0/-2,0/2]
+NOpened-Polygon|art@10||-29.5|3|4||||trace()V[-2/0,2/0]
+NOpened-Polygon|art@11||-29.5|1|4||||trace()V[-2/0,2/0]
+NOpened-Polygon|art@12||-29.5|-1|4||||trace()V[-2/0,2/0]
+Nschematic:Bus_Pin|pin@0||24.5|-8||||
+Nschematic:Bus_Pin|pin@2||17.5|-8||||
+Nschematic:Bus_Pin|pin@4||10.5|-8||||
+Nschematic:Bus_Pin|pin@6||3.5|-8||||
+Nschematic:Bus_Pin|pin@8||-3.5|-8||||
+Nschematic:Bus_Pin|pin@10||-10.5|-8||||
+Nschematic:Bus_Pin|pin@12||-17.5|-8||||
+Nschematic:Bus_Pin|pin@14||-24.5|-8||||
+Nschematic:Bus_Pin|pin@16||-31.5|1||||
+Nschematic:Bus_Pin|pin@18||-31.5|3||||
+Nschematic:Bus_Pin|pin@20||-31.5|-1||||
+Ngeneric:Invisible-Pin|pin@21||-26|3|||||ART_message(D5G1;)SENQ*
+Ngeneric:Invisible-Pin|pin@22||-26|1|||||ART_message(D5G1;)SDEQ*
+Ngeneric:Invisible-Pin|pin@23||-27|-1|||||ART_message(D5G1;)Sφ
+Ngeneric:Invisible-Pin|pin@24||-24.5|-3|||||ART_message(D5G1;)SBL_3_I
+Ngeneric:Invisible-Pin|pin@25||-17.5|-3|||||ART_message(D5G1;)SBL_3
+Ngeneric:Invisible-Pin|pin@26||-10.5|-3|||||ART_message(D5G1;)SBL_2_I
+Ngeneric:Invisible-Pin|pin@27||-3.5|-3|||||ART_message(D5G1;)SBL_2
+Ngeneric:Invisible-Pin|pin@28||3.5|-3|||||ART_message(D5G1;)SBL_1_I
+Ngeneric:Invisible-Pin|pin@29||10.5|-3|||||ART_message(D5G1;)SBL_1
+Ngeneric:Invisible-Pin|pin@30||17.5|-3|||||ART_message(D5G1;)SBL_0_I
+Ngeneric:Invisible-Pin|pin@31||24.5|-3|||||ART_message(D5G1;)SBL_0
+Ngeneric:Invisible-Pin|pin@32||0|1|||||ART_message(D5G1;)SBitline Precharge Control
+EBL_0||D5G2;|pin@0||O
+EBL_0_I||D5G2;|pin@2||O
+EBL_1||D5G2;|pin@4||O
+EBL_1_I||D5G2;|pin@6||O
+EBL_2||D5G2;|pin@8||O
+EBL_2_I||D5G2;|pin@10||O
+EBL_3||D5G2;|pin@12||O
+EBL_3_I||D5G2;|pin@14||O
+EDEQ*||D5G2;|pin@16||I
+EENQ*||D5G2;|pin@18||I
+Eφ||D5G2;Y0.5;|pin@20||I
+X
+
+# Cell control_block_precharge;1{sch}
+Ccontrol_block_precharge;1{sch}||schematic|1481417820355|1481419035337|
+Iand2;1{ic}|and2@0||-29.5|6|||D5G4;
+Iand2;1{ic}|and2@1||-15.5|4.5|||D5G4;
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOff-Page|conn@0||-38.5|7.5||||
+NOff-Page|conn@1||-38.5|4.5||||
+NOff-Page|conn@2||-38.5|1.5||||
+NOff-Page|conn@3||1|-6.5|||RRR|
+NOff-Page|conn@4||5|-12|||RRR|
+NOff-Page|conn@5||14.5|-6.5|||RRR|
+NOff-Page|conn@6||18.5|-12|||RRR|
+NOff-Page|conn@7||28.5|-6.5|||RRR|
+NOff-Page|conn@8||32.5|-12|||RRR|
+NOff-Page|conn@9||41.5|-6.5|||RRR|
+NOff-Page|conn@10||45.5|-12|||RRR|
+Icontrol_block_precharge;1{ic}|control_@0||56|22|||D5G4;
+NWire_Pin|pin@0||-23|3||||
+NWire_Pin|pin@1||-23|1.5||||
+NWire_Pin|pin@2||35.5|4.5||||
+NWire_Pin|pin@3||35.5|10||||
+NWire_Pin|pin@4||-6|10||||
+NWire_Pin|pin@5||-6|4.5||||
+NWire_Pin|pin@6||8.5|4.5||||
+NWire_Pin|pin@7||8.5|10||||
+NWire_Pin|pin@8||22.5|4.5||||
+NWire_Pin|pin@9||22.5|10||||
+Iprecharger;1{ic}|precharg@0||3|4.5|||D5G4;
+Iprecharger;1{ic}|precharg@1||16.5|4.5|||D5G4;
+Iprecharger;1{ic}|precharg@2||30.5|4.5|||D5G4;
+Iprecharger;1{ic}|precharg@3||43.5|4.5|||D5G4;
+Awire|net@0|||0|and2@1|a|-20|6|and2@0|y|-24.2|6
+Awire|net@2|||0|and2@1|b|-20|3|pin@0||-23|3
+Awire|net@3|||1800|conn@2|y|-36.5|1.5|pin@1||-23|1.5
+Awire|net@4|||900|pin@0||-23|3|pin@1||-23|1.5
+Awire|net@5|||1800|conn@0|y|-36.5|7.5|and2@0|a|-34|7.5
+Awire|net@6|||1800|conn@1|y|-36.5|4.5|and2@0|b|-34|4.5
+Awire|net@7|||0|precharg@3|CLK'|37.5|4.5|pin@2||35.5|4.5
+Awire|net@8|||2700|pin@2||35.5|4.5|pin@3||35.5|10
+Awire|net@10|||0|precharg@0|CLK'|-3|4.5|pin@5||-6|4.5
+Awire|net@11|||0|pin@5||-6|4.5|and2@1|y|-10.2|4.5
+Awire|net@12|||900|pin@4||-6|10|pin@5||-6|4.5
+Awire|net@13|||0|precharg@1|CLK'|10.5|4.5|pin@6||8.5|4.5
+Awire|net@15|||0|pin@7||8.5|10|pin@4||-6|10
+Awire|net@16|||2700|pin@6||8.5|4.5|pin@7||8.5|10
+Awire|net@17|||0|precharg@2|CLK'|24.5|4.5|pin@8||22.5|4.5
+Awire|net@18|||0|pin@3||35.5|10|pin@9||22.5|10
+Awire|net@19|||0|pin@9||22.5|10|pin@7||8.5|10
+Awire|net@20|||2700|pin@8||22.5|4.5|pin@9||22.5|10
+Awire|net@21|||900|precharg@3|BL'|41.5|-1.5|conn@9|a|41.5|-4.5
+Awire|net@22|||900|precharg@3|BL|45.5|-1.5|conn@10|a|45.5|-10
+Awire|net@23|||900|precharg@2|BL|32.5|-1.5|conn@8|a|32.5|-10
+Awire|net@24|||900|precharg@2|BL'|28.5|-1.5|conn@7|a|28.5|-4.5
+Awire|net@25|||900|precharg@1|BL|18.5|-1.5|conn@6|a|18.5|-10
+Awire|net@26|||900|precharg@1|BL'|14.5|-1.5|conn@5|a|14.5|-4.5
+Awire|net@27|||900|precharg@0|BL|5|-1.5|conn@4|a|5|-10
+Awire|net@28|||900|precharg@0|BL'|1|-1.5|conn@3|a|1|-4.5
+EBL_0||D5G2;|conn@10|y|O
+EBL_0_I||D5G2;|conn@9|y|O
+EBL_1||D5G2;|conn@8|y|O
+EBL_1_I||D5G2;|conn@7|y|O
+EBL_2||D5G2;|conn@6|y|O
+EBL_2_I||D5G2;|conn@5|y|O
+EBL_3||D5G2;|conn@4|y|O
+EBL_3_I||D5G2;|conn@3|y|O
+EDEQ*||D5G2;|conn@1|a|I
+EENQ*||D5G2;|conn@0|a|I
+Eφ||D5G2;|conn@2|a|I
 X
 
 # Cell d_latch;1{ic}
@@ -2761,6 +2872,60 @@ EB||D5G2;|conn@4|a|I
 EOut||D5G2;|conn@5|y|O
 X
 
+# Cell precharger;1{ic}
+Cprecharger;1{ic}||artwork|1480219904585|1481417938587|E
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOpened-Thicker-Polygon|art@1||0|0|6|6|||trace()V[-3/-3,-3/3,3/3,3/-3,-3/-3]
+NOpened-Polygon|art@2||-4.5|0|3||||trace()V[-1.5/0,1.5/0]
+NOpened-Polygon|art@3||2|-4.5||3|||trace()V[0/1.5,0/-1.5]
+NOpened-Polygon|art@4||-2|-4.5||3|||trace()V[0/1.5,0/-1.5]
+Nschematic:Bus_Pin|pin@0||2|-6||||
+Nschematic:Bus_Pin|pin@2||-6|0||||
+Ngeneric:Invisible-Pin|pin@3||0|2|||||ART_message(D5G1;)S[Bitline,Precharger]
+Nschematic:Bus_Pin|pin@4||-2|-6||||
+Ngeneric:Invisible-Pin|pin@6||2|-2.5|||||ART_message(D5G1;)SBL
+Ngeneric:Invisible-Pin|pin@7||-2|-2.5|||||ART_message(D5G1;)SBL'
+Ngeneric:Invisible-Pin|pin@8||-1.5|0|||||ART_message(D5G1;)SCLK'
+EBL||D5G2;|pin@0||O
+EBL'||D5G2;|pin@4||O
+ECLK'||D5G2;|pin@2||I
+X
+
+# Cell precharger;1{sch}
+Cprecharger;1{sch}||schematic|1480219746726|1480289657314|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+Iprecharger;1{ic}|bitline_@0||22|6|||D5G4;
+NOff-Page|conn@0||0|-7|||RRR|
+NOff-Page|conn@1||-7|0||||
+NOff-Page|conn@2||10|-7|||RRR|
+NWire_Pin|pin@1||5|3||||
+NWire_Pin|pin@2||0|3||||
+NWire_Pin|pin@3||10|3||||
+NWire_Pin|pin@4||-4|0||||
+NWire_Pin|pin@5||-4|-3.5||||
+NWire_Pin|pin@6||14|-3.5||||
+NWire_Pin|pin@7||14|0||||
+NTransistor|pmos@0||-2|0|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)S1|ATTR_width(D5G1;X0.5;Y-1;)S16
+NTransistor|pmos@1||12|0|||XR|2|ATTR_length(D5G0.5;X-0.5;Y-1;)S1|ATTR_width(D5G1;X0.5;Y-1;)S16
+NPower|pwr@0||5|6||||
+Awire|net@1|||900|pmos@0|s|0|-2|conn@0|a|0|-5
+Awire|net@5|||0|pin@1||5|3|pin@2||0|3
+Awire|net@6|||900|pin@2||0|3|pmos@0|d|0|2
+Awire|net@7|||1800|pin@1||5|3|pin@3||10|3
+Awire|net@8|||900|pin@3||10|3|pmos@1|d|10|2
+Awire|net@9|||900|pmos@1|s|10|-2|conn@2|a|10|-5
+Awire|net@10|||1800|conn@1|y|-5|0|pin@4||-4|0
+Awire|net@11|||1800|pin@4||-4|0|pmos@0|g|-3|0
+Awire|net@12|||900|pin@4||-4|0|pin@5||-4|-3.5
+Awire|net@13|||1800|pin@5||-4|-3.5|pin@6||14|-3.5
+Awire|net@14|||2700|pin@6||14|-3.5|pin@7||14|0
+Awire|net@15|||0|pin@7||14|0|pmos@1|g|13|0
+Awire|net@16|||900|pwr@0||5|6|pin@1||5|3
+EBL||D5G2;|conn@2|y|O
+EBL'||D5G2;|conn@0|y|O
+ECLK'||D5G2;|conn@1|a|I
+X
+
 # Cell sram_cell;1{ic}
 Csram_cell;1{ic}||artwork|1480216797913|1480224575361|E
 Ngeneric:Facet-Center|art@0||0|0||||AV
@@ -2863,7 +3028,7 @@ IspicepartsS3:VPWL;1{ic}|VPWL@2||-8|-35.5|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0V|
 IspicepartsS3:VPWL;1{ic}|VPWL@3||-17|-29|||D5G4;|ATTR_ACM(D6G0.5;NPX2;Y-3;)S0V|ATTR_ACP(D6G0.5;NPX2;Y-3.5;)I0|ATTR_VDC(D6G0.5;NPX2;Y-4;)S0V|ATTR_pwl(D6G0.5;NPX2;Y-2.5;)S0ns 0 1ns 0
 IspicepartsS3:V_Generic;1{ic}|V_Generi@0||19|-3|||D5G4;|ATTR_Voltage(D6G0.5;PX2;Y-1.5;)SDC 0.8 AC 0
 Ngeneric:Facet-Center|art@0||0|0||||AV
-Ibitline_driver;1{ic}|bitline_@0||6.5|11.5|||D5G4;
+Iprecharger;1{ic}|bitline_@0||6.5|11.5|||D5G4;
 NGround|gnd@0||-24|-8.5||||
 NGround|gnd@1||-14.5|-15.5||||
 NGround|gnd@2||19|-7||||
@@ -2945,7 +3110,7 @@ IspicepartsS3:VPWL;1{ic}|VPWL@2||-8.5|-37.5|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0
 IspicepartsS3:VPWL;1{ic}|VPWL@3||-17|-29|||D5G4;|ATTR_ACM(D6G0.5;NPX2;Y-3;)S0V|ATTR_ACP(D6G0.5;NPX2;Y-3.5;)I0|ATTR_VDC(D6G0.5;NPX2;Y-4;)S0V|ATTR_pwl(D6G0.5;NPX2;Y-2.5;)S0ns 0 0.1ns 0.8 2.3ns 0.8 2.4ns 0
 IspicepartsS3:V_Generic;1{ic}|V_Generi@0||19|-3|||D5G4;|ATTR_Voltage(D6G0.5;PX2;Y-1.5;)SDC 0.8 AC 0
 Ngeneric:Facet-Center|art@0||0|0||||AV
-Ibitline_driver;1{ic}|bitline_@0||6.5|11.5|||D5G4;
+Iprecharger;1{ic}|bitline_@0||6.5|11.5|||D5G4;
 Iextra_capacitance;1{ic}|extra_ca@0||7|0|||D5G4;
 NGround|gnd@0||-24|-8.5||||
 NGround|gnd@1||-14.5|-15.5||||
@@ -3024,7 +3189,7 @@ IspicepartsS3:VPWL;1{ic}|VPWL@2||-8.5|-37.5|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0
 IspicepartsS3:VPWL;1{ic}|VPWL@3||-17|-29|||D5G4;|ATTR_ACM(D6G0.5;NPX2;Y-3;)S0V|ATTR_ACP(D6G0.5;NPX2;Y-3.5;)I0|ATTR_VDC(D6G0.5;NPX2;Y-4;)S0V|ATTR_pwl(D6G0.5;NPX2;Y-2.5;)S0ns 0 0.1ns 0.8 2.3ns 0.8 2.4ns 0
 IspicepartsS3:V_Generic;1{ic}|V_Generi@0||19|-3|||D5G4;|ATTR_Voltage(D6G0.5;PX2;Y-1.5;)SDC 0.8 AC 0
 Ngeneric:Facet-Center|art@0||0|0||||AV
-Ibitline_driver;1{ic}|bitline_@0||6.5|11.5|||D5G4;
+Iprecharger;1{ic}|bitline_@0||6.5|11.5|||D5G4;
 Iextra_capacitance;1{ic}|extra_ca@0||7|0|||D5G4;
 NGround|gnd@0||-24|-8.5||||
 NGround|gnd@1||-14.5|-15.5||||
@@ -3103,7 +3268,7 @@ IspicepartsS3:VPWL;1{ic}|VPWL@2||-8.5|-37.5|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0
 IspicepartsS3:VPWL;1{ic}|VPWL@3||-17|-29|||D5G4;|ATTR_ACM(D6G0.5;NPX2;Y-3;)S0V|ATTR_ACP(D6G0.5;NPX2;Y-3.5;)I0|ATTR_VDC(D6G0.5;NPX2;Y-4;)S0V|ATTR_pwl(D6G0.5;NPX2;Y-2.5;)S0ns 0 0.1ns 0.8 2.3ns 0.8 2.4ns 0 2.5ns 0 2.6ns 0.8 3.5ns 0.8 3.6ns 0
 IspicepartsS3:V_Generic;1{ic}|V_Generi@0||19|-3|||D5G4;|ATTR_Voltage(D6G0.5;PX2;Y-1.5;)SDC 0.8 AC 0
 Ngeneric:Facet-Center|art@0||0|0||||AV
-Ibitline_driver;1{ic}|bitline_@0||6.5|11.5|||D5G4;
+Iprecharger;1{ic}|bitline_@0||6.5|11.5|||D5G4;
 Iextra_capacitance;1{ic}|extra_ca@0||7|0|||D5G4;
 NGround|gnd@0||-24|-8.5||||
 NGround|gnd@1||-14.5|-15.5||||
@@ -3182,7 +3347,7 @@ IspicepartsS3:VPWL;1{ic}|VPWL@2||-8.5|-37.5|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0
 IspicepartsS3:VPWL;1{ic}|VPWL@3||-17|-29|||D5G4;|ATTR_ACM(D6G0.5;NPX2;Y-3;)S0V|ATTR_ACP(D6G0.5;NPX2;Y-3.5;)I0|ATTR_VDC(D6G0.5;NPX2;Y-4;)S0V|ATTR_pwl(D6G0.5;NPX2;Y-2.5;)S0ns 0 0.1ns 0.8 2.3ns 0.8 2.4ns 0 2.5ns 0 2.6ns 0.8 3.5ns 0.8 3.6ns 0
 IspicepartsS3:V_Generic;1{ic}|V_Generi@0||19|-3|||D5G4;|ATTR_Voltage(D6G0.5;PX2;Y-1.5;)SDC 0.8 AC 0
 Ngeneric:Facet-Center|art@0||0|0||||AV
-Ibitline_driver;1{ic}|bitline_@0||6.5|11.5|||D5G4;
+Iprecharger;1{ic}|bitline_@0||6.5|11.5|||D5G4;
 Iextra_capacitance;1{ic}|extra_ca@0||7|0|||D5G4;
 NGround|gnd@0||-24|-8.5||||
 NGround|gnd@1||-14.5|-15.5||||
@@ -3261,7 +3426,7 @@ IspicepartsS3:VPWL;1{ic}|VPWL@2||-8.5|-37.5|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0
 IspicepartsS3:VPWL;1{ic}|VPWL@3||-17|-29|||D5G4;|ATTR_ACM(D6G0.5;NPX2;Y-3;)S0V|ATTR_ACP(D6G0.5;NPX2;Y-3.5;)I0|ATTR_VDC(D6G0.5;NPX2;Y-4;)S0V|ATTR_pwl(D6G0.5;NPX2;Y-2.5;)S0ns 0 0.1ns 0.8 2.3ns 0.8 2.4ns 0
 IspicepartsS3:V_Generic;1{ic}|V_Generi@0||19|-3|||D5G4;|ATTR_Voltage(D6G0.5;PX2;Y-1.5;)SDC 0.8 AC 0
 Ngeneric:Facet-Center|art@0||0|0||||AV
-Ibitline_driver;1{ic}|bitline_@0||6.5|11.5|||D5G4;
+Iprecharger;1{ic}|bitline_@0||6.5|11.5|||D5G4;
 Iextra_capacitance;1{ic}|extra_ca@0||7|0|||D5G4;
 NGround|gnd@0||-24|-8.5||||
 NGround|gnd@1||-14.5|-15.5||||
@@ -3340,7 +3505,7 @@ IspicepartsS3:VPWL;1{ic}|VPWL@2||-8.5|-37.5|||D5G4;|ATTR_ACM(D6G0.5;NPX3;Y-2;)S0
 IspicepartsS3:VPWL;1{ic}|VPWL@3||-17|-29|||D5G4;|ATTR_ACM(D6G0.5;NPX2;Y-3;)S0V|ATTR_ACP(D6G0.5;NPX2;Y-3.5;)I0|ATTR_VDC(D6G0.5;NPX2;Y-4;)S0V|ATTR_pwl(D6G0.5;NPX2;Y-2.5;)S0ns 0 0.1ns 0.8 2.3ns 0.8 2.4ns 0
 IspicepartsS3:V_Generic;1{ic}|V_Generi@0||19|-3|||D5G4;|ATTR_Voltage(D6G0.5;PX2;Y-1.5;)SDC 0.8 AC 0
 Ngeneric:Facet-Center|art@0||0|0||||AV
-Ibitline_driver;1{ic}|bitline_@0||6.5|11.5|||D5G4;
+Iprecharger;1{ic}|bitline_@0||6.5|11.5|||D5G4;
 Iextra_capacitance;1{ic}|extra_ca@0||7|0|||D5G4;
 NGround|gnd@0||-24|-8.5||||
 NGround|gnd@1||-14.5|-15.5||||
