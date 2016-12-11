@@ -5090,6 +5090,49 @@ EPHI_I||D5G2;X-7;|conn@2|y|I
 EWL_ENABLE||D5G2;X2;Y2.5;|conn@3|a|O
 X
 
+# Cell wl_enable_gen_test;1{sch}
+Cwl_enable_gen_test;1{sch}||schematic|1481437116023|1481438081157|
+IspicepartsS3:VPulse;1{ic}|VPulse@0||-34|-8|||D5G4;|ATTR_ACM(D6G0.5;NPX2.5;Y-1.5;)S0V|ATTR_ACP(D6G0.5;NPX2.5;Y-2;)I0|ATTR_PW(D6G0.5;NPX2.5;Y-0.5;)S4ns|ATTR_Per(D6G0.5;NPX2.5;Y-1;)S8ns|ATTR_TD(D6G0.5;NPX2.5;Y1;)S0ns|ATTR_TF(D6G0.5;NPX2.5;)S0|ATTR_TR(D6G0.5;NPX2.5;Y0.5;)S0|ATTR_V1(D6G0.5;NPX2.5;Y2;)S0.8|ATTR_V2(D6G0.5;NPX2.5;Y1.5;)S0|ATTR_VDC(D6G0.5;NPX2.5;Y-2.5;)S0V
+IspicepartsS3:VPulse;1{ic}|VPulse@1||-25.5|-8|||D5G4;|ATTR_ACM(D6G0.5;NPX2.5;Y-1.5;)S0V|ATTR_ACP(D6G0.5;NPX2.5;Y-2;)I0|ATTR_PW(D6G0.5;NPX2.5;Y-0.5;)S2ns|ATTR_Per(D6G0.5;NPX2.5;Y-1;)S4ns|ATTR_TD(D6G0.5;NPX2.5;Y1;)S0ns|ATTR_TF(D6G0.5;NPX2.5;)S0|ATTR_TR(D6G0.5;NPX2.5;Y0.5;)S0|ATTR_V1(D6G0.5;NPX2.5;Y2;)S0.8|ATTR_V2(D6G0.5;NPX2.5;Y1.5;)S0|ATTR_VDC(D6G0.5;NPX2.5;Y-2.5;)S0V
+IspicepartsS3:VPulse;1{ic}|VPulse@2||-17|-8|||D5G4;|ATTR_ACM(D6G0.5;NPX2.5;Y-1.5;)S0V|ATTR_ACP(D6G0.5;NPX2.5;Y-2;)I0|ATTR_PW(D6G0.5;NPX2.5;Y-0.5;)S1ns|ATTR_Per(D6G0.5;NPX2.5;Y-1;)S2ns|ATTR_TD(D6G0.5;NPX2.5;Y1;)S0ns|ATTR_TF(D6G0.5;NPX2.5;)S0|ATTR_TR(D6G0.5;NPX2.5;Y0.5;)S0|ATTR_V1(D6G0.5;NPX2.5;Y2;)S0.8|ATTR_V2(D6G0.5;NPX2.5;Y1.5;)S0|ATTR_VDC(D6G0.5;NPX2.5;Y-2.5;)S0V
+IspicepartsS3:V_Generic;1{ic}|V_Generi@0||-53|13|||D5G4;|ATTR_Voltage(D6G0.5;PX2.5;Y-1.5;)SDC 0.8 AC 0
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NGround|gnd@0||-53|9.5||||
+NGround|gnd@1||-25.5|-14||||
+NWire_Pin|pin@0||-34|-10.5||||
+NWire_Pin|pin@1||-25.5|-10.5||||
+NWire_Pin|pin@2||-17|-10.5||||
+NWire_Pin|pin@3||-17|-3.5||||
+NWire_Pin|pin@4||-17|-2||||
+NWire_Pin|pin@5||-21.5|0||||
+NWire_Pin|pin@6||-25|0||||
+NWire_Pin|pin@7||-25.5|0||||
+NWire_Pin|pin@8||-25|2||||
+NWire_Pin|pin@9||-34|2||||
+NWire_Pin|pin@10||14.5|0||||
+NPower|pwr@0||-53|19.5||||
+Iwl_enable_gen;1{ic}|wl_enabl@0||0.5|0|||D5G4;
+Awire|DEQ|D5G1;||0|wl_enabl@0|DEQ*|-6|2|pin@8||-25|2
+Awire|ENQ|D5G1;||0|wl_enabl@0|ENQ*|-6|0|pin@5||-21.5|0
+Awire|PHI|D5G1;||0|wl_enabl@0|PHI_I|-6|-2|pin@4||-17|-2
+Awire|WL_ENABLE|D5G1;||1800|wl_enabl@0|WL_ENABLE|5.5|0|pin@10||14.5|0
+Awire|net@0|||2700|V_Generi@0|plus|-53|17|pwr@0||-53|19.5
+Awire|net@1|||900|V_Generi@0|minus|-53|13|gnd@0||-53|11.5
+Awire|net@3|||900|VPulse@0|minus|-34|-8|pin@0||-34|-10.5
+Awire|net@4|||2700|gnd@1||-25.5|-12|pin@1||-25.5|-10.5
+Awire|net@5|||2700|pin@1||-25.5|-10.5|VPulse@1|minus|-25.5|-8
+Awire|net@6|||1800|pin@0||-34|-10.5|pin@1||-25.5|-10.5
+Awire|net@7|||900|VPulse@2|minus|-17|-8|pin@2||-17|-10.5
+Awire|net@8|||0|pin@2||-17|-10.5|pin@1||-25.5|-10.5
+Awire|net@9|||2700|VPulse@2|plus|-17|-4|pin@3||-17|-3.5
+Awire|net@10|||2700|pin@3||-17|-3.5|pin@4||-17|-2
+Awire|net@13|||0|pin@5||-21.5|0|pin@6||-25|0
+Awire|net@14|||0|pin@6||-25|0|pin@7||-25.5|0
+Awire|net@15|||2700|VPulse@1|plus|-25.5|-4|pin@7||-25.5|0
+Awire|net@17|||0|pin@8||-25|2|pin@9||-34|2
+Awire|net@18|||2700|VPulse@0|plus|-34|-4|pin@9||-34|2
+X
+
 # Cell xnor2;1{ic}
 Cxnor2;1{ic}||artwork|1477112584600|1481407327950|E
 Ngeneric:Facet-Center|art@0||0|0||||AV
