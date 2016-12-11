@@ -1,0 +1,113 @@
+*** SPICE deck for cell incrementer_test{sch} from library Proj2
+*** Created on Sat Dec 10, 2016 22:39:21
+*** Last revised on Sat Dec 10, 2016 23:48:04
+*** Written on Sat Dec 10, 2016 23:48:34 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+* Model cards are described in this file:
+.include 22nm_HP.pm
+
+*** SUBCIRCUIT Proj2__inv FROM CELL inv{sch}
+.SUBCKT Proj2__inv x y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y x gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd x y vdd P L=0.022U W=0.022U
+.ENDS Proj2__inv
+
+*** SUBCIRCUIT Proj2__nand2 FROM CELL nand2{sch}
+.SUBCKT Proj2__nand2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y a net@73 gnd N L=0.022U W=0.022U
+Mnmos@1 net@73 b gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd a y vdd P L=0.022U W=0.022U
+Mpmos@1 vdd b y vdd P L=0.022U W=0.022U
+.ENDS Proj2__nand2
+
+*** SUBCIRCUIT Proj2__and2 FROM CELL and2{sch}
+.SUBCKT Proj2__and2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Xinv@0 net@79 y Proj2__inv
+Xnand2@1 a b net@79 Proj2__nand2
+.ENDS Proj2__and2
+
+*** SUBCIRCUIT Proj2__nand3 FROM CELL nand3{sch}
+.SUBCKT Proj2__nand3 a b c y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y a net@73 gnd N L=0.022U W=0.022U
+Mnmos@1 net@73 b net@85 gnd N L=0.022U W=0.022U
+Mnmos@2 net@85 c gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd a y vdd P L=0.022U W=0.022U
+Mpmos@1 vdd b y vdd P L=0.022U W=0.022U
+Mpmos@2 vdd c y vdd P L=0.022U W=0.022U
+.ENDS Proj2__nand3
+
+*** SUBCIRCUIT Proj2__nor2 FROM CELL nor2{sch}
+.SUBCKT Proj2__nor2 A B Out
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 Out A gnd gnd N L=0.022U W=0.022U
+Mnmos@1 Out B gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd A net@0 vdd P L=0.022U W=0.022U
+Mpmos@1 net@0 B Out vdd P L=0.022U W=0.022U
+.ENDS Proj2__nor2
+
+*** SUBCIRCUIT Proj2__or2 FROM CELL or2{sch}
+.SUBCKT Proj2__or2 A B Out
+** GLOBAL gnd
+** GLOBAL vdd
+Xinv@0 net@24 Out Proj2__inv
+Xnor2@1 A B net@24 Proj2__nor2
+.ENDS Proj2__or2
+
+*** SUBCIRCUIT Proj2__xor2 FROM CELL xor2{sch}
+.SUBCKT Proj2__xor2 A B Out
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 Out A net@0 gnd N L=0.022U W=0.022U
+Mnmos@1 net@0 B gnd gnd N L=0.022U W=0.022U
+Mnmos@2 net@1 net@12 gnd gnd N L=0.022U W=0.022U
+Mnmos@3 Out net@18 net@1 gnd N L=0.022U W=0.022U
+Mnmos@5 net@18 A gnd gnd N L=0.022U W=0.022U
+Mnmos@6 net@12 B gnd gnd N L=0.022U W=0.022U
+Mpmos@0 net@5 B Out vdd P L=0.022U W=0.022U
+Mpmos@1 net@4 net@12 Out vdd P L=0.022U W=0.022U
+Mpmos@2 vdd A net@4 vdd P L=0.022U W=0.022U
+Mpmos@3 vdd net@18 net@5 vdd P L=0.022U W=0.022U
+Mpmos@5 vdd A net@18 vdd P L=0.022U W=0.022U
+Mpmos@6 vdd B net@12 vdd P L=0.022U W=0.022U
+.ENDS Proj2__xor2
+
+*** SUBCIRCUIT Proj2__incrementer FROM CELL incrementer{sch}
+.SUBCKT Proj2__incrementer A A_INC B B_INC C C_INC D D_INC
+** GLOBAL gnd
+** GLOBAL vdd
+Xand2@0 D C CD Proj2__and2
+Xand2@1 CD net@14 B_CD Proj2__and2
+Xand2@2 B _CD__ B_CD__ Proj2__and2
+Xand2@3 CD B BCD Proj2__and2
+Xand2@4 BCD net@41 A_BCD Proj2__and2
+Xand2@5 A _BCD__ A_BCD__ Proj2__and2
+Xinv@0 D D_INC Proj2__inv
+Xinv@1 B net@14 Proj2__inv
+Xinv@2 A net@41 Proj2__inv
+Xnand2@0 D C _CD__ Proj2__nand2
+Xnand3@0 D C B _BCD__ Proj2__nand3
+Xor2@0 B_CD B_CD__ B_INC Proj2__or2
+Xor2@1 A_BCD A_BCD__ A_INC Proj2__or2
+Xxor2@0 D C C_INC Proj2__xor2
+.ENDS Proj2__incrementer
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: incrementer_test{sch}
+VVPulse@0 A gnd pulse (0.8V 0 0ns 0 0 8ns 16ns) DC 0V AC 0V 0
+VVPulse@1 B gnd pulse (0.8V 0 0ns 0 0 4ns 8ns) DC 0V AC 0V 0
+VVPulse@2 C gnd pulse (0.8V 0 0ns 0 0 2ns 4ns) DC 0V AC 0V 0
+VVPulse@3 D gnd pulse (0.8V 0 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
+VV_Generi@0 vdd gnd DC 0.8 AC 0
+Xincremen@0 A OUT_A B OUT_B C OUT_C D OUT_D Proj2__incrementer
+.END
