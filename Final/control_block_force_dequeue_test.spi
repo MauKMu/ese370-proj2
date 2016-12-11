@@ -1,37 +1,11 @@
 *** SPICE deck for cell control_block_force_dequeue_test{sch} from library Proj2
 *** Created on Sat Dec 10, 2016 21:43:31
-*** Last revised on Sat Dec 10, 2016 22:36:24
-*** Written on Sat Dec 10, 2016 22:37:05 by Electric VLSI Design System, version 9.06
+*** Last revised on Sun Dec 11, 2016 17:37:38
+*** Written on Sun Dec 11, 2016 17:37:58 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
-.include "C:\Program Files (x86)\Electric\22nm_HP.pm"
-
-*** SUBCIRCUIT Proj2__inv FROM CELL inv{sch}
-.SUBCKT Proj2__inv x y
-** GLOBAL gnd
-** GLOBAL vdd
-Mnmos@0 y x gnd gnd N L=0.022U W=0.022U
-Mpmos@0 vdd x y vdd P L=0.022U W=0.022U
-.ENDS Proj2__inv
-
-*** SUBCIRCUIT Proj2__nand2 FROM CELL nand2{sch}
-.SUBCKT Proj2__nand2 a b y
-** GLOBAL gnd
-** GLOBAL vdd
-Mnmos@0 y a net@73 gnd N L=0.022U W=0.022U
-Mnmos@1 net@73 b gnd gnd N L=0.022U W=0.022U
-Mpmos@0 vdd a y vdd P L=0.022U W=0.022U
-Mpmos@1 vdd b y vdd P L=0.022U W=0.022U
-.ENDS Proj2__nand2
-
-*** SUBCIRCUIT Proj2__and2 FROM CELL and2{sch}
-.SUBCKT Proj2__and2 a b y
-** GLOBAL gnd
-** GLOBAL vdd
-Xinv@0 net@79 y Proj2__inv
-Xnand2@1 a b net@79 Proj2__nand2
-.ENDS Proj2__and2
+.include "22nm_HP.pm"
 
 *** SUBCIRCUIT Proj2__clk_gen FROM CELL clk_gen{sch}
 .SUBCKT Proj2__clk_gen IN OUT OUT_INV
@@ -61,6 +35,32 @@ Mpmos@9 vdd net@50 net@166 vdd P L=0.022U W=0.22U
 Mpmos@10 vdd net@166 OUT_INV vdd P L=0.022U W=0.022U
 .ENDS Proj2__clk_gen
 
+*** SUBCIRCUIT Proj2__inv FROM CELL inv{sch}
+.SUBCKT Proj2__inv x y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y x gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd x y vdd P L=0.022U W=0.022U
+.ENDS Proj2__inv
+
+*** SUBCIRCUIT Proj2__nand2 FROM CELL nand2{sch}
+.SUBCKT Proj2__nand2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y a net@73 gnd N L=0.022U W=0.022U
+Mnmos@1 net@73 b gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd a y vdd P L=0.022U W=0.022U
+Mpmos@1 vdd b y vdd P L=0.022U W=0.022U
+.ENDS Proj2__nand2
+
+*** SUBCIRCUIT Proj2__and2 FROM CELL and2{sch}
+.SUBCKT Proj2__and2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Xinv@0 net@79 y Proj2__inv
+Xnand2@1 a b net@79 Proj2__nand2
+.ENDS Proj2__and2
+
 *** SUBCIRCUIT Proj2__nor2 FROM CELL nor2{sch}
 .SUBCKT Proj2__nor2 A B Out
 ** GLOBAL gnd
@@ -83,20 +83,19 @@ Xnor2@1 Out net@70 net@60 Proj2__nor2
 .ENDS Proj2__d_latch
 
 *** SUBCIRCUIT Proj2__d_register FROM CELL d_register{sch}
-.SUBCKT Proj2__d_register D Q φ
+.SUBCKT Proj2__d_register D Q φ φ_INV
 ** GLOBAL gnd
 ** GLOBAL vdd
-Xclk_gen@1 φ net@31 net@34 Proj2__clk_gen
-Xd_latch@2 D net@27 net@34 Proj2__d_latch
-Xd_latch@3 net@27 Q net@31 Proj2__d_latch
+Xd_latch@2 D net@27 φ_INV Proj2__d_latch
+Xd_latch@3 net@27 Q φ Proj2__d_latch
 .ENDS Proj2__d_register
 
 *** SUBCIRCUIT Proj2__control_block_force_dequeue FROM CELL control_block_force_dequeue{sch}
-.SUBCKT Proj2__control_block_force_dequeue DEQ* ENQ* FD φ_I
+.SUBCKT Proj2__control_block_force_dequeue DEQ* ENQ* FD φ φ_I
 ** GLOBAL gnd
 ** GLOBAL vdd
 Xand2@0 ENQ* DEQ* net@9 Proj2__and2
-Xd_regist@0 net@9 FD φ_I Proj2__d_register
+Xd_regist@0 net@9 FD φ_I φ Proj2__d_register
 .ENDS Proj2__control_block_force_dequeue
 
 .global gnd vdd
@@ -104,8 +103,8 @@ Xd_regist@0 net@9 FD φ_I Proj2__d_register
 *** TOP LEVEL CELL: control_block_force_dequeue_test{sch}
 VVPWL@0 ENQ gnd pwl (0ns 0 2ns 0 2ns 0.8 4ns 0.8 4ns 0 10ns 0 10ns 0.8 12ns 0.8 12ns 0) DC 0V AC 0V 0
 VVPWL@1 DEQ gnd pwl (0ns 0 6ns 0 6ns 0.8 8ns 0.8 8ns 0 10ns 0 10ns 0.8 12ns 0.8 12ns 0) DC 0V AC 0V 0
-VVPulse@0 net@7 gnd pulse (0 0.8V 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
+VVPulse@0 net@30 gnd pulse (0 0.8V 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
 VV_Generi@0 vdd gnd DC 0.8 AC 0
-Xcontrol_@0 DEQ ENQ FD PHI_I Proj2__control_block_force_dequeue
-Xinv@0 net@7 PHI_I Proj2__inv
+Xclk_gen@0 net@30 PHI PHI_I Proj2__clk_gen
+Xcontrol_@0 DEQ ENQ FD PHI PHI_I Proj2__control_block_force_dequeue
 .END
