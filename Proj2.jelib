@@ -2357,6 +2357,12 @@ EFD_I||D5G2;X-2.5;|conn@2|a|I
 EFULL_I||D5G2;X-4;|conn@1|a|I
 X
 
+# Cell enq_deq_test;1{sch}
+Cenq_deq_test;1{sch}||schematic|1481438325347|1481438395302|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+Ienq_deq;1{ic}|enq_deq@0||-1|0|||D5G4;
+X
+
 # Cell extra_capacitance;1{ic}
 Cextra_capacitance;1{ic}||artwork|1480284761856|1480284900968|E
 Ngeneric:Facet-Center|art@0||0|0||||AV
