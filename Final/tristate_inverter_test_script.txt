@@ -1,4 +1,0 @@
-# tristate_inverter_test
-
-tran 10ps 10ns
-plot (2V + OUT) (1V + EN) (IN)
