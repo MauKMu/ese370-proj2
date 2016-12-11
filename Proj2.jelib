@@ -2924,7 +2924,7 @@ Awire|net@16|||900|pwr@0||5|6|pin@1||5|3
 EBL||D5G2;|conn@2|y|O
 EBL'||D5G2;|conn@0|y|O
 ECLK'||D5G2;|conn@1|a|I
-
+X
 
 # Cell pointers;1{ic}
 Cpointers;1{ic}||artwork|1481418196451|1481418269869|E
