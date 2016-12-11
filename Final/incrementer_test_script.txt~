@@ -1,4 +1,4 @@
 # incrementer_test
 tran 100ps 20ns
-plot (8V + OUT_A) (7V + OUT_B) (6V + OUT_C) (5V + OUT_D) (4V + A) (3V + B) (2V + C) (1V + D) (OUT_EN)
+plot (7V + OUT_A) (6V + OUT_B) (5V + OUT_C) (4V + OUT_D) (3V + A) (2V + B) (1V + C) (D)
 

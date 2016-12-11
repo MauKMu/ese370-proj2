@@ -1,0 +1,84 @@
+*** SPICE deck for cell comparator_test_diff_swapped{sch} from library Proj2
+*** Created on Sat Dec 10, 2016 22:39:21
+*** Last revised on Sun Dec 11, 2016 00:49:05
+*** Written on Sun Dec 11, 2016 00:49:12 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+* Model cards are described in this file:
+.include 22nm_HP.pm
+
+*** SUBCIRCUIT Proj2__inv FROM CELL inv{sch}
+.SUBCKT Proj2__inv x y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y x gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd x y vdd P L=0.022U W=0.022U
+.ENDS Proj2__inv
+
+*** SUBCIRCUIT Proj2__nand2 FROM CELL nand2{sch}
+.SUBCKT Proj2__nand2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 y a net@73 gnd N L=0.022U W=0.022U
+Mnmos@1 net@73 b gnd gnd N L=0.022U W=0.022U
+Mpmos@0 vdd a y vdd P L=0.022U W=0.022U
+Mpmos@1 vdd b y vdd P L=0.022U W=0.022U
+.ENDS Proj2__nand2
+
+*** SUBCIRCUIT Proj2__and2 FROM CELL and2{sch}
+.SUBCKT Proj2__and2 a b y
+** GLOBAL gnd
+** GLOBAL vdd
+Xinv@0 net@79 y Proj2__inv
+Xnand2@1 a b net@79 Proj2__nand2
+.ENDS Proj2__and2
+
+*** SUBCIRCUIT Proj2__and4 FROM CELL and4{sch}
+.SUBCKT Proj2__and4 A B C D Out
+** GLOBAL gnd
+** GLOBAL vdd
+Xand2@0 A B net@0 Proj2__and2
+Xand2@1 C D net@3 Proj2__and2
+Xand2@2 net@0 net@3 Out Proj2__and2
+.ENDS Proj2__and4
+
+*** SUBCIRCUIT Proj2__xnor2 FROM CELL xnor2{sch}
+.SUBCKT Proj2__xnor2 A B Out
+** GLOBAL gnd
+** GLOBAL vdd
+Mnmos@0 Out net@93 net@0 gnd N L=0.022U W=0.022U
+Mnmos@1 net@0 B gnd gnd N L=0.022U W=0.022U
+Mnmos@2 net@1 net@117 gnd gnd N L=0.022U W=0.022U
+Mnmos@3 Out A net@1 gnd N L=0.022U W=0.022U
+Mnmos@5 net@93 A gnd gnd N L=0.022U W=0.022U
+Mnmos@6 net@117 B gnd gnd N L=0.022U W=0.022U
+Mpmos@0 net@5 net@117 Out vdd P L=0.022U W=0.022U
+Mpmos@1 net@4 B Out vdd P L=0.022U W=0.022U
+Mpmos@2 vdd A net@4 vdd P L=0.022U W=0.022U
+Mpmos@3 vdd net@93 net@5 vdd P L=0.022U W=0.022U
+Mpmos@5 vdd A net@93 vdd P L=0.022U W=0.022U
+Mpmos@6 vdd B net@117 vdd P L=0.022U W=0.022U
+.ENDS Proj2__xnor2
+
+*** SUBCIRCUIT Proj2__comparator FROM CELL comparator{sch}
+.SUBCKT Proj2__comparator EQ X_A X_B X_C X_D Y_A Y_B Y_C Y_D
+** GLOBAL gnd
+** GLOBAL vdd
+Xand4@0 net@13 net@15 net@18 net@21 EQ Proj2__and4
+Xxnor2@0 X_A Y_A net@13 Proj2__xnor2
+Xxnor2@1 X_B Y_B net@15 Proj2__xnor2
+Xxnor2@2 X_C Y_C net@18 Proj2__xnor2
+Xxnor2@3 X_D Y_D net@21 Proj2__xnor2
+.ENDS Proj2__comparator
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: comparator_test_diff_swapped{sch}
+VVPulse@0 Y_A gnd pulse (0.8V 0 0ns 0 0 8ns 16ns) DC 0V AC 0V 0
+VVPulse@1 Y_B gnd pulse (0.8V 0 0ns 0 0 4ns 8ns) DC 0V AC 0V 0
+VVPulse@2 Y_C gnd pulse (0.8V 0 0ns 0 0 2ns 4ns) DC 0V AC 0V 0
+VVPulse@3 Y_D gnd pulse (0.8V 0 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
+VVPulse@4 X gnd pulse (0.8V 0 0ns 0 0 16ns 32ns) DC 0V AC 0V 0
+VV_Generi@0 vdd gnd DC 0.8 AC 0
+Xcomparat@0 OUT X X X X Y_A Y_B Y_C Y_D Proj2__comparator
+.END
