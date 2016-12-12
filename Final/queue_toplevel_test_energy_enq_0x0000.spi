@@ -1,7 +1,7 @@
-*** SPICE deck for cell queue_toplevel_test_energy_enq_0x1111{sch} from library Proj2
+*** SPICE deck for cell queue_toplevel_test_energy_enq_0x0000{sch} from library Proj2
 *** Created on Sun Dec 11, 2016 18:21:24
-*** Last revised on Mon Dec 12, 2016 15:53:06
-*** Written on Mon Dec 12, 2016 15:53:12 by Electric VLSI Design System, version 9.06
+*** Last revised on Mon Dec 12, 2016 15:26:39
+*** Written on Mon Dec 12, 2016 15:27:46 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
@@ -500,13 +500,13 @@ Xmemory_b@2 net@1 net@3 net@7 net@10 net@64 net@14 net@17 net@20 ADDR_D ADDR_C A
 
 .global gnd vdd
 
-*** TOP LEVEL CELL: queue_toplevel_test_energy_enq_0x1111{sch}
+*** TOP LEVEL CELL: queue_toplevel_test_energy_enq_0x0000{sch}
 VVPWL@0 Enqueue gnd pwl (0ns 0.8 33.9ns 0.8 34ns 0 35.9ns 0 36ns 0.8 37.9ns 0.8 38ns 0) DC 0V AC 0V 0
 VVPWL@1 Dequeue gnd pwl (0ns 0 33.9ns 0 34ns 0.8 35.9ns 0.8 36ns 0) DC 0V AC 0V 0
-VVPWL@2 In_0 gnd pwl (0ns 0 35.9ns 0 36ns 0.8) DC 0V AC 0V 0
-VVPWL@3 In_1 gnd pwl (0ns 0 35.9ns 0 36ns 0.8) DC 0V AC 0V 0
-VVPWL@4 In_2 gnd pwl (0ns 0 35.9ns 0 36ns 0.8) DC 0V AC 0V 0
-VVPWL@5 In_3 gnd pwl (0ns 0 35.9ns 0 36ns 0.8) DC 0V AC 0V 0
+VVPWL@2 In_0 gnd pwl (0ns 0.8 35.9ns 0.8 36ns 0) DC 0V AC 0V 0
+VVPWL@3 In_1 gnd pwl (0ns 0.8 35.9ns 0.8 36ns 0) DC 0V AC 0V 0
+VVPWL@4 In_2 gnd pwl (0ns 0.8 35.9ns 0.8 36ns 0) DC 0V AC 0V 0
+VVPWL@5 In_3 gnd pwl (0ns 0.8 35.9ns 0.8 36ns 0) DC 0V AC 0V 0
 VVPulse@0 Clock gnd pulse (0 0.8V 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
 VV_Generi@0 vdd gnd DC 0.8 AC 0
 Xqueue_to@0 Clock Dequeue Empty Enqueue Full In_0 In_1 In_2 In_3 Out_0 Out_1 Out_2 Out_3 Proj2__queue_toplevel
