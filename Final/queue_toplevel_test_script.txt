@@ -22,3 +22,12 @@ xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@3.net@27
 xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@3.net@30
 
  v(xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@0.net@27) = 0 v(xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@1.net@27) = 0 v(xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@2.net@27) = 0 v(xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@3.net@27) = 0 
+
+# Energy for enqueueing 0x1111 (multiply by 0.8)
+meas tran yint integ I(vv_generi@0) from=4ns to=6ns
+
+# Energy for dequeueing 0x0000 and 0x1111
+meas tran yint integ I(vv_generi@0) from=8ns to=10ns
+
+# Standby energy
+meas tran yint integ I(vv_generi@0) from=4ns to=6ns

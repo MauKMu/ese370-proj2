@@ -1,0 +1,109 @@
+Design Metrics
+
+Area
+	General Components
+		Inverter: 2
+		NAND Gate: 4
+		AND2 Gate: 6
+		NOR Gate: 4
+		OR Gate: 6
+		XOR Gate: 12
+		XNOR Gate: 12
+		AND4 Gate: 18
+			3 AND2 Gates
+		Tri-state Buffer: 38
+		Tri-state Inverter: 38
+		D Latch: 22
+			1 inverter: 2
+			2 AND2 gates: 12
+			2 NOR gates: 8
+		D Register: 46
+			2 D latches: 44
+			2 NMOS gates for reset: 2
+		4-bit D Register: 184
+			4 D registers
+		Incrementer: 74
+			6 AND2 Gates: 36
+			2 OR Gates: 12
+			2 NAND Gates: 8
+			1 XOR Gate: 12
+			3 inverters: 6
+		Comparator: 66
+			4 XNOR Gates: 48
+			1 AND4 Gate: 18
+		Mux Bitslice: 18
+			2 AND2 Gates: 12
+			1 OR2 Gate: 6
+		Mux: 72
+			4 Mux Bitslices
+		Enq/Deq Module: 24
+			3 AND2 Gates: 18
+			1 OR2 Gate: 6
+		WL Enable Module: 12
+			1 OR2 Gate: 6
+			1 AND2 Gate: 6
+		Clock Generator: 58
+			(directly in transistors)
+		Force Dequeue: 52
+			AND Gate: 6
+			D Register: 46
+		Pointers Module: 1108
+			4 4-bit Registers: 736
+			2 Incrementers: 148
+			1 Comparator: 66
+			1 D Register: 46
+			2 AND4 Gates: 36
+			11 AND2 Gates: 66
+			1 OR2 Gate: 6
+			2 Inverters: 4
+		1-bit Bitline Precharge Module: 32
+			2 PMOS Gates (W = 16): 32
+		4-bit Bitline Precharge Module: 140
+			4 1-bit Precharge Modules: 128
+			1 NAND2 Gate: 4
+			1 AND2 Gate: 6
+			1 inverter: 2
+		Bitline Driver Module: 350
+			4 Tri-state Buffers: 152
+			4 Tri-state Inverters: 152
+			1 D Register: 46
+		6T SRAM Cell: 50
+			2 NMOS Gates (W = 8): 16
+			2 NMOS Gates (W = 16): 32
+			2 PMOS Gates (W = 1): 2
+		4-to-16 Decoder: 392
+			16 AND4 Gates: 288
+			4 inverters: 8
+			16 AND2 Gates: 96
+
+
+	Total Top-Level Design Area: 5892
+		Control Block: 2284
+			1 Clock Generator: 58
+			1 Force Dequeue Module: 52
+			1 Pointers Module: 1108
+			2 4-bit Registers: 368
+			1 Mux: 72
+			1 Enq/Deq Module: 24
+			1 WL Enable Module: 12
+			1 4-bit Bitline Precharge Module: 140
+			1 Bitline Driver Module: 350
+			2 D Registers: 92
+			4 inverters: 8
+		Memory Block: 3592
+			64 6T SRAM Cells: 3200
+			1 4-to-16 Decoder: 392
+		8 inverters for buffering: 16
+
+Enqueue Energy
+	Enqueueing 0x1111 into 0x0000: 4.929736 x 10-14 J (yint                =  -6.16217e-014 from=  4.00000e-009 to=  6.00000e-009)
+	Enqueueing 0x0000 into 0x1111: TODO
+Dequeue Energy
+	Dequeueing 0x0000: 3.893056 x 10^-14 J (yint                =  -4.86632e-014 from=  8.00000e-009 to=  1.00000e-008)
+	Dequeueing 0x1111: 3.818792 x 10^-14 J (yint                =  -4.77349e-014 from=  8.00000e-009 to=  1.00000e-008)
+Enqueue/Dequeue Energy
+	
+Standby Energy
+	 1.544312 x 10^-14 J (yint                =  -1.93039e-014 from=  4.00000e-009 to=  6.00000e-009)
+Average Energy
+
