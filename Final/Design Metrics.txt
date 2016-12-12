@@ -96,12 +96,13 @@ Area
 		8 inverters for buffering: 16
 
 Enqueue Energy
-	Enqueueing 0x1111 into 0x0000: 4.778624 x 10-14 J 
+	Enqueueing 0x1111 into 0x0000: 4.778624 x 10^-14 J 
 		meas tran yint integ I(vv_generi@0) from=36ns to=38ns
 		yint                =  -5.97328e-14 from=  3.60000e-08 to=  3.80000e-08
 
 	OLD MEASUREMENT: Enqueueing 0x1111 into 0x0000: 4.929736 x 10-14 J (yint                =  -6.16217e-014 from=  4.00000e-009 to=  6.00000e-009)
-	Enqueueing 0x0000 into 0x1111: 4.727968 x 10-14 J 
+
+	Enqueueing 0x0000 into 0x1111: 4.727968 x 10^-14 J 
 		meas tran yint integ I(vv_generi@0) from=36ns to=38ns
 		yint                =  -5.90996e-14 from=  3.60000e-08 to=  3.80000e-08
 
@@ -109,6 +110,9 @@ Dequeue Energy
 	Dequeueing 0x0000: 3.893056 x 10^-14 J (yint                =  -4.86632e-014 from=  8.00000e-009 to=  1.00000e-008)
 	Dequeueing 0x1111: 3.818792 x 10^-14 J (yint                =  -4.77349e-014 from=  8.00000e-009 to=  1.00000e-008)
 Enqueue/Dequeue Energy
+	3.949768 x 10^-13 J
+	meas tran yint integ I(vv_generi@0) from=36ns to=40ns
+	yint                =  -4.93721e-13 from=  3.60000e-08 to=  4.00000e-08
 	
 Standby Energy
 	 1.544312 x 10^-14 J (yint                =  -1.93039e-014 from=  4.00000e-009 to=  6.00000e-009)
