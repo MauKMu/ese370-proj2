@@ -4,14 +4,15 @@ plot (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock)
 plot (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
 
 # plot addr (after mux)
-plot (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.addr_a + 12V) (xqueue_to@0.addr_b + 11V) (xqueue_to@0.addr_c + 10V) (xqueue_to@0.addr_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
+plot (In_0 + 18V) (In_1 + 17V) (In_2 + 16V) (In_3 + 15V)  (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.addr_a + 12V) (xqueue_to@0.addr_b + 11V) (xqueue_to@0.addr_c + 10V) (xqueue_to@0.addr_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
 
 # plot head addr
 plot (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.xcontrol_@0.head_a + 12V) (xqueue_to@0.xcontrol_@0.head_b + 11V) (xqueue_to@0.xcontrol_@0.head_c + 10V) (xqueue_to@0.xcontrol_@0.head_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
 
 # plot tail addr
-plot (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.xcontrol_@0.tail_a + 12V) (xqueue_to@0.xcontrol_@0.tail_b + 11V) (xqueue_to@0.xcontrol_@0.tail_c + 10V) (xqueue_to@0.xcontrol_@0.tail_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
+plot (xqueue_to@0.xmemory_b@2.xsram_cel@11.q + 18V) (xqueue_to@0.xmemory_b@2.xsram_cel@10.q + 17V) (xqueue_to@0.xmemory_b@2.xsram_cel@9.q + 16V) (xqueue_to@0.xmemory_b@2.xsram_cel@8.q + 15V) (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.xcontrol_@0.tail_a + 12V) (xqueue_to@0.xcontrol_@0.tail_b + 11V) (xqueue_to@0.xcontrol_@0.tail_c + 10V) (xqueue_to@0.xcontrol_@0.tail_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
 
+plot (xqueue_to@0.xmemory_b@2.net@20 + 18V)
 
 xqueue_to@0.xcontrol_@0.xpointers@0.head_a
 

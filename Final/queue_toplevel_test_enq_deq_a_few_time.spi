@@ -1,7 +1,7 @@
-*** SPICE deck for cell queue_toplevel_test_enq_deq_deq{sch} from library Proj2
+*** SPICE deck for cell queue_toplevel_test_enq_deq_a_few_time{sch} from library Proj2
 *** Created on Sun Dec 11, 2016 18:21:24
-*** Last revised on Mon Dec 12, 2016 00:24:55
-*** Written on Mon Dec 12, 2016 02:14:04 by Electric VLSI Design System, version 9.06
+*** Last revised on Mon Dec 12, 2016 01:57:40
+*** Written on Mon Dec 12, 2016 02:48:10 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
@@ -347,7 +347,7 @@ Xcontrol_@2 BL_0 BL_0_I BL_1 BL_1_I BL_2 BL_2_I BL_3 BL_3_I ENQ_STAR IN_0 IN_1 I
 Xcontrol_@3 BL_0 BL_0_I BL_1 BL_1_I BL_2 BL_2_I BL_3 BL_3_I DEQ_STAR ENQ_STAR PHI Proj2__control_block_precharge
 Xd_regist@0 net@127 DEQ_STAR PHI PHI_I Proj2__d_register
 Xd_regist@1 net@125 ENQ_STAR PHI PHI_I Proj2__d_register
-Xenq_deq@0 DEQ net@127 EMPTY_I ENQ net@125 gnd vdd FULL_I Proj2__enq_deq
+Xenq_deq@0 DEQ net@127 EMPTY_I ENQ net@125 FD FD_I FULL_I Proj2__enq_deq
 Xinv@0 EMPTY EMPTY_I Proj2__inv
 Xinv@1 FULL FULL_I Proj2__inv
 Xinv@2 ENQ_STAR ENQ_STAR_I Proj2__inv
@@ -403,10 +403,10 @@ Xinv@3 D D_INV Proj2__inv
 .SUBCKT Proj2__sram_cell BL BL_ WL
 ** GLOBAL gnd
 ** GLOBAL vdd
-Mnmos@0 Q Q_I gnd gnd N L=0.022U W=0.176U
-Mnmos@1 Q_I Q gnd gnd N L=0.022U W=0.176U
-Mnmos@2 BL_ WL Q_I gnd N L=0.022U W=0.088U
-Mnmos@3 Q WL BL gnd N L=0.022U W=0.088U
+Mnmos@0 Q Q_I gnd gnd N L=0.022U W=0.352U
+Mnmos@1 Q_I Q gnd gnd N L=0.022U W=0.352U
+Mnmos@2 BL_ WL Q_I gnd N L=0.022U W=0.176U
+Mnmos@3 Q WL BL gnd N L=0.022U W=0.176U
 Mpmos@0 vdd Q_I Q vdd P L=0.022U W=0.022U
 Mpmos@1 vdd Q Q_I vdd P L=0.022U W=0.022U
 .ENDS Proj2__sram_cell
@@ -500,13 +500,13 @@ Xmemory_b@2 net@1 net@3 net@7 net@10 net@64 net@14 net@17 net@20 ADDR_D ADDR_C A
 
 .global gnd vdd
 
-*** TOP LEVEL CELL: queue_toplevel_test_enq_deq_deq{sch}
-VVPWL@0 Enqueue gnd pwl (0ns 0 3.9ns 0 4ns 0.8 5.9ns 0.8 6ns 0) DC 0V AC 0V 0
-VVPWL@1 Dequeue gnd pwl (0ns 0 5.9ns 0 6ns 0.8 9.9ns 0.8 10ns 0) DC 0V AC 0V 0
-VVPWL@2 In_0 gnd pwl (0ns 0) DC 0V AC 0V 0
-VVPWL@3 In_1 gnd pwl (0ns 0.8) DC 0V AC 0V 0
+*** TOP LEVEL CELL: queue_toplevel_test_enq_deq_a_few_time{sch}
+VVPWL@0 Enqueue gnd pwl (0ns 0 3.9ns 0 4ns 0.8 5.9ns 0.8 6ns 0 7.9ns 0 8ns 0.8 9.9ns 0.8 10ns 0 11.9ns 0 12ns 0.8 13.9ns 0.8 14ns 0) DC 0V AC 0V 0
+VVPWL@1 Dequeue gnd pwl (0ns 0 15.9ns 0 16ns 0.8 17.9ns 0.8 18ns 0 19.9ns 0 20ns 0.8 21.9ns 0.8 22ns 0 23.9ns 0 24ns 0.8 25.9ns 0.8 26ns 0) DC 0V AC 0V 0
+VVPWL@2 In_0 gnd pwl (0ns 0 3.4ns 0 3.5ns 0.8 6.4ns 0.8 6.5ns 0) DC 0V AC 0V 0
+VVPWL@3 In_1 gnd pwl (0ns 0) DC 0V AC 0V 0
 VVPWL@4 In_2 gnd pwl (0ns 0) DC 0V AC 0V 0
-VVPWL@5 In_3 gnd pwl (0ns 0.8) DC 0V AC 0V 0
+VVPWL@5 In_3 gnd pwl (0ns 0) DC 0V AC 0V 0
 VVPulse@0 Clock gnd pulse (0 0.8V 0ns 0 0 1ns 2ns) DC 0V AC 0V 0
 VV_Generi@0 vdd gnd DC 0.8 AC 0
 Xqueue_to@0 Clock Dequeue Empty Enqueue Full In_0 In_1 In_2 In_3 Out_0 Out_1 Out_2 Out_3 Proj2__queue_toplevel
