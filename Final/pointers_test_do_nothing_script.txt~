@@ -1,4 +1,4 @@
 # pointers_test_do_nothing
 tran 100ps 10ns
-plot (EMPTY + 12V) (FULL + 11V) (HEAD_A + 10V) (HEAD_B + 9V) (HEAD_C + 8V) (HEAD_D + 7V) (TAIL_A + 6V) (TAIL_B + 5V) (TAIL_C + 4V) (TAIL_D + 3V) (DEQ_STAR + 2V) (ENQ_STAR + 1V) (PHI_I)
+plot (EMPTY + 10V) (FULL + 9V) (HEAD_A + 8V) (HEAD_B + 7V) (HEAD_C + 6V) (HEAD_D + 5V) (TAIL_A + 4V) (TAIL_B + 3V) (TAIL_C + 2V) (TAIL_D + 1V) (PHI_I)
 
