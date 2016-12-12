@@ -5,7 +5,7 @@
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
-.include /home/kenzo/electric/22nm_HP.pm
+.include 22nm_HP.pm
 
 *** SUBCIRCUIT Proj2__clk_gen FROM CELL clk_gen{sch}
 .SUBCKT Proj2__clk_gen IN OUT OUT_INV

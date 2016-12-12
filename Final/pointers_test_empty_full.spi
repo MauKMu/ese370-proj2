@@ -1,11 +1,11 @@
 *** SPICE deck for cell pointers_test_empty_full{sch} from library Proj2
 *** Created on Sun Dec 11, 2016 02:21:23
 *** Last revised on Sun Dec 11, 2016 19:46:21
-*** Written on Sun Dec 11, 2016 19:46:32 by Electric VLSI Design System, version 9.06
+*** Written on Sun Dec 11, 2016 20:27:18 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
-.include /home/kenzo/electric/22nm_HP.pm
+.include "22nm_HP.pm"
 
 *** SUBCIRCUIT Proj2__clk_gen FROM CELL clk_gen{sch}
 .SUBCKT Proj2__clk_gen IN OUT OUT_INV
