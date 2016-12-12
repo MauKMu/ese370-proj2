@@ -1,7 +1,7 @@
 *** SPICE deck for cell pointers_test_empty_full{sch} from library Proj2
 *** Created on Sun Dec 11, 2016 02:21:23
-*** Last revised on Sun Dec 11, 2016 17:30:20
-*** Written on Sun Dec 11, 2016 17:30:31 by Electric VLSI Design System, version 9.06
+*** Last revised on Sun Dec 11, 2016 19:46:21
+*** Written on Sun Dec 11, 2016 19:46:32 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
@@ -202,15 +202,17 @@ Xxor2@0 D C C_INC Proj2__xor2
 ** GLOBAL vdd
 X_4bit_reg@0 net@206 net@207 net@208 net@209 PHI PHI_I net@136 net@130 net@125 net@120 Proj2__4bit_register
 X_4bit_reg@1 net@228 net@216 net@217 net@218 PHI PHI_I net@103 net@107 net@111 net@115 Proj2__4bit_register
-XHEAD net@136 net@130 net@125 net@120 net@185 HEAD_PHI_INV HEAD_A HEAD_B HEAD_C HEAD_D Proj2__4bit_register
+XHEAD net@136 net@130 net@125 net@120 net@185 net@253 HEAD_A HEAD_B HEAD_C HEAD_D Proj2__4bit_register
 XHEAD_TAIL_ EMPTY HEAD_A HEAD_B HEAD_C HEAD_D TAIL_A TAIL_B TAIL_C TAIL_D Proj2__comparator
 XHEAD_TAIL_PLUS_1_ FULL HEAD_A HEAD_B HEAD_C HEAD_D net@103 net@107 net@111 net@115 Proj2__comparator
 XHEAD_PLUS_1 HEAD_A net@206 HEAD_B net@207 HEAD_C net@208 HEAD_D net@209 Proj2__incrementer
-XTAIL net@103 net@107 net@111 net@115 net@186 TAIL_PHI_INV TAIL_A TAIL_B TAIL_C TAIL_D Proj2__4bit_register
+XTAIL net@103 net@107 net@111 net@115 net@186 net@259 TAIL_A TAIL_B TAIL_C TAIL_D Proj2__4bit_register
 XTAIL_PLUS_1 TAIL_A net@228 TAIL_B net@216 TAIL_C net@217 TAIL_D net@218 Proj2__incrementer
-Xand2@0 net@190 PHI_I net@185 Proj2__and2
-Xand2@1 net@200 DEQ* net@190 Proj2__and2
+Xand2@0 net@191 PHI_I net@185 Proj2__and2
+Xand2@1 net@200 DEQ* net@191 Proj2__and2
 Xand2@2 PHI_I ENQ* net@186 Proj2__and2
+Xand2@3 PHI net@191 net@253 Proj2__and2
+Xand2@4 ENQ* PHI net@259 Proj2__and2
 Xinv@0 ENQ* net@200 Proj2__inv
 .ENDS Proj2__pointers
 
