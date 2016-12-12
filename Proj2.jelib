@@ -4930,7 +4930,7 @@ EOut_3||D5G2;|pin@24||O
 X
 
 # Cell queue_toplevel;1{sch}
-Cqueue_toplevel;1{sch}||schematic|1481497232929|1481499391975|
+Cqueue_toplevel;1{sch}||schematic|1481497232929|1481507532454|
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NOff-Page|conn@0||51.5|13||||
 NOff-Page|conn@1||51.5|11||||
@@ -4984,6 +4984,10 @@ NWire_Pin|pin@44||29.5|-65.5||||
 NWire_Pin|pin@45||32.5|-71.5||||
 NWire_Pin|pin@46||-11.5|-34.5||||
 Iqueue_toplevel;1{ic}|queue_to@0||80.5|26|||D5G4;
+Awire|ADDR_A|D5G1;||2700|pin@44||29.5|-65.5|pin@17||29.5|3
+Awire|ADDR_B|D5G1;||900|pin@20||27|5|pin@43||27|-59.5
+Awire|ADDR_C|D5G1;||900|pin@22||23.5|7|pin@42||23.5|-53.5
+Awire|ADDR_D|D5G1;||900|pin@24||20|9|pin@41||20|-47.5
 Awire|net@1|||1800|pin@0||6.5|-8.5|pin@1||10.5|-8.5
 Awire|net@3|||900|control_@0|BL_0_I|6.5|-3|pin@2||6.5|-7
 Awire|net@7|||900|control_@0|BL_1|2.5|-3|pin@5||2.5|-7.5
@@ -5032,10 +5036,6 @@ Awire|net@102|||1800|inv@6|y|68.5|-34.5|conn@12|a|70.5|-34.5
 Awire|net@103|||900|pin@12||-11.5|-7|pin@46||-11.5|-34.5
 Awire|net@105|||0|inv@7|x|43.5|-34.5|pin@46||-11.5|-34.5
 Awire|net@106|||900|pin@15||32.5|15|pin@45||32.5|-71.5
-Awire|net@108|||2700|pin@44||29.5|-65.5|pin@17||29.5|3
-Awire|net@109|||900|pin@20||27|5|pin@43||27|-59.5
-Awire|net@110|||900|pin@22||23.5|7|pin@42||23.5|-53.5
-Awire|net@111|||900|pin@24||20|9|pin@41||20|-47.5
 Awire|net@112|||1800|control_@0|EMPTY|14.5|11|conn@1|a|49.5|11
 Awire|net@113|||1800|control_@0|FULL|14.5|13|conn@0|a|49.5|13
 Awire|net@114|||900|pin@0||6.5|-8.5|memory_b@2|BL_0|6.5|-40.5

@@ -1,11 +1,11 @@
 *** SPICE deck for cell queue_toplevel_test{sch} from library Proj2
 *** Created on Sun Dec 11, 2016 18:21:24
 *** Last revised on Sun Dec 11, 2016 19:09:40
-*** Written on Sun Dec 11, 2016 20:33:24 by Electric VLSI Design System, version 9.06
+*** Written on Sun Dec 11, 2016 20:52:22 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
-.include "22nm_HP.pm"
+.include /home/kenzo/electric/22nm_HP.pm
 
 *** SUBCIRCUIT Proj2__clk_gen FROM CELL clk_gen{sch}
 .SUBCKT Proj2__clk_gen IN OUT OUT_INV
@@ -469,7 +469,7 @@ Xsram_cel@63 BL_0 BL_0_I net@92 Proj2__sram_cell
 .SUBCKT Proj2__queue_toplevel Clock Dequeue Empty Enqueue Full In_0 In_1 In_2 In_3 Out_0 Out_1 Out_2 Out_3
 ** GLOBAL gnd
 ** GLOBAL vdd
-Xcontrol_@0 net@26 net@30 net@33 net@36 net@1 net@3 net@7 net@10 net@64 net@14 net@17 net@20 Clock Dequeue Empty Enqueue Full In_0 In_1 In_2 In_3 net@23 Proj2__control_block
+Xcontrol_@0 ADDR_A ADDR_B ADDR_C ADDR_D net@1 net@3 net@7 net@10 net@64 net@14 net@17 net@20 Clock Dequeue Empty Enqueue Full In_0 In_1 In_2 In_3 net@23 Proj2__control_block
 Xinv@0 net@52 Out_0 Proj2__inv
 Xinv@1 net@1 net@52 Proj2__inv
 Xinv@2 net@57 Out_1 Proj2__inv
@@ -478,7 +478,7 @@ Xinv@4 net@62 Out_2 Proj2__inv
 Xinv@5 net@64 net@62 Proj2__inv
 Xinv@6 net@101 Out_3 Proj2__inv
 Xinv@7 net@17 net@101 Proj2__inv
-Xmemory_b@2 net@1 net@3 net@7 net@10 net@64 net@14 net@17 net@20 net@36 net@33 net@30 net@26 net@23 Proj2__memory_block
+Xmemory_b@2 net@1 net@3 net@7 net@10 net@64 net@14 net@17 net@20 ADDR_D ADDR_C ADDR_B ADDR_A net@23 Proj2__memory_block
 .ENDS Proj2__queue_toplevel
 
 .global gnd vdd
