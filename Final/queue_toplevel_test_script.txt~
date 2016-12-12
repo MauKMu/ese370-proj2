@@ -12,6 +12,7 @@ plot (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star 
 # plot tail addr
 plot (xqueue_to@0.xmemory_b@2.xsram_cel@11.q + 18V) (xqueue_to@0.xmemory_b@2.xsram_cel@10.q + 17V) (xqueue_to@0.xmemory_b@2.xsram_cel@9.q + 16V) (xqueue_to@0.xmemory_b@2.xsram_cel@8.q + 15V) (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.xcontrol_@0.tail_a + 12V) (xqueue_to@0.xcontrol_@0.tail_b + 11V) (xqueue_to@0.xcontrol_@0.tail_c + 10V) (xqueue_to@0.xcontrol_@0.tail_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
 
+plot (xqueue_to@0.xmemory_b@2.net@20 + 18V)
 
 xqueue_to@0.xcontrol_@0.xpointers@0.head_a
 
