@@ -3,6 +3,21 @@ tran 100ps 10ns uic
 plot (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock)
 plot (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
 
+# plot addr (after mux)
 plot (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.addr_a + 12V) (xqueue_to@0.addr_b + 11V) (xqueue_to@0.addr_c + 10V) (xqueue_to@0.addr_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
-(xqueue_to@0.addr_a + 3V) (xqueue_to@0.addr_b + 2V) (xqueue_to@0.addr_c + 1V) (xqueue_to@0.addr_d)
 
+# plot head addr
+plot (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.xcontrol_@0.head_a + 12V) (xqueue_to@0.xcontrol_@0.head_b + 11V) (xqueue_to@0.xcontrol_@0.head_c + 10V) (xqueue_to@0.xcontrol_@0.head_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
+
+# plot tail addr
+plot (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.xcontrol_@0.tail_a + 12V) (xqueue_to@0.xcontrol_@0.tail_b + 11V) (xqueue_to@0.xcontrol_@0.tail_c + 10V) (xqueue_to@0.xcontrol_@0.tail_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
+
+
+xqueue_to@0.xcontrol_@0.xpointers@0.head_a
+
+xqueue_to@0.xcontrol_@0.xpointers@0.ha
+
+xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@3.net@27
+xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@3.net@30
+
+ v(xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@0.net@27) = 0 v(xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@1.net@27) = 0 v(xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@2.net@27) = 0 v(xqueue_to@0.xcontrol_@0.xpointers@0.xtail.xd_regist@3.net@27) = 0 

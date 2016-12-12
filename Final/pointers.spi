@@ -1,39 +1,11 @@
 *** SPICE deck for cell pointers{sch} from library Proj2
 *** Created on Sat Dec 10, 2016 18:24:29
-*** Last revised on Sun Dec 11, 2016 03:30:47
-*** Written on Sun Dec 11, 2016 03:31:31 by Electric VLSI Design System, version 9.06
+*** Last revised on Sun Dec 11, 2016 19:38:28
+*** Written on Sun Dec 11, 2016 21:54:00 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
 .include /home/kenzo/electric/22nm_HP.pm
-
-*** SUBCIRCUIT Proj2__clk_gen FROM CELL clk_gen{sch}
-.SUBCKT Proj2__clk_gen IN OUT OUT_INV
-** GLOBAL gnd
-** GLOBAL vdd
-Mnmos@0 A IN gnd gnd N L=0.022U W=0.022U
-Mnmos@1 net@3 IN gnd gnd N L=0.022U W=0.022U
-Mnmos@2 B net@3 gnd gnd N L=0.022U W=0.022U
-Mnmos@3 net@37 A gnd gnd N L=0.022U W=0.022U
-Mnmos@4 net@37 OUT_INV gnd gnd N L=0.022U W=0.022U
-Mnmos@5 net@50 B gnd gnd N L=0.022U W=0.022U
-Mnmos@6 net@50 OUT gnd gnd N L=0.022U W=0.022U
-Mnmos@7 net@147 net@37 gnd gnd N L=0.022U W=0.22U
-Mnmos@8 OUT net@147 gnd gnd N L=0.022U W=0.022U
-Mnmos@9 net@166 net@50 gnd gnd N L=0.022U W=0.22U
-Mnmos@10 OUT_INV net@166 gnd gnd N L=0.022U W=0.022U
-Mpmos@0 vdd IN A vdd P L=0.022U W=0.022U
-Mpmos@1 vdd IN net@3 vdd P L=0.022U W=0.022U
-Mpmos@2 vdd net@3 B vdd P L=0.022U W=0.022U
-Mpmos@3 vdd A net@36 vdd P L=0.022U W=0.022U
-Mpmos@4 net@36 OUT_INV net@37 vdd P L=0.022U W=0.022U
-Mpmos@5 vdd B net@47 vdd P L=0.022U W=0.022U
-Mpmos@6 net@47 OUT net@50 vdd P L=0.022U W=0.022U
-Mpmos@7 vdd net@37 net@147 vdd P L=0.022U W=0.22U
-Mpmos@8 vdd net@147 OUT vdd P L=0.022U W=0.022U
-Mpmos@9 vdd net@50 net@166 vdd P L=0.022U W=0.22U
-Mpmos@10 vdd net@166 OUT_INV vdd P L=0.022U W=0.022U
-.ENDS Proj2__clk_gen
 
 *** SUBCIRCUIT Proj2__inv FROM CELL inv{sch}
 .SUBCKT Proj2__inv x y
@@ -83,22 +55,21 @@ Xnor2@1 Out net@70 net@60 Proj2__nor2
 .ENDS Proj2__d_latch
 
 *** SUBCIRCUIT Proj2__d_register FROM CELL d_register{sch}
-.SUBCKT Proj2__d_register D Q φ
+.SUBCKT Proj2__d_register D Q φ φ_INV
 ** GLOBAL gnd
 ** GLOBAL vdd
-Xclk_gen@1 φ net@31 net@34 Proj2__clk_gen
-Xd_latch@2 D net@27 net@34 Proj2__d_latch
-Xd_latch@3 net@27 Q net@31 Proj2__d_latch
+Xd_latch@2 D net@27 φ_INV Proj2__d_latch
+Xd_latch@3 net@27 Q φ Proj2__d_latch
 .ENDS Proj2__d_register
 
 *** SUBCIRCUIT Proj2__4bit_register FROM CELL 4bit_register{sch}
-.SUBCKT Proj2__4bit_register A B C D PHI Q_A Q_B Q_C Q_D
+.SUBCKT Proj2__4bit_register A B C D PHI PHI_INV Q_A Q_B Q_C Q_D
 ** GLOBAL gnd
 ** GLOBAL vdd
-Xd_regist@0 A Q_A PHI Proj2__d_register
-Xd_regist@1 B Q_B PHI Proj2__d_register
-Xd_regist@2 C Q_C PHI Proj2__d_register
-Xd_regist@3 D Q_D PHI Proj2__d_register
+Xd_regist@0 A Q_A PHI PHI_INV Proj2__d_register
+Xd_regist@1 B Q_B PHI PHI_INV Proj2__d_register
+Xd_regist@2 C Q_C PHI PHI_INV Proj2__d_register
+Xd_regist@3 D Q_D PHI PHI_INV Proj2__d_register
 .ENDS Proj2__4bit_register
 
 *** SUBCIRCUIT Proj2__and4 FROM CELL and4{sch}
@@ -114,18 +85,18 @@ Xand2@2 net@0 net@3 Out Proj2__and2
 .SUBCKT Proj2__xnor2 A B Out
 ** GLOBAL gnd
 ** GLOBAL vdd
-Mnmos@0 Out net@93 net@0 gnd N L=0.022U W=0.022U
+Mnmos@0 Out net@143 net@0 gnd N L=0.022U W=0.022U
 Mnmos@1 net@0 B gnd gnd N L=0.022U W=0.022U
-Mnmos@2 net@1 net@117 gnd gnd N L=0.022U W=0.022U
+Mnmos@2 net@1 net@118 gnd gnd N L=0.022U W=0.022U
 Mnmos@3 Out A net@1 gnd N L=0.022U W=0.022U
-Mnmos@5 net@93 A gnd gnd N L=0.022U W=0.022U
-Mnmos@6 net@117 B gnd gnd N L=0.022U W=0.022U
-Mpmos@0 net@5 net@117 Out vdd P L=0.022U W=0.022U
+Mnmos@5 net@143 A gnd gnd N L=0.022U W=0.022U
+Mnmos@6 net@118 B gnd gnd N L=0.022U W=0.022U
+Mpmos@0 net@5 net@118 Out vdd P L=0.022U W=0.022U
 Mpmos@1 net@4 B Out vdd P L=0.022U W=0.022U
 Mpmos@2 vdd A net@4 vdd P L=0.022U W=0.022U
-Mpmos@3 vdd net@93 net@5 vdd P L=0.022U W=0.022U
-Mpmos@5 vdd A net@93 vdd P L=0.022U W=0.022U
-Mpmos@6 vdd B net@117 vdd P L=0.022U W=0.022U
+Mpmos@3 vdd net@143 net@5 vdd P L=0.022U W=0.022U
+Mpmos@5 vdd A net@143 vdd P L=0.022U W=0.022U
+Mpmos@6 vdd B net@118 vdd P L=0.022U W=0.022U
 .ENDS Proj2__xnor2
 
 *** SUBCIRCUIT Proj2__comparator FROM CELL comparator{sch}
@@ -200,16 +171,18 @@ Xxor2@0 D C C_INC Proj2__xor2
 .global gnd vdd
 
 *** TOP LEVEL CELL: pointers{sch}
-X_4bit_reg@0 net@206 net@207 net@208 net@209 PHI net@136 net@130 net@125 net@120 Proj2__4bit_register
-X_4bit_reg@1 net@214 net@216 net@217 net@218 PHI net@103 net@107 net@111 net@115 Proj2__4bit_register
-XHEAD net@136 net@130 net@125 net@120 net@185 HEAD_A HEAD_B HEAD_C HEAD_D Proj2__4bit_register
+X_4bit_reg@0 net@206 net@207 net@208 net@209 PHI PHI_I net@136 net@130 net@125 net@120 Proj2__4bit_register
+X_4bit_reg@1 net@228 net@216 net@217 net@218 PHI PHI_I net@103 net@107 net@111 net@115 Proj2__4bit_register
+XHEAD net@136 net@130 net@125 net@120 net@185 net@253 HEAD_A HEAD_B HEAD_C HEAD_D Proj2__4bit_register
 XHEAD_TAIL_ EMPTY HEAD_A HEAD_B HEAD_C HEAD_D TAIL_A TAIL_B TAIL_C TAIL_D Proj2__comparator
 XHEAD_TAIL_PLUS_1_ FULL HEAD_A HEAD_B HEAD_C HEAD_D net@103 net@107 net@111 net@115 Proj2__comparator
 XHEAD_PLUS_1 HEAD_A net@206 HEAD_B net@207 HEAD_C net@208 HEAD_D net@209 Proj2__incrementer
-XTAIL net@103 net@107 net@111 net@115 net@186 TAIL_A TAIL_B TAIL_C TAIL_D Proj2__4bit_register
-XTAIL_PLUS_1 TAIL_A net@214 TAIL_B net@216 TAIL_C net@217 TAIL_D net@218 Proj2__incrementer
-Xand2@0 net@190 PHI_I net@185 Proj2__and2
-Xand2@1 net@200 DEQ* net@190 Proj2__and2
+XTAIL net@103 net@107 net@111 net@115 net@186 net@259 TAIL_A TAIL_B TAIL_C TAIL_D Proj2__4bit_register
+XTAIL_PLUS_1 TAIL_A net@228 TAIL_B net@216 TAIL_C net@217 TAIL_D net@218 Proj2__incrementer
+Xand2@0 net@191 PHI_I net@185 Proj2__and2
+Xand2@1 net@200 DEQ* net@191 Proj2__and2
 Xand2@2 PHI_I ENQ* net@186 Proj2__and2
+Xand2@3 PHI net@191 net@253 Proj2__and2
+Xand2@4 ENQ* PHI net@259 Proj2__and2
 Xinv@0 ENQ* net@200 Proj2__inv
 .END

@@ -1,7 +1,7 @@
 *** SPICE deck for cell queue_toplevel_test{sch} from library Proj2
 *** Created on Sun Dec 11, 2016 18:21:24
 *** Last revised on Sun Dec 11, 2016 19:09:40
-*** Written on Sun Dec 11, 2016 20:52:22 by Electric VLSI Design System, version 9.06
+*** Written on Sun Dec 11, 2016 22:25:41 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
@@ -86,8 +86,11 @@ Xnor2@1 Out net@70 net@60 Proj2__nor2
 .SUBCKT Proj2__d_register D Q φ φ_INV
 ** GLOBAL gnd
 ** GLOBAL vdd
-Xd_latch@2 D net@27 φ_INV Proj2__d_latch
-Xd_latch@3 net@27 Q φ Proj2__d_latch
+Mnmos@0 net@57 net@60 gnd gnd N L=0.022U W=0.022U
+Mnmos@1 Q net@60 gnd gnd N L=0.022U W=0.022U
+VVPulse@0 net@60 gnd pulse (0 1V 0 0 0 1ns 10s) DC 0V AC 0V 0
+Xd_latch@2 D net@57 φ_INV Proj2__d_latch
+Xd_latch@3 net@57 Q φ Proj2__d_latch
 .ENDS Proj2__d_register
 
 *** SUBCIRCUIT Proj2__control_block_force_dequeue FROM CELL control_block_force_dequeue{sch}
@@ -298,6 +301,14 @@ Xxor2@0 D C C_INC Proj2__xor2
 .SUBCKT Proj2__pointers DEQ* EMPTY ENQ* FULL HEAD_A HEAD_B HEAD_C HEAD_D PHI PHI_I TAIL_A TAIL_B TAIL_C TAIL_D
 ** GLOBAL gnd
 ** GLOBAL vdd
+Mnmos@0 TAIL_A net@276 gnd gnd N L=0.022U W=0.022U
+Mnmos@1 TAIL_B net@276 gnd gnd N L=0.022U W=0.022U
+Mnmos@2 TAIL_C net@276 gnd gnd N L=0.022U W=0.022U
+Mnmos@3 TAIL_D net@276 gnd gnd N L=0.022U W=0.022U
+Mnmos@4 net@115 net@298 gnd gnd N L=0.022U W=0.022U
+Mnmos@5 net@111 net@298 gnd gnd N L=0.022U W=0.022U
+Mnmos@6 net@107 net@298 gnd gnd N L=0.022U W=0.022U
+Mnmos@7 net@103 net@298 gnd gnd N L=0.022U W=0.022U
 X_4bit_reg@0 net@206 net@207 net@208 net@209 PHI PHI_I net@136 net@130 net@125 net@120 Proj2__4bit_register
 X_4bit_reg@1 net@228 net@216 net@217 net@218 PHI PHI_I net@103 net@107 net@111 net@115 Proj2__4bit_register
 XHEAD net@136 net@130 net@125 net@120 net@185 net@253 HEAD_A HEAD_B HEAD_C HEAD_D Proj2__4bit_register
@@ -306,6 +317,8 @@ XHEAD_TAIL_PLUS_1_ FULL HEAD_A HEAD_B HEAD_C HEAD_D net@103 net@107 net@111 net@
 XHEAD_PLUS_1 HEAD_A net@206 HEAD_B net@207 HEAD_C net@208 HEAD_D net@209 Proj2__incrementer
 XTAIL net@103 net@107 net@111 net@115 net@186 net@259 TAIL_A TAIL_B TAIL_C TAIL_D Proj2__4bit_register
 XTAIL_PLUS_1 TAIL_A net@228 TAIL_B net@216 TAIL_C net@217 TAIL_D net@218 Proj2__incrementer
+VVPulse@0 net@276 gnd pulse (0 1V 0 0 0 1ns 10s) DC 0V AC 0V 0
+VVPulse@1 net@298 gnd pulse (0 1V 0 0 0 1ns 10s) DC 0V AC 0V 0
 Xand2@0 net@191 PHI_I net@185 Proj2__and2
 Xand2@1 net@200 DEQ* net@191 Proj2__and2
 Xand2@2 PHI_I ENQ* net@186 Proj2__and2
@@ -330,13 +343,13 @@ Xclk_gen@0 CLK PHI PHI_I Proj2__clk_gen
 Xcontrol_@1 DEQ_STAR ENQ_STAR FD PHI PHI_I Proj2__control_block_force_dequeue
 Xcontrol_@2 BL_0 BL_0_I BL_1 BL_1_I BL_2 BL_2_I BL_3 BL_3_I ENQ_STAR IN_0 IN_1 IN_2 IN_3 PHI PHI_I Proj2__control_block_bitline_driver
 Xcontrol_@3 BL_0 BL_0_I BL_1 BL_1_I BL_2 BL_2_I BL_3 BL_3_I DEQ_STAR ENQ_STAR PHI Proj2__control_block_precharge
-Xenq_deq@0 DEQ DEQ_STAR EMPTY_I ENQ ENQ_STAR FD FD_I FULL_I Proj2__enq_deq
+Xenq_deq@0 DEQ DEQ_STAR EMPTY_I ENQ ENQ_STAR gnd vdd FULL_I Proj2__enq_deq
 Xinv@0 EMPTY EMPTY_I Proj2__inv
 Xinv@1 FULL FULL_I Proj2__inv
 Xinv@2 ENQ_STAR ENQ_STAR_I Proj2__inv
 Xinv@3 FD FD_I Proj2__inv
-Xmux_4bit@0 ADDR_A ADDR_B ADDR_C ADDR_D ENQ_STAR ENQ_STAR_I net@0 net@1 net@2 net@3 net@4 net@5 net@6 net@7 Proj2__mux_4bit
-Xpointers@0 DEQ_STAR EMPTY ENQ_STAR FULL net@0 net@1 net@2 net@3 PHI PHI_I net@4 net@5 net@6 net@7 Proj2__pointers
+Xmux_4bit@0 ADDR_A ADDR_B ADDR_C ADDR_D ENQ_STAR ENQ_STAR_I HEAD_A HEAD_B HEAD_C HEAD_D TAIL_A TAIL_B TAIL_C TAIL_D Proj2__mux_4bit
+Xpointers@0 DEQ_STAR EMPTY ENQ_STAR FULL HEAD_A HEAD_B HEAD_C HEAD_D PHI PHI_I TAIL_A TAIL_B TAIL_C TAIL_D Proj2__pointers
 Xwl_enabl@0 DEQ_STAR ENQ_STAR PHI_I WL_ENABLE Proj2__wl_enable_gen
 .ENDS Proj2__control_block
 
