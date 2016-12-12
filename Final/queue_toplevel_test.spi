@@ -1,7 +1,7 @@
 *** SPICE deck for cell queue_toplevel_test{sch} from library Proj2
 *** Created on Sun Dec 11, 2016 18:21:24
-*** Last revised on Sun Dec 11, 2016 18:37:33
-*** Written on Sun Dec 11, 2016 18:54:05 by Electric VLSI Design System, version 9.06
+*** Last revised on Sun Dec 11, 2016 19:09:40
+*** Written on Sun Dec 11, 2016 19:24:42 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
@@ -298,8 +298,8 @@ Xxor2@0 D C C_INC Proj2__xor2
 .SUBCKT Proj2__pointers DEQ* EMPTY ENQ* FULL HEAD_A HEAD_B HEAD_C HEAD_D PHI PHI_I TAIL_A TAIL_B TAIL_C TAIL_D
 ** GLOBAL gnd
 ** GLOBAL vdd
-X_4bit_reg@0 net@206 net@207 net@208 net@209 PHI _4bit_reg@0_PHI_INV net@136 net@130 net@125 net@120 Proj2__4bit_register
-X_4bit_reg@1 net@228 net@216 net@217 net@218 PHI _4bit_reg@1_PHI_INV net@103 net@107 net@111 net@115 Proj2__4bit_register
+X_4bit_reg@0 net@206 net@207 net@208 net@209 PHI PHI_I net@136 net@130 net@125 net@120 Proj2__4bit_register
+X_4bit_reg@1 net@228 net@216 net@217 net@218 PHI PHI_I net@103 net@107 net@111 net@115 Proj2__4bit_register
 XHEAD net@136 net@130 net@125 net@120 net@185 HEAD_PHI_INV HEAD_A HEAD_B HEAD_C HEAD_D Proj2__4bit_register
 XHEAD_TAIL_ EMPTY HEAD_A HEAD_B HEAD_C HEAD_D TAIL_A TAIL_B TAIL_C TAIL_D Proj2__comparator
 XHEAD_TAIL_PLUS_1_ FULL HEAD_A HEAD_B HEAD_C HEAD_D net@103 net@107 net@111 net@115 Proj2__comparator
@@ -482,8 +482,8 @@ Xmemory_b@2 net@1 net@3 net@7 net@10 net@64 net@14 net@17 net@20 net@36 net@33 n
 .global gnd vdd
 
 *** TOP LEVEL CELL: queue_toplevel_test{sch}
-VVPWL@0 Enqueue gnd pwl (0ns 0) DC 0V AC 0V 0
-VVPWL@1 Dequeue gnd pwl (0ns 0) DC 0V AC 0V 0
+VVPWL@0 Enqueue gnd pwl (0ns 0 1.5ns 0 1.5ns 0.8 3.5ns 0.8 3.5ns 0) DC 0V AC 0V 0
+VVPWL@1 Dequeue gnd pwl (0ns 0 5.5ns 0 5.5ns 0.8 7.5ns 0.8 7.5ns 0) DC 0V AC 0V 0
 VVPWL@2 In_0 gnd pwl (0ns 0) DC 0V AC 0V 0
 VVPWL@3 In_1 gnd pwl (0ns 0) DC 0V AC 0V 0
 VVPWL@4 In_2 gnd pwl (0ns 0) DC 0V AC 0V 0

@@ -1,3 +1,4 @@
 # queue_toplevel_test
-tran 100ps 10ns
-plot (6V + Full) (5V + Empty) (4V + Out_0) (3V + Out_1) (2V + Out_2) (1V + Out_3) (Clock)
+tran 100ps 10ns uic
+plot (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock)
+plot (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
