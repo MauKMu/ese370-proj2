@@ -1,7 +1,7 @@
 *** SPICE deck for cell queue_toplevel_test_enq_when_full{sch} from library Proj2
 *** Created on Sun Dec 11, 2016 18:21:24
 *** Last revised on Mon Dec 12, 2016 00:37:53
-*** Written on Mon Dec 12, 2016 00:54:48 by Electric VLSI Design System, version 9.06
+*** Written on Mon Dec 12, 2016 01:36:13 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 * Model cards are described in this file:
@@ -301,22 +301,30 @@ Xxor2@0 D C C_INC Proj2__xor2
 .SUBCKT Proj2__pointers DEQ* EMPTY ENQ* FULL HEAD_A HEAD_B HEAD_C HEAD_D PHI PHI_I TAIL_A TAIL_B TAIL_C TAIL_D
 ** GLOBAL gnd
 ** GLOBAL vdd
-Mnmos@8 FULL net@337 gnd gnd N L=0.022U W=0.022U
 X_4bit_reg@0 net@206 net@207 net@208 net@209 PHI PHI_I net@136 net@130 net@125 net@120 Proj2__4bit_register
-X_4bit_reg@1 net@103 net@107 net@111 net@115 PHI PHI_I net@161 net@157 net@148 net@142 Proj2__4bit_register
+X_4bit_reg@1 net@365 net@364 net@366 net@363 PHI PHI_I net@161 net@157 net@148 net@142 Proj2__4bit_register
 XHEAD net@136 net@130 net@125 net@120 net@185 net@253 HEAD_A HEAD_B HEAD_C HEAD_D Proj2__4bit_register
-XHEAD_TAIL_ EMPTY HEAD_A HEAD_B HEAD_C HEAD_D TAIL_A TAIL_B TAIL_C TAIL_D Proj2__comparator
-XHEAD_TAIL_PLUS_1_ FULL HEAD_A HEAD_B HEAD_C HEAD_D net@103 net@107 net@111 net@115 Proj2__comparator
+XHEAD_TAIL_ net@427 HEAD_A HEAD_B HEAD_C HEAD_D TAIL_A TAIL_B TAIL_C TAIL_D Proj2__comparator
 XHEAD_PLUS_1 HEAD_A net@206 HEAD_B net@207 HEAD_C net@208 HEAD_D net@209 Proj2__incrementer
+XOVF_REG OVF_I OVF net@418 net@416 Proj2__d_register
 XTAIL net@161 net@157 net@148 net@142 net@186 net@259 TAIL_A TAIL_B TAIL_C TAIL_D Proj2__4bit_register
-XTAIL_PLUS_1 TAIL_A net@103 TAIL_B net@107 TAIL_C net@111 TAIL_D net@115 Proj2__incrementer
-VVPulse@2 net@337 gnd pulse (0 1V 0 0 0 3ns 10s) DC 0V AC 0V 0
-Xand2@0 net@191 PHI_I net@185 Proj2__and2
-Xand2@1 net@200 DEQ* net@191 Proj2__and2
+XTAIL_PLUS_1 TAIL_A net@365 TAIL_B net@364 TAIL_C net@366 TAIL_D net@363 Proj2__incrementer
+Xand2@0 JUST_DEQ PHI_I net@185 Proj2__and2
+Xand2@1 net@200 DEQ* JUST_DEQ Proj2__and2
 Xand2@2 PHI_I ENQ* net@186 Proj2__and2
-Xand2@3 PHI net@191 net@253 Proj2__and2
+Xand2@3 PHI JUST_DEQ net@253 Proj2__and2
 Xand2@4 ENQ* PHI net@259 Proj2__and2
+Xand2@5 HEAD_EQ_15 JUST_DEQ net@407 Proj2__and2
+Xand2@6 TAIL_EQ_15 ENQ* net@409 Proj2__and2
+Xand2@7 net@411 PHI_I net@418 Proj2__and2
+Xand2@8 PHI net@411 net@416 Proj2__and2
+Xand2@9 OVF net@427 FULL Proj2__and2
+Xand2@10 net@427 OVF_I EMPTY Proj2__and2
+Xand4@0 HEAD_A HEAD_B HEAD_C HEAD_D HEAD_EQ_15 Proj2__and4
+Xand4@1 TAIL_A TAIL_B TAIL_C TAIL_D TAIL_EQ_15 Proj2__and4
 Xinv@0 ENQ* net@200 Proj2__inv
+Xinv@1 OVF OVF_I Proj2__inv
+Xor2@0 net@407 net@409 net@411 Proj2__or2
 .ENDS Proj2__pointers
 
 *** SUBCIRCUIT Proj2__wl_enable_gen FROM CELL wl_enable_gen{sch}
