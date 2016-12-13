@@ -1,14 +1,19 @@
+DELAYS FOR ENQ
+
 xqueue_to@0.net@23 is WL_ENABLE (topmost signal)
-xqueue_to@0.xmemory_b@2.net@0 is WL's Out_0 (2nd topmost signal)
+xqueue_to@0.xmemory_b@2.net@0 is WL's Out_0 (call this WL_Out_0) (2nd topmost signal)
 
 delay between clock and enq*
 3.3587 x 10^-10 s
 
-delay between enq* and Out_0
+delay between enq* and WL_Out_0
 1.16 x 10^-9 s
 
 delay between enq* and WL_ENABLE
 1.12308 x 10^-9 s
 
-delay between Out_0 and BL/OUT_0
+delay between WL_Out_0 and Out_0 (top-level output)
 5.58559 x 10^-11 s
+
+delay between WL_ENABLE and Out_0 (top-level output)
+7.65766 x 10 ^-11 s
