@@ -392,10 +392,12 @@ The memory block is broken down as follows:
 \end{enumerate}
 
 \newpage
-\section*{Breakdown of Energy Contributions}
-
-\newpage
 \section*{Optimization of Energy}
+One of the ways in which we optimized the energy was by minimizing the number of transistors throughout the design. For example, in the 4-bit bitline precharge module, the individual bitline precharge modules require CLK to be asserted low in order for that bitline to be precharged, since the precharging is controlled by PMOS transistors. The logic function for precharging is that ENQ* is not asserted, DEQ* is, and the clock is high. We originally had it so that all of these values were being ANDed and then inverted, but we reduced this just to a NAND gate because the inverter was redundant. This reduces static energy usage slightly because there are two fewer transistors without the inverter.
+
+Another way we reduced the energy was by keeping $V_{dd}$ low, at 0.8 V. We thought about increasing $V_{dd}$ to 1 V to reduce the delay, but we reasoned that this was unnecessary because delay was not a specification that we were specifically asked to optimize in this project. Increasing $V_{dd}$ also would lead to more static power dissipation (since $V_{dd}$ is higher), as well as potentially more dynamic power dissipation (since there would be a wider voltage range in which the two transistors in an inverter would be turned on at once).
+
+We also minimized the amount of energy used by keeping transistors sized as reasonably small as possible. For example, in the 6T memory cell, we sized the transistors at the minimum size ($W = 16$) so that read upsets would be avoided and changes on the bit lines would not cause the stored values to be overwritten. (See description of bit cell circuit operation for more detail on why we had to do this.) We also kept all other transistors in the design minimum-sized, except for the bit-line drivers and prechargers (which were needed to overcome the bitline capacitance). Keeping $W$ small reduces the amount of static current drawn and thus reduces the amount of power used.
 
 \newpage
 \section*{Validation of Correctness}
@@ -634,6 +636,14 @@ We also performed a test in which we enqueued and dequeued a few times. We first
   \centering
     \includegraphics[width=1.0\textwidth]{queue_toplevel_test_enq_deq_a_few_time.PNG}
   \caption{Queue test, enqueue and dequeue a few times}
+\end{figure}
+
+We also tested that enqueueing and dequeuing simultaneously worked according to the specifications. As shown, enq/deq on an empty queue just enqueues, while enq/deq on a non-empty, non-full queue does enqueue and dequeue a value.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{queue_toplevel_test_enqdeq_empty_and_middle.PNG}
+  \caption{Queue test, simultaneous enqueue and dequeue on empty and nonempty, nonfull}
 \end{figure}
 
 \newpage
