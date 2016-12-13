@@ -310,6 +310,65 @@
 
 \newpage
 \section*{Timing of Key Signals}
+The critical path that we reasoned was from the user asserting dequeue or enqueue to the bit-line values/memory cell contents settling at the correct final values. (All delays were measured from the rising edge of the clock cycle, when the enqueue/dequeue is latched, to Out\_0.)
+\subsection*{Dequeue}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{queue_toplevel_test_simple_deq.PNG}
+  \caption{Queue toplevel simple dequeue}
+\end{figure}
+
+Dequeue Delay Results:
+\begin{verbatim}
+xqueue_to@0.net@23 is WL_ENABLE (topmost signal, red)
+xqueue_to@0.xmemory_b@2.net@0 is WL's Out_0 (call this WL_Out_0) 
+    (2nd topmost signal, blue)
+
+delay between clock and deq*
+2.01613 x 10^-10 s
+
+delay between deq* and WL_Out_0
+1.17101 x 10^-9 s
+
+delay between deq* and WL_ENABLE
+1.12029 x 10^-9 s
+
+delay between WL_Out_0 and Out_1 (top-level output)
+3.44828 x 10^-11 s
+
+delay between WL_ENABLE and Out_1 (top-level output)
+7.98851 x 10 ^-11 s
+\end{verbatim}
+
+\subsection*{Enqueue}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{queue_toplevel_test_simple_deq.PNG}
+  \caption{Queue toplevel simple dequeue}
+\end{figure}
+
+\begin{verbatim}
+xqueue_to@0.net@23 is WL_ENABLE (topmost signal, red)
+xqueue_to@0.xmemory_b@2.net@0 is WL's Out_0 (call this WL_Out_0) 
+    (2nd topmost signal, blue)
+
+delay between clock and enq*
+3.3587 x 10^-10 s
+
+delay between enq* and WL_Out_0
+1.16 x 10^-9 s
+
+delay between enq* and WL_ENABLE
+1.12308 x 10^-9 s
+
+delay between WL_Out_0 and Out_0 (top-level output)
+5.58559 x 10^-11 s
+
+delay between WL_ENABLE and Out_0 (top-level output)
+7.65766 x 10 ^-11 s
+\end{verbatim}
+
+\textit{Note: NGSPICE was not behaving properly when we tried to plot the node names inside cells. It kept changing the node names for no apparent reason, and we became very frustrated at times. The information we plotted above was done to the best of our ability.}
 
 \newpage
 \section*{Memory Operation and Design Choices}
@@ -390,6 +449,13 @@ The memory block is broken down as follows:
 
   This 4-to-16 decoder is used to reduce the amount of address lines needed from the control block. It is a standard CMOS decoder design that outputs the 16 possible minterms generated from 4 logic inputs (A, B, C, and D). It also includes an output enable bit to turn off the decoder's output when we are not reading or writing, therefore ensuring that the word line of one bit is not high at once. (If one word line was high at all times, we would be reading or writing at all times, which would interfere with reading or writing at the intended time because the bit lines would need to be precharged or driven.)
 \end{enumerate}
+
+\subsection*{Timing Requirements for Correct Operation}
+The first timing requirement that we must obey in our design is that the clocks do not overlap. If they overlapped, then the second D latch in the D register would sample the input when the clock is high.) This is shown in any of our simulations of the full queue design - $\phi$ and $\phi'$ does not overlap. (In a previous design, we were generating the clocks for the flip-flops internally in the D register cells, but this was causing strange timing issues, such as the head and tail pointers incrementing randomly. We moved all clock signals outside in order to debug this problem easier.)
+
+Another timing requirement for correct operation is that the enqueue and dequeue signals the user provides should be asserted before the rising edge of the clock. This is because the ENQ* and DEQ* signals (which depend on the external enqueue and dequeue) are latched at the rising clock edge. Thus, the system will not recognize that the user intended to enqueue or dequeue.
+
+A third timing constraint is that when simultaneously enqueueing and dequeueing, on the second clock cycle (when dequeue is occurring), the user's inputs are ignored. This prevents another dequeue from happening at the same time the user's previously initiated dequeue request is satisfied.
 
 \newpage
 \section*{Optimization of Energy}
