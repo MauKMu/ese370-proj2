@@ -1,0 +1,9 @@
+plot (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.addr_a + 12V) (xqueue_to@0.addr_b + 11V) (xqueue_to@0.addr_c + 10V) (xqueue_to@0.addr_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
+
+plot (xqueue_to@0.xmemory_b@2.wl_0 + 15V) (xqueue_to@0.xcontrol_@0.wl_enable + 15V) (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.addr_a + 12V) (xqueue_to@0.addr_b + 11V) (xqueue_to@0.addr_c + 10V) (xqueue_to@0.addr_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
+
+xqueue_to@0.xmemory_b@2.net@0 is WL's Out_0
+xqueue_to@0.net@23 is WL_ENABLE
+
+plot (xqueue_to@0.net@23 + 16V) (xqueue_to@0.xmemory_b@2.net@0 + 15V) (xqueue_to@0.xcontrol_@0.enq_star + 14V) (xqueue_to@0.xcontrol_@0.deq_star + 13V) (xqueue_to@0.addr_a + 12V) (xqueue_to@0.addr_b + 11V) (xqueue_to@0.addr_c + 10V) (xqueue_to@0.addr_d + 9V) (8V + Full) (7V + Empty) (6V + Enqueue) (5V + Dequeue) (4V + Clock) (3V + Out_0) (2V + Out_1) (1V + Out_2) (Out_3)
+
