@@ -17,6 +17,7 @@
 % Margin and paragraph indent
 \usepackage[margin=1.0in]{geometry}
 \usepackage{parskip}
+\usepackage{tabto}
 
 %\geometry{paperwidth=30cm}
 %\geometry{paperheight=40cm}
@@ -344,7 +345,7 @@ The control block is broken down as follows;
 
     HEAD is incremented whenever DEQ* is high, ENQ* is not high, and a falling edge of the clock occurs. Likewise, TAIL is incremented whenever ENQ* is high, DEQ* is not high, and a falling edge of the clock occurs.
 
-    \item Head and Tail Incrementers (HEAD_PLUS_1 and TAIL_PLUS_1)
+    \item Head and Tail Incrementers (HEAD\_PLUS\_1 and TAIL\_PLUS\_1)
 
     These are combinational circuits that increment the current values of HEAD and TAIL. They are used to increment the current values of HEAD and TAIL on enqueues and dequeues, respectively.
 
@@ -352,11 +353,11 @@ The control block is broken down as follows;
 
     \item Comparator (HEAD = TAIL)
 
-    This comparator is a combinational circuit that checks whether the values of HEAD and TAIL are equal to each other. It outputs whether the queue is full (FULL) or empty (EMPTY) depending on whether OVF has been set by OVF_REG (see below).
+    This comparator is a combinational circuit that checks whether the values of HEAD and TAIL are equal to each other. It outputs whether the queue is full (FULL) or empty (EMPTY) depending on whether OVF has been set by OVF\_REG (see below).
 
-    \item OVF_REG
+    \item OVF\_REG
 
-    This portion of the circuit checks when the current values of HEAD and TAIL are equal to 15, signalling that they are about to wrap-around to address 0. When this happens, OVF_REG is toggled. (Observe that OVF_REG is always set high when TAIL wraps around and is always set low when HEAD wraps around. This is because OVF_REG starts at 0, TAIL wraps around first (it's ahead of HEAD), and TAIL wrapping around is always followed by HEAD wrapping around (and vice-versa).)
+    This portion of the circuit checks when the current values of HEAD and TAIL are equal to 15, signalling that they are about to wrap-around to address 0. When this happens, OVF\_REG is toggled. (Observe that OVF\_REG is always set high when TAIL wraps around and is always set low when HEAD wraps around. This is because OVF\_REG starts at 0, TAIL wraps around first (it's ahead of HEAD), and TAIL wrapping around is always followed by HEAD wrapping around (and vice-versa).)
 
     Also observe that when OVF is set and HEAD == TAIL, then the queue is full since TAIL has wrapped around and HEAD has not yet. Likewise, when OVF is not set and HEAD == TAIL, the queue is empty since HEAD has wrapped around and TAIL has not yet. (See above for more information on the Comparator.)
   \end{enumerate}
@@ -398,6 +399,242 @@ The memory block is broken down as follows:
 
 \newpage
 \section*{Validation of Correctness}
+We validated the correctness of the design by unit-testing each module, and then running integration tests on the whole queue.
+
+\subsection*{Unit Tests}
+The unit tests were done to ensure that each component operated according to the specifications given in our design above. Most of them do not require a description since many are combinational or simple sequeuntial circuits. If a description is needed, it is provided in the appropriate test.
+\subsubsection*{Clock Generator}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{clk_gen_test.PNG}
+  \caption{Clock generator test}
+  \label{fig:clk_gen_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/clk_gen.PNG}
+  \caption{Clock generator test schematic}
+\end{figure}
+
+\subsubsection*{Comparator}
+The comparator was broken into 3 tests: numbers the same, numbers were different but swapped, and numbers were different.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{comparator_test_diff.PNG}
+  \caption{Comparator test, different}
+  \label{fig:comparator_test_diff}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{comparator_test_diff_swapped.PNG}
+  \caption{Comparator test, different and swapped}
+  \label{fig:comparator_test_diff_swapped}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{comparator_test_same.PNG}
+  \caption{Comparator test, same}
+  \label{fig:comparator_test_same}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/comparator.PNG}
+  \caption{Comparator test schematic}
+\end{figure}
+
+\subsubsection*{D Latch}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{d_latch_test.PNG}
+  \caption{D Latch Test}
+  \label{fig:d_latch_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/d_latch.PNG}
+  \caption{D latch test schematic}
+\end{figure}
+
+\subsubsection*{D Register}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{d_register_test.PNG}
+  \caption{D Register Test}
+  \label{fig:d_register_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/d_register.PNG}
+  \caption{D register test schematic}
+\end{figure}
+
+\subsubsection*{ENQ*/DEQ* Module}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{enq_deq_test.PNG}
+  \caption{ENQ*/DEQ* Module Test}
+  \label{fig:enq_deq_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/enq_deq.PNG}
+  \caption{ENQ*/DEQ* test schematic}
+\end{figure}
+
+\subsubsection*{Incrementer}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{incrementer_test.PNG}
+  \caption{Incrementer Test}
+  \label{fig:incrementer_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/incrementer.PNG}
+  \caption{Incrementer test schematic}
+\end{figure}
+
+\subsubsection*{Pointers}
+The pointers test is broken down into testing for proper incrementing, testing for no incrementing when not enqueuing or dequeuing, and testing that the empty and full lines are asserted at the appropriate times (and not asserted when the queue is neither empty nor full (head != tail)).
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{pointers_test.PNG}
+  \caption{Pointers test, proper increment}
+  \label{fig:pointers_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{pointers_test_do_nothing.PNG}
+  \caption{Pointers test, no incrementing}
+  \label{fig:pointers_test_do_nothing}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{pointers_test_empty_full.PNG}
+  \caption{Pointers test, empty and full}
+  \label{fig:pointers_test_empty_full}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/pointers.PNG}
+  \caption{Pointers test schematic}
+\end{figure}
+
+\subsubsection*{Decoder}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{decoder_test_0_to_3.PNG}
+  \caption{Decoder test, outputs 0 to 3}
+  \label{fig:decoder_test_0_to_3}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{decoder_test_4_to_7.PNG}
+  \caption{Decoder test, outputs 4 to 7}
+  \label{fig:decoder_test_4_to_7}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{decoder_test_8_to_11.PNG}
+  \caption{Decoder test, outputs 8 to 11}
+  \label{fig:decoder_test_8_to_11}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{decoder_test_12_to_15.PNG}
+  \caption{Decoder test, outputs 12 to 15}
+  \label{fig:decoder_test_12_to_15}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/decoder.PNG}
+  \caption{Decoder test schematic}
+\end{figure}
+
+\subsubsection*{Force Dequeue}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{control_block_force_dequeue_test.PNG}
+  \caption{Force dequeue module test}
+  \label{fig:control_block_force_dequeue_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/force_dequeue.PNG}
+  \caption{Force dequeue test schematic}
+\end{figure}
+
+\subsubsection*{4-bit Precharge Module}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{control_block_precharge_test.PNG}
+  \caption{4-bit precharge module test}
+  \label{fig:control_block_precharge_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/precharge.PNG}
+  \caption{4-bit precharge test schematic}
+\end{figure}
+
+\subsubsection*{Bitline Driver}
+Note that we used resistors in our test circuit to drive the outputs of the tri-state buffers low after write-enable was disabled. We did not use resistors in our actual design.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{control_block_bitline_driver_test_0.PNG}
+  \caption{Bitline driver test, bit 0}
+  \label{fig:control_block_bitline_driver_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{control_block_bitline_driver_test_1.PNG}
+  \caption{Bitline driver test, bit 1}
+  \label{fig:control_block_bitline_driver_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{control_block_bitline_driver_test_2.PNG}
+  \caption{Bitline driver test, bit 2}
+  \label{fig:control_block_bitline_driver_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{control_block_bitline_driver_test_3.PNG}
+  \caption{Bitline driver test, bit 3}
+  \label{fig:control_block_bitline_driver_test}
+\end{figure}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{TestSchematics/bitline_driver.PNG}
+  \caption{Bitline driver test schematic}
+\end{figure}
+
+\subsection*{Full FIFO Queue}
+For the full queue, we tested several operations.
+
+The first operation that we tested is enqueueing once, then dequeueing twice. This was done to ensure that dequueing an empty queue does not result in the head or tail pointers changing. It also tests that we are dequeueing the correct value when we issue a valid dequeue request.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{queue_toplevel_test_enq_deq_deq.PNG}
+  \caption{Queue test, enqueue once and then dequeue twice}
+\end{figure}
+
+The second test we did was ensuring that enqueueing on a full queue does not result in the tail pointer changing.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{queue_toplevel_test_enq_when_full.PNG}
+  \caption{Queue test, enqueue on full queue}
+\end{figure}
+
+We also performed a test in which we enqueued and dequeued a few times. We first enqueue 1 and then enqueue 0 2 times. The first dequeue returns 1, and the next two dequeues return 0, as expected.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{queue_toplevel_test_enq_deq_a_few_time.PNG}
+  \caption{Queue test, enqueue and dequeue a few times}
+\end{figure}
 
 \newpage
 \section*{Summary of Design Metrics}
@@ -407,9 +644,10 @@ Total area: 5892 (summing transistor widths). See breakdown below.
 \subsection*{Memory Cell Area}
 Area: 50
 
-Areas are broken down as follows:
-Area
-  General Components
+Areas are broken down as follows:\\
+
+\begin{verbatim}
+General Components
     Inverter: 2
     NAND Gate: 4
     AND2 Gate: 6
@@ -485,7 +723,7 @@ Area
       16 AND2 Gates: 96
 
 
-  Total Top-Level Design Area: 5892
+Total Top-Level Design Area: 5892
     Control Block: 2284
       1 Clock Generator: 58
       1 Force Dequeue Module: 52
@@ -502,45 +740,46 @@ Area
       64 6T SRAM Cells: 3200
       1 4-to-16 Decoder: 392
     8 inverters for buffering: 16
+\end{verbatim}
 
 \subsection*{Enqueue Energy}
-  Enqueueing 0x1111 into 0x0000: 4.78 x 10^-14 J (higher value). This was done using the command 
+  Enqueueing 0x1111 into 0x0000: $4.78 x 10^{-14}$ J (higher value). This was done using the command 
   \begin{verbatim}
   meas tran yint integ I(vv_generi@0) from=36ns to=38ns
   \end{verbatim}
   and produced the results
   \begin{verbatim}
-  yint                =  -5.97328e-14 from=  3.60000e-08 to=  3.80000e-08
+  yint = 5.97328e-14 from=  3.60000e-08 to=  3.80000e-08
   \end{verbatim}
   (Energy was multiplied by 0.8 since $V_{dd} = 0.8 $V.)
 
-  Enqueueing 0x0000 into 0x1111: 4.73 x 10^-14 J.
+  Enqueueing 0x0000 into 0x1111: $4.73 x 10^{-14}$ J.
   \begin{verbatim}
   meas tran yint integ I(vv_generi@0) from=36ns to=38ns
-  yint                =  -5.90996e-14 from=  3.60000e-08 to=  3.80000e-08
+  yint = -5.90996e-14 from=  3.60000e-08 to=  3.80000e-08
   \end{verbatim}
 \subsection*{Dequeue Energy}
-  Dequeueing 0x0000: 3.89 x 10^-14 J (higher value).
+  Dequeueing 0x0000: $3.89 x 10^{-14}$ J (higher value).
   \begin{verbatim}
-  yint                =  -4.86632e-014 from=  8.00000e-009 to=  1.00000e-008
+  yint = -4.86632e-014 from=  8.00000e-009 to=  1.00000e-008
   \end{verbatim}
-  Dequeueing 0x1111: 3.818792 x 10^-14 J 
+  Dequeueing 0x1111: $3.818792 x 10^{-14}$ J 
   \begin{verbatim}
-  yint                =  -4.77349e-014 from=  8.00000e-009 to=  1.00000e-008
+  yint = -4.77349e-014 from=  8.00000e-009 to=  1.00000e-008
   \end{verbatim}
 \subsection*{Simultaneous Enqueue/Dequeue Energy}
-  Result: 3.95 x 10^-13 J
+  Result: $3.95 x 10^{-13}$ J
   \begin{verbatim}
   meas tran yint integ I(vv_generi@0) from=36ns to=40ns
-  yint                =  -4.93721e-13 from=  3.60000e-08 to=  4.00000e-08
+  yint = -4.93721e-13 from=  3.60000e-08 to=  4.00000e-08
   \end{verbatim}
 \subsection*{Standby Energy}
-  Result:    1.54 x 10^-14 J 
+  Result:    $1.54 x 10^{-14}$ J 
   \begin{verbatim}
-  yint                =  -1.93039e-014 from=  4.00000e-009 to=  6.00000e-009)
+  yint = -1.93039e-014 from=  4.00000e-009 to=  6.00000e-009)
   \end{verbatim}
 \subsection*{Average Energy}
-  We calculated the average energy as a weighted average of the energies determined above and using the distribution specified in the report writeup. The average energy was $7.79 * 10^{-14}$ J and was calculated as $0.15 * 3.95 x 10^{-13} J + 0.1 * 4.78 x 10^{-14} + 0.1 * 3.89 x 10^{-14} J + 0.65 * 1.54 x 10^{-14} J
+  We calculated the average energy as a weighted average of the energies determined above and using the distribution specified in the report writeup. The average energy was $7.79 x 10^{-14}$ J and was calculated as $0.15 * 3.95 x 10^{-13} J + 0.1 * 4.78 x 10^{-14} + 0.1 * 3.89 x 10^{-14} J + 0.65 * 1.54 x 10^{-14}$ J
 
 \newpage
 \section*{Honor Pledge}
